@@ -2,9 +2,11 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Trick;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class AppController extends Controller
 {
@@ -16,15 +18,21 @@ class AppController extends Controller
         $em = $this->getDoctrine()->getManager();
         $tricks = $em->getRepository('AppBundle:Trick')->findAll();
         // replace this example code with whatever you need
-        return $this->render('AppBundle:pages:home.html.twig', array('tricks'=>$tricks));
+        return $this->render('AppBundle:pages:home.html.twig',
+            array('tricks'=>$tricks));
     }
 
     /**
-     * @Route("/view", name="view")
+     * @Route("/tricks/{slug}", name="view")
      */
-    public function viewAction(Request $request)
+    public function viewAction($slug, Request $request)
     {
-        return $this->render('AppBundle:pages:view.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $trick = $em->getRepository('AppBundle:Trick')->findBySlug($slug);
+        if (null === $trick) {
+            throw new NotFoundHttpException("This trick ". $slug ." doesn't exist ! Want to add it ?");
+        }
+        return $this->render('AppBundle:pages:view.html.twig', array('trick' => $trick));
     }
 
 }

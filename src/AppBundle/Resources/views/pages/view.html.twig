@@ -5,5 +5,21 @@
 {% endblock %}
 
 {% block body %}
-<h1>The Grab Tail</h1>
+    {% for trick in trick %}
+        <div class="container">
+            <h1>{{ trick.name }} by <small>{{ trick.author }}</small></h1>
+            <p>Cat - ...</p>
+            <h3>The {{ trick.name }} description</h3>
+            <p>The {{ trick.date|date("F jS \\a\\t g:ia") }}</p>
+            <p>Image trick</p>
+
+            <p>{{ trick.description }}</p>
+            <p>Video ...</p>
+
+        </div>
+
+        <div class="container">
+            <p>Comments</p>
+        </div>
+{% endfor %}
 {% endblock %}
