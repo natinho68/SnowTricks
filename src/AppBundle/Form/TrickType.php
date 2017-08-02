@@ -22,7 +22,6 @@ class TrickType extends AbstractType
             ->add('date',      DateTimeType::class)
             ->add('name',     TextType::class)
             ->add('author',    TextType::class)
-            ->add('slug', TextType::class)
             ->add('description',   TextareaType::class)
             ->add('save',      SubmitType::class);
     }

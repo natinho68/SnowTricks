@@ -50,8 +50,7 @@ class AppController extends Controller
             $em->persist($trick);
             $em->flush();
 
-            $session = new Session();
-            $session->getFlashBag()->add('info', 'Trick has been successfully added');
+            $request->getSession()->getFlashBag()->add('info', 'Trick has been successfully added');
             return $this->redirectToRoute('view', array('slug' => $trick->getSlug()));
         }
         return $this->render('AppBundle:pages:add.html.twig', array(
@@ -76,8 +75,7 @@ class AppController extends Controller
                 // Inutile de persister ici, Doctrine connait déjà notre annonce
                 $em->flush();
 
-                $session = new Session();
-                $session->getFlashBag()->add('info', 'Trick has been updated');
+                $request->getSession()->getFlashBag()->add('info', 'Trick has been updated');
                 return $this->redirectToRoute('view', array('slug' => $trick->getSlug()));
             }
             return $this->render('AppBundle:pages:edit.html.twig', array(
