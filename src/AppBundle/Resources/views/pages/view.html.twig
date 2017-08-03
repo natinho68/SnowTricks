@@ -1,0 +1,27 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block title %}
+    Trick - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    {% for trick in trick %}
+        <div class="container">
+            <div class="col-md-6"><a href="{{ path('edit', {'id': trick.id}) }}"><span class="glyphicon glyphicon-pencil"></span></a>
+                <a href="{{ path('delete', {'id': trick.id}) }}"><span class="glyphicon glyphicon-trash"></span></a></div>
+            <h1>{{ trick.name }} by <small>{{ trick.author }}</small></h1>
+            <p>Cat - ...</p>
+            <h3>The {{ trick.name }} description</h3>
+            <p>The {{ trick.date|date("F jS \\a\\t g:ia") }}</p>
+            <p>Image trick</p>
+
+            <p>{{ trick.description }}</p>
+            <p>Video ...</p>
+
+        </div>
+
+        <div class="container">
+            <p>Comments</p>
+        </div>
+{% endfor %}
+{% endblock %}
