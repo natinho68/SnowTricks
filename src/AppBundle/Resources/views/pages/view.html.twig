@@ -1,11 +1,14 @@
 {% extends "AppBundle::layout.html.twig" %}
 
 {% block title %}
-    Trick - {{ parent() }}
+        {% for trick in trick %}
+            {{ trick.name }} - {{ parent() }}
+        {% endfor %}
 {% endblock %}
 
 {% block body %}
     {% for trick in trick %}
+
         <div class="container">
             <div class="col-md-6"><a href="{{ path('edit', {'id': trick.id}) }}"><span class="glyphicon glyphicon-pencil"></span></a>
                 <a href="{{ path('delete', {'id': trick.id}) }}"><span class="glyphicon glyphicon-trash"></span></a></div>
@@ -13,8 +16,12 @@
             <p>Cat - ...</p>
             <h3>The {{ trick.name }} description</h3>
             <p>The {{ trick.date|date("F jS \\a\\t g:ia") }}</p>
-            <p>Image trick</p>
+            {# On vérifie qu'une image soit bien associée à l'annonce #}
+  <h3>Image</h3>
+                <img src="{{ trick.images.snapshot.0.url }}" alt=" {{ trick.images.snapshot.0.alt }}">
+                <img src="{{ trick.images.snapshot.1.url }}" alt="{{ trick.images.snapshot.1.alt }}">
 
+            <h3>Description :</h3>
             <p>{{ trick.description }}</p>
             <p>Video ...</p>
 
@@ -22,6 +29,13 @@
 
         <div class="container">
             <p>Comments</p>
+            {% for listComment in listComments %}
+                <p>Author : </p>{{ listComment.author }}
+                <p>Date : {{ listComment.date|date("F jS \\a\\t g:ia")}}</p>
+                <p>Content : {{ listComment.content }}</p>
+            {% endfor %}
+            <h3>Add a comment</h3>
+            {{   form(form)  }}
         </div>
 {% endfor %}
 {% endblock %}

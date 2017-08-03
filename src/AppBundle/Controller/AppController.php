@@ -2,7 +2,10 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Comment;
+use AppBundle\Entity\Image;
 use AppBundle\Entity\Trick;
+use AppBundle\Form\CommentType;
 use AppBundle\Form\TrickType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -26,24 +29,13 @@ class AppController extends Controller
     }
 
     /**
-     * @Route("/tricks/{slug}", name="view")
-     */
-    public function viewAction($slug, Request $request)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $trick = $em->getRepository('AppBundle:Trick')->findBySlug($slug);
-        if (null === $trick) {
-            throw new NotFoundHttpException("This trick ". $slug ." doesn't exist ! Want to add it ?");
-        }
-        return $this->render('AppBundle:pages:view.html.twig', array('trick' => $trick));
-    }
-
-    /**
-     * @Route("/add", name="add")
+     * @Route("/tricks/add", name="add")
      */
     public function addAction(Request $request){
-        $trick = new Trick();
+
+       $trick = new Trick();
         $form = $this->createForm(TrickType::class, $trick);
+
 
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -56,7 +48,40 @@ class AppController extends Controller
         return $this->render('AppBundle:pages:add.html.twig', array(
             'form' => $form->createView()
         ));
+    }
+
+    /**
+     * @Route("/tricks/{slug}", name="view")
+     */
+    public function viewAction($slug, Request $request)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $trick = $em->getRepository('AppBundle:Trick')->findBySlug($slug);
+        if (empty($trick)) {
+            throw new NotFoundHttpException("This trick ". $slug ." doesn't exist ! Want to add it ?");
         }
+
+        $comment = new Comment();
+        $form = $this->createForm(CommentType::class, $comment);
+
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($comment);
+            $em->flush();
+        }
+
+            // On récupère la liste des candidatures de cette annonce
+            $listComments = $em
+                ->getRepository('AppBundle:Comment')
+                ->findBy(array('trick' => $trick));
+            return $this->render('AppBundle:pages:view.html.twig', array(
+                'trick' => $trick,
+                'listComments' => $listComments,
+                'form' => $form->createView(),
+            ));
+        }
+
 
 
         /**

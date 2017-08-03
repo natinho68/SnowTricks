@@ -3,8 +3,10 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 // N'oubliez pas ce use :
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Trick
@@ -14,6 +16,12 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 class Trick
 {
+
+    /** * One trick has Many images.
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Image", mappedBy="trick", cascade={"persist"}))
+     */
+    private $images;
+
     /**
      * @var int
      *
@@ -27,6 +35,7 @@ class Trick
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
+     * @Assert\Length(min=3)
      */
     private $name;
 
@@ -34,6 +43,8 @@ class Trick
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime")
+     * @Assert\DateTime()
+     * @Assert\NotBlank()
      */
     private $date;
 
@@ -47,6 +58,7 @@ class Trick
      * @var string
      *
      * @ORM\Column(name="description", type="text")
+     * @Assert\NotBlank()
      */
     private $description;
 
@@ -54,6 +66,8 @@ class Trick
      * @var string
      *
      * @ORM\Column(name="author", type="string", length=255)
+     * @Assert\Length(min=2)
+     * @Assert\NotBlank()
      */
     private $author;
 
@@ -120,6 +134,7 @@ class Trick
     {
         return $this->date;
     }
+
 
     /**
      * Set slug
@@ -192,5 +207,5 @@ class Trick
     {
         return $this->author;
     }
-}
 
+}
