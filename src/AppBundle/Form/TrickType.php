@@ -2,8 +2,10 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Image;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -23,6 +25,12 @@ class TrickType extends AbstractType
             ->add('name',     TextType::class)
             ->add('author',    TextType::class)
             ->add('description',   TextareaType::class)
+            ->add('images', CollectionType::class, array(
+                'entry_type' => ImageType::class,
+                'allow_add' => true,
+                'by_reference' => false,
+                'allow_delete' => true// Ajoutez cette ligne
+            ))
             ->add('save',      SubmitType::class);
     }
     
