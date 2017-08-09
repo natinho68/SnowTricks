@@ -74,19 +74,11 @@ class AppController extends Controller
             // On récupère la liste des candidatures de cette annonce
             $listComments = $em
                 ->getRepository('AppBundle:Comment')
-<<<<<<< HEAD
-                ->findBy(array('trick' => $trick));
-            return $this->render('AppBundle:pages:view.html.twig', array(
-                'trick' => $trick,
-                'listComments' => $listComments,
-                'form' => $form->createView(),
-=======
                 ->findAll();
             return $this->render('AppBundle:pages:view.html.twig', array(
                 'trick' => $trick,
                 'listComments' => $listComments,
                 'form' => $form->createView()
->>>>>>> master
             ));
         }
 

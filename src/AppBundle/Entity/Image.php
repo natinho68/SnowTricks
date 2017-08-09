@@ -13,15 +13,6 @@ use Doctrine\ORM\Mapping as ORM;
 class Image
 {
 
-<<<<<<< HEAD
-    /** *
-     * Many images has One trick.
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Trick", inversedBy="images") *
-     * @ORM\JoinColumn(nullable=false) */
-    private $trick;
-
-=======
->>>>>>> master
     /**
      * @var int
      *

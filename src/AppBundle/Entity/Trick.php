@@ -17,13 +17,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Trick
 {
 
-<<<<<<< HEAD
-    /** * One trick has Many images.
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Image", mappedBy="trick", cascade={"persist"}))
-     */
-    private $images;
-
-=======
     /** * many trick has Many images.
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Image", cascade={"persist"}))
      */
@@ -34,7 +27,6 @@ class Trick
      */
     protected $comments;
 
->>>>>>> master
     /**
      * @var int
      *
@@ -257,8 +249,6 @@ class Trick
     {
         return $this->images;
     }
-<<<<<<< HEAD
-=======
 
     /**
      * Add comment
@@ -293,5 +283,4 @@ class Trick
     {
         return $this->comments;
     }
->>>>>>> master
 }

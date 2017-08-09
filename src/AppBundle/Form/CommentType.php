@@ -2,13 +2,9 @@
 
 namespace AppBundle\Form;
 
-<<<<<<< HEAD
-use Symfony\Component\Form\AbstractType;
-=======
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
->>>>>>> master
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
