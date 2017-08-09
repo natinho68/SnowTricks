@@ -47,12 +47,15 @@ class Comment
         $this->date = new \Datetime();
     }
 
+<<<<<<< HEAD
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Trick")
      * @ORM\JoinColumn(nullable=false)
      */
     private $trick;
 
+=======
+>>>>>>> master
 
     /**
      * Get id
@@ -135,5 +138,33 @@ class Comment
     {
         return $this->date;
     }
+<<<<<<< HEAD
 }
 
+=======
+
+    /**
+     * Set trick
+     *
+     * @param \AppBundle\Entity\Trick $trick
+     *
+     * @return Comment
+     */
+    public function setTrick(\AppBundle\Entity\Trick $trick)
+    {
+        $this->trick = $trick;
+
+        return $this;
+    }
+
+    /**
+     * Get trick
+     *
+     * @return \AppBundle\Entity\Trick
+     */
+    public function getTrick()
+    {
+        return $this->trick;
+    }
+}
+>>>>>>> master

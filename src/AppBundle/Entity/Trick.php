@@ -17,11 +17,24 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Trick
 {
 
+<<<<<<< HEAD
     /** * One trick has Many images.
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Image", mappedBy="trick", cascade={"persist"}))
      */
     private $images;
 
+=======
+    /** * many trick has Many images.
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Image", cascade={"persist"}))
+     */
+    private $images;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="trick")
+     */
+    protected $comments;
+
+>>>>>>> master
     /**
      * @var int
      *
@@ -244,4 +257,41 @@ class Trick
     {
         return $this->images;
     }
+<<<<<<< HEAD
+=======
+
+    /**
+     * Add comment
+     *
+     * @param \AppBundle\Entity\Comment $comment
+     *
+     * @return Trick
+     */
+    public function addComment(\AppBundle\Entity\Comment $comment)
+    {
+        $this->comments[] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Remove comment
+     *
+     * @param \AppBundle\Entity\Comment $comment
+     */
+    public function removeComment(\AppBundle\Entity\Comment $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+>>>>>>> master
 }

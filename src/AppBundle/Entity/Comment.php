@@ -47,12 +47,15 @@ class Comment
         $this->date = new \Datetime();
     }
 
+<<<<<<< HEAD
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Trick", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $trick;
 
+=======
+>>>>>>> master
 
     /**
      * Get id

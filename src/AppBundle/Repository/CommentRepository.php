@@ -10,4 +10,19 @@ namespace AppBundle\Repository;
  */
 class CommentRepository extends \Doctrine\ORM\EntityRepository
 {
+<<<<<<< HEAD
+=======
+    public function getCommentsTrick($trickId)
+    {
+        $qb = $this->createQueryBuilder('c')
+            ->select('c')
+            ->where('c.trick = :trick_id')
+            ->addOrderBy('c.created')
+            ->setParameter('trick_id', $trickId);
+
+        return $qb->getQuery()
+            ->getResult();
+    }
+
+>>>>>>> master
 }
