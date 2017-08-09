@@ -18,12 +18,12 @@ class Trick
 {
 
     /** * many trick has Many images.
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Image", cascade={"persist"}))
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Image", mappedBy="trick", cascade={"persist"}))
      */
     private $images;
 
     /**
-     * @ORM\OneToMany(targetEntity="Comment", mappedBy="trick")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="trick")
      */
     protected $comments;
 
@@ -260,6 +260,7 @@ class Trick
     public function addComment(\AppBundle\Entity\Comment $comment)
     {
         $this->comments[] = $comment;
+        $comment->setTrick($this);
 
         return $this;
     }

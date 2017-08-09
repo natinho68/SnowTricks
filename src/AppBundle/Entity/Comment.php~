@@ -42,6 +42,12 @@ class Comment
      */
     private $date;
 
+
+    /**
+     *  @ORM\ManyToOne(targetEntity="AppBundle\Entity\Trick", inversedBy="comments", cascade={"persist"}))
+     **/
+    private $trick;
+
     public function __construct()
     {
         $this->date = new \Datetime();
@@ -140,6 +146,7 @@ class Comment
     public function setTrick(\AppBundle\Entity\Trick $trick)
     {
         $this->trick = $trick;
+
 
         return $this;
     }

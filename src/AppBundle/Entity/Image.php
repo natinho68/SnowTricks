@@ -38,6 +38,13 @@ class Image
 
 
     /**
+     *  @ORM\ManyToOne(targetEntity="AppBundle\Entity\Trick", inversedBy="images", cascade={"persist"})
+     **/
+    private $trick;
+
+
+
+    /**
      * Get id
      *
      * @return int

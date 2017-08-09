@@ -14,7 +14,7 @@
             </div>
         <h6>{{ trick.date|date("F jS \\a\\t g:ia") }}</h6>
         <p>{{ trick.description }}</p>
-            <a href="{{ path('view', {'slug': trick.slug}) }}"><button type="button" class="btn btn-default">Show the trick</button></a>
+            <a href="{{ path('view', {'id': trick.id}) }}"><button type="button" class="btn btn-default">Show the trick</button></a>
         </div><!-- /.container -->
         <hr>
         {% endfor %}

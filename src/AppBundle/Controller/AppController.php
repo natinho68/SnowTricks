@@ -51,13 +51,14 @@ class AppController extends Controller
     }
 
     /**
-     * @Route("/tricks/{slug}", name="view")
+     * @Route("/tricks/{id}", name="view")
      */
-    public function viewAction($slug, Request $request)
+    public function viewAction($id, Request $request)
     {
 
         $em = $this->getDoctrine()->getManager();
-        $trick = $em->getRepository('AppBundle:Trick')->findBySlug($slug);
+        $trick = $em->getRepository('AppBundle:Trick')->find($id);
+
         if (empty($trick)) {
             throw new NotFoundHttpException("This trick ". $slug ." doesn't exist ! Want to add it ?");
         }
@@ -67,8 +68,10 @@ class AppController extends Controller
 
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $comment->setTrick($trick);
             $em->persist($comment);
             $em->flush();
+
         }
 
             // On récupère la liste des candidatures de cette annonce
@@ -101,7 +104,7 @@ class AppController extends Controller
                 $em->flush();
 
                 $request->getSession()->getFlashBag()->add('info', 'Trick has been updated');
-                return $this->redirectToRoute('view', array('slug' => $trick->getSlug()));
+                return $this->redirectToRoute('view', array('id' => $trick->getId()));
             }
             return $this->render('AppBundle:pages:edit.html.twig', array(
                 'trick' => $trick,
