@@ -16,6 +16,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Trick
 {
+    /** * many trick has Many images.
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Video", mappedBy="trick", cascade={"persist"}))
+     */
+    private $videos;
 
     /** * many trick has Many images.
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Image", mappedBy="trick", cascade={"persist"}))

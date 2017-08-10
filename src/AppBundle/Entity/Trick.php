@@ -16,6 +16,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Trick
 {
+    /** * many trick has Many images.
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Video", mappedBy="trick", cascade={"persist"}))
+     */
+    private $videos;
 
     /** * many trick has Many images.
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Image", mappedBy="trick", cascade={"persist"}))
@@ -283,5 +287,40 @@ class Trick
     public function getComments()
     {
         return $this->comments;
+    }
+
+    /**
+     * Add video
+     *
+     * @param \AppBundle\Entity\Video $video
+     *
+     * @return Trick
+     */
+    public function addVideo(\AppBundle\Entity\Video $video)
+    {
+        $this->videos[] = $video;
+        $video->setTrick($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove video
+     *
+     * @param \AppBundle\Entity\Video $video
+     */
+    public function removeVideo(\AppBundle\Entity\Video $video)
+    {
+        $this->videos->removeElement($video);
+    }
+
+    /**
+     * Get videos
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getVideos()
+    {
+        return $this->videos;
     }
 }

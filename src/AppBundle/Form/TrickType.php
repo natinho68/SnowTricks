@@ -29,7 +29,13 @@ class TrickType extends AbstractType
                 'entry_type' => ImageType::class,
                 'allow_add' => true,
                 'by_reference' => false,
-                'allow_delete' => true// Ajoutez cette ligne
+                'allow_delete' => true
+            ))
+            ->add('videos', CollectionType::class, array(
+                'entry_type' => VideoType::class,
+                'allow_add' => true,
+                'by_reference' => false,
+                'allow_delete' => true
             ))
             ->add('save',      SubmitType::class);
     }
