@@ -51,13 +51,13 @@ class AppController extends Controller
     }
 
     /**
-     * @Route("/tricks/{id}", name="view")
+     * @Route("/tricks/{slug}", name="view")
      */
-    public function viewAction($id, Request $request)
+    public function viewAction($slug, Request $request)
     {
 
         $em = $this->getDoctrine()->getManager();
-        $trick = $em->getRepository('AppBundle:Trick')->find($id);
+        $trick = $em->getRepository('AppBundle:Trick')->findOneBy(array('slug' => $slug));
 
         if (empty($trick)) {
             throw new NotFoundHttpException("This trick ". $slug ." doesn't exist ! Want to add it ?");
@@ -74,13 +74,12 @@ class AppController extends Controller
 
         }
 
-            // On récupère la liste des candidatures de cette annonce
+            // On récupère la liste des commentaire de ce trick
             $listComments = $em
                 ->getRepository('AppBundle:Comment')
                 ->findAll();
             return $this->render('AppBundle:pages:view.html.twig', array(
                 'trick' => $trick,
-                'listComments' => $listComments,
                 'form' => $form->createView()
             ));
         }
@@ -104,7 +103,7 @@ class AppController extends Controller
                 $em->flush();
 
                 $request->getSession()->getFlashBag()->add('info', 'Trick has been updated');
-                return $this->redirectToRoute('view', array('id' => $trick->getId()));
+                return $this->redirectToRoute('view', array('slug' => $trick->getSlug()));
             }
             return $this->render('AppBundle:pages:edit.html.twig', array(
                 'trick' => $trick,

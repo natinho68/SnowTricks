@@ -10,7 +10,7 @@ namespace AppBundle\Repository;
  */
 class TrickRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function findBySlug($slug)
+    public function findWithSlug($slug)
     {
         $qb = $this->createQueryBuilder('t');
 
@@ -21,7 +21,7 @@ class TrickRepository extends \Doctrine\ORM\EntityRepository
 
         return $qb
             ->getQuery()
-            ->getResult()
+            ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
             ;
     }
 }

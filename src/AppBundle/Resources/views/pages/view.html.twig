@@ -15,12 +15,14 @@
             <p>Cat - ...</p>
             <h3>The {{ trick.name }} description</h3>
             <p>The {{ trick.date|date("F jS \\a\\t g:ia") }}</p>
-            {# On vérifie qu'une image soit bien associée à l'annonce #}
-  <h3>Image</h3>
-            {% for images in trick.images %}
-            <img src="{{ images.url }}" width="300" height="300" alt="{{ images.alt }}">
+
+
+
+ <h3>Image</h3>
+            {% for trickImage in trick.images %}
+            <img src="{{ trickImage.url }}" width="300" height="300" alt="{{ trickImage.alt }}">
             {% endfor %}
-<h3>Description :</h3>
+            <h3>Description :</h3>
 <p>{{ trick.description }}</p>
 <p>Video ...</p>
 
@@ -33,7 +35,7 @@
     {% endfor %}
 
 </div>
-<h3>Add a comment</h3>
+    <h3>Add a comment</h3>
 {{   form(form)  }}
 </div>
 
