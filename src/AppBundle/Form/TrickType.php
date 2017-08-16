@@ -29,6 +29,7 @@ class TrickType extends AbstractType
             ->add('images', CollectionType::class, array(
                 'entry_type' => ImageType::class,
                 'allow_add' => true,
+                'empty_data' => true,
                 'by_reference' => false,
                 'allow_delete' => true
             ))

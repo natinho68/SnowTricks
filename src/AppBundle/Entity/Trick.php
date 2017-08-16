@@ -25,12 +25,13 @@ class Trick
     private $categories;
 
     /** * many trick has Many images.
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Video", mappedBy="trick", cascade={"persist"}))
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Video", mappedBy="trick", cascade={"persist", "remove"}))
      */
     private $videos;
 
     /** * many trick has Many images.
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Image", mappedBy="trick", cascade={"persist"}))
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Image", mappedBy="trick", cascade={"persist", "remove"}))
+     * @Assert\Valid()
      */
     private $images;
 

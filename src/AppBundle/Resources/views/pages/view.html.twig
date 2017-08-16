@@ -25,7 +25,7 @@
 
  <h3>Image</h3>
             {% for trickImage in trick.images %}
-            <img src="{{ trickImage.url }}" width="300" height="300" alt="{{ trickImage.alt }}">
+            <img src="{{ asset(trickImage.webPath) }}" width="300" height="300" alt="{{ trickImage.alt }}">
             {% endfor %}
             <h3>Description :</h3>
 <p>{{ trick.description }}</p>
