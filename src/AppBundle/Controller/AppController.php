@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class AppController extends Controller
 {
@@ -30,10 +31,10 @@ class AppController extends Controller
 
     /**
      * @Route("/tricks/add", name="add")
+     * @Security("has_role('ROLE_USER')")
      */
     public function addAction(Request $request){
-
-       $trick = new Trick();
+            $trick = new Trick();
         $form = $this->createForm(TrickType::class, $trick);
 
 
@@ -88,6 +89,7 @@ class AppController extends Controller
 
         /**
          * @Route("/tricks/edit/{id}", name="edit")
+         * @Security("has_role('ROLE_USER')")
          */
         public function editAction($id, Request $request){
             $em = $this->getDoctrine()->getManager();
@@ -113,6 +115,7 @@ class AppController extends Controller
 
     /**
      * @Route("/tricks/delete/{id}", name="delete")
+     * @Security("has_role('ROLE_USER')")
      */
     public function deleteAction(Request $request, $id)
     {

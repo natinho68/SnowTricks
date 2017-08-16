@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -36,6 +37,12 @@ class TrickType extends AbstractType
                 'allow_add' => true,
                 'by_reference' => false,
                 'allow_delete' => true
+
+            ))
+            ->add('categories', EntityType::class, array(
+                'class'        => 'AppBundle:Category',
+                'choice_label' => 'name',
+                'multiple'     => true,
             ))
             ->add('save',      SubmitType::class);
     }

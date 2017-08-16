@@ -16,6 +16,14 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Trick
 {
+
+    /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Category", cascade={"persist"})
+     * @ORM\JoinTable(name="trick_category")
+     */
+
+    private $categories;
+
     /** * many trick has Many images.
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Video", mappedBy="trick", cascade={"persist"}))
      */
@@ -83,7 +91,7 @@ class Trick
 
     public function __construct()
     {
-        $this->images = new ArrayCollection();
+        $this->categories   = new ArrayCollection();
         $this->date = new \Datetime();
     }
 
@@ -322,5 +330,39 @@ class Trick
     public function getVideos()
     {
         return $this->videos;
+    }
+
+    /**
+     * Add category
+     *
+     * @param \AppBundle\Entity\Category $category
+     *
+     * @return Trick
+     */
+    public function addCategory(\AppBundle\Entity\Category $category)
+    {
+        $this->categories[] = $category;
+
+        return $this;
+    }
+
+    /**
+     * Remove category
+     *
+     * @param \AppBundle\Entity\Category $category
+     */
+    public function removeCategory(\AppBundle\Entity\Category $category)
+    {
+        $this->categories->removeElement($category);
+    }
+
+    /**
+     * Get categories
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCategories()
+    {
+        return $this->categories;
     }
 }

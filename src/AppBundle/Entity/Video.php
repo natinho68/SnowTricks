@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Video
@@ -28,7 +29,7 @@ class Video
 
     /**
      * @var string
-     *
+     * @Assert\Type("string")
      * @ORM\Column(name="videoUrl", type="string", length=255, nullable=true)
      */
     private $videoUrl;

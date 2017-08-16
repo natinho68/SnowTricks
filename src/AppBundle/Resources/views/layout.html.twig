@@ -45,13 +45,23 @@
 <div id="content" class="col-md-9" style="padding-top:50px">
     {% block body %}
     {% endblock %}
+
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <div class="container">
+        Connecté en tant que {{ app.user.username }}
+        -
+        <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
+    {% else %}
+        <a href="{{ path('fos_user_security_login') }}">Connexion</a>
+        </div>
+    {% endif %}
 </div>
+
 
 {% block javascripts %}
     {# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 {% endblock %}
-
 </body>
  </html>

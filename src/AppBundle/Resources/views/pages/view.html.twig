@@ -12,9 +12,12 @@
             <div class="col-md-6"><a href="{{ path('edit', {'id': trick.id}) }}"><span class="glyphicon glyphicon-pencil"></span></a>
                 <a href="{{ path('delete', {'id': trick.id}) }}"><span class="glyphicon glyphicon-trash"></span></a></div>
             <h1>{{ trick.name }} by <small>{{ trick.author }}</small></h1>
-            <p>Cat - ...</p>
+            <h3>Category</h3>
+            {% for trickCategory in trick.categories %}
+            {{ trickCategory.name }}
+            {% endfor %}
             <h3>The {{ trick.name }} description</h3>
-            <p>The {{ trick.date|date("F jS \\a\\t g:ia") }}</p>
+            <p>{{ trick.date|date("jS F Y \\a\\t g:ia") }}</p>
 
 
 
@@ -32,13 +35,13 @@
 <div class="container">
 <h3>Comments</h3>
 {% for comments in trick.comments %}
-    <p>Author : {{ comments.author }}</p>
-    <p>Content : {{ comments.content }}</p>
+    <p>By {{ comments.author }} {{ comments.date|date("m-d-y \\a\\t g:ia") }}</p>
+    <p>{{ comments.content }}</p>
     {% endfor %}
 
-
+    {% if is_granted('ROLE_USER') %}
     <h3>Add a comment</h3>
 {{   form(form)  }}
 </div>
-
+    {% endif %}
 {% endblock %}
