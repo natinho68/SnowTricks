@@ -68,7 +68,13 @@ class AppController extends Controller
         $form = $this->createForm(CommentType::class, $comment);
 
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+            // On récupère le service
+            $security = $this->container->get('security.token_storage');
+            $token = $security->getToken();
+            $user = $token->getUser();
+            $user->getUsername();
             $em = $this->getDoctrine()->getManager();
+            $comment->setAuthor($user);
             $comment->setTrick($trick);
             $em->persist($comment);
             $em->flush();
