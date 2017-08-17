@@ -24,7 +24,6 @@ class Comment
 
     /**
      * @var string
-     * @Assert\NotBlank()
      * @ORM\Column(name="author", type="string", length=255)
      */
     private $author;
@@ -39,7 +38,6 @@ class Comment
     /**
      * @var \DateTime
      * @Assert\DateTime()
-     * @Assert\NotBlank()
      * @ORM\Column(name="date", type="datetime", length=255)
      */
     private $date;

@@ -43,6 +43,7 @@
 
     {% if is_granted('ROLE_USER') %}
     <h3>Add a comment</h3>
+        <p>Comment as <b>{{ app.user.username }}</b></p>
 {{   form(form)  }}
 </div>
     {% endif %}

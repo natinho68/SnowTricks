@@ -39,7 +39,12 @@ class AppController extends Controller
 
 
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+            $security = $this->container->get('security.token_storage');
+            $token = $security->getToken();
+            $user = $token->getUser();
+            $user = $user->getUsername();
             $em = $this->getDoctrine()->getManager();
+            $trick->setAuthor($user);
             $em->persist($trick);
             $em->flush();
 
@@ -72,7 +77,7 @@ class AppController extends Controller
             $security = $this->container->get('security.token_storage');
             $token = $security->getToken();
             $user = $token->getUser();
-            $user->getUsername();
+            $user = $user->getUsername();
             $em = $this->getDoctrine()->getManager();
             $comment->setAuthor($user);
             $comment->setTrick($trick);
