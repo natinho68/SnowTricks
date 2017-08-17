@@ -81,11 +81,9 @@ class Trick
     private $description;
 
     /**
-     * @var string
      *
-     * @ORM\Column(name="author", type="string", length=255)
-     * @Assert\Length(min=2)
-     * @Assert\NotBlank()
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $author;
 

@@ -45,7 +45,6 @@
 
             {% if comments.author.profilePic is not null %}
                 <img src=" {{ asset(comments.author.profilePic.webPath) }}" width="25" height="25">
-
            {% endif %}
     By {{ comments.author }} {{ comments.date|date("m-d-y \\a\\t g:ia") }}</p>
     <p>{{ comments.content }}</p>

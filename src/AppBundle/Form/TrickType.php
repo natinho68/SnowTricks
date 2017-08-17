@@ -24,7 +24,7 @@ class TrickType extends AbstractType
         $builder
             ->add('date',      DateTimeType::class)
             ->add('name',     TextType::class)
-            ->add('author',    TextType::class)
+            ->remove('author',    TextType::class)
             ->add('description',   TextareaType::class)
             ->add('images', CollectionType::class, array(
                 'entry_type' => ImageType::class,

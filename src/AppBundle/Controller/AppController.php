@@ -42,7 +42,6 @@ class AppController extends Controller
             $security = $this->container->get('security.token_storage');
             $token = $security->getToken();
             $user = $token->getUser();
-            $user = $user->getUsername();
             $em = $this->getDoctrine()->getManager();
             $trick->setAuthor($user);
             $em->persist($trick);

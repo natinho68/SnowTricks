@@ -31,7 +31,6 @@
         {{ form_errors(form.description) }}
         <div class="col-sm-10">
             {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
-            {{ form_row(form.author, {'value' : app.user.username }) }}
             {{ form_row(form.categories) }}
             {{ form_row(form.images) }}
             <a href="#" id="add_image" class="btn btn-default">Add images</a>
