@@ -79,7 +79,7 @@ class AppController extends Controller
             $user = $token->getUser();
             $username = $user->getUsername();
             $em = $this->getDoctrine()->getManager();
-            $comment->setAuthor($username);
+            $comment->setAuthor($user);
             $comment->setTrick($trick);
             $em->persist($comment);
             $em->flush();

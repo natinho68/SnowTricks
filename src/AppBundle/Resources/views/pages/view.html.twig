@@ -42,11 +42,11 @@
 <h3>Comments</h3>
     <p>
 {% for comments in trick.comments %}
-        {% for user in users %}
-            {% if user.profilePic is not null %}
-                <img src="{{ asset(user.profilePic.webPath) }}" width="25" height="25">
-            {% endif %}
-        {% endfor %}
+
+            {% if comments.author.profilePic is not null %}
+                <img src=" {{ asset(comments.author.profilePic.webPath) }}" width="25" height="25">
+
+           {% endif %}
     By {{ comments.author }} {{ comments.date|date("m-d-y \\a\\t g:ia") }}</p>
     <p>{{ comments.content }}</p>
     {% endfor %}
