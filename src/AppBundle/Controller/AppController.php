@@ -77,9 +77,9 @@ class AppController extends Controller
             $security = $this->container->get('security.token_storage');
             $token = $security->getToken();
             $user = $token->getUser();
-            $user = $user->getUsername();
+            $username = $user->getUsername();
             $em = $this->getDoctrine()->getManager();
-            $comment->setAuthor($user);
+            $comment->setAuthor($username);
             $comment->setTrick($trick);
             $em->persist($comment);
             $em->flush();
@@ -90,12 +90,15 @@ class AppController extends Controller
             $listComments = $em
                 ->getRepository('AppBundle:Comment')
                 ->findAll();
+
+        $userManager = $this->container->get('fos_user.user_manager');
+        $users = $userManager->findUsers();
             return $this->render('AppBundle:pages:view.html.twig', array(
                 'trick' => $trick,
-                'form' => $form->createView()
+                'form' => $form->createView(),
+                'users' => $users
             ));
         }
-
 
 
         /**
@@ -114,7 +117,6 @@ class AppController extends Controller
             if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
                 // Inutile de persister ici, Doctrine connait déjà notre annonce
                 $em->flush();
-
                 $request->getSession()->getFlashBag()->add('info', 'Trick has been updated');
                 return $this->redirectToRoute('view', array('slug' => $trick->getSlug()));
             }

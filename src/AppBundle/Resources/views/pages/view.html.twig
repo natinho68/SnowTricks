@@ -25,7 +25,10 @@
 
  <h3>Image</h3>
             {% for trickImage in trick.images %}
+                {{ dump(trickImage.extension) }}
+                {% if trickImage.extension is not null %}
             <img src="{{ asset(trickImage.webPath) }}" width="300" height="300" alt="{{ trickImage.alt }}">
+                {% endif %}
             {% endfor %}
             <h3>Description :</h3>
 <p>{{ trick.description }}</p>
@@ -35,9 +38,16 @@
             {% endfor %}
 </div>
 <div class="container">
+    {{ dump(users) }}
 <h3>Comments</h3>
+    <p>
 {% for comments in trick.comments %}
-    <p>By {{ comments.author }} {{ comments.date|date("m-d-y \\a\\t g:ia") }}</p>
+        {% for user in users %}
+            {% if user.profilePic is not null %}
+                <img src="{{ asset(user.profilePic.webPath) }}" width="25" height="25">
+            {% endif %}
+        {% endfor %}
+    By {{ comments.author }} {{ comments.date|date("m-d-y \\a\\t g:ia") }}</p>
     <p>{{ comments.content }}</p>
     {% endfor %}
 

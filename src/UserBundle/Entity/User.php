@@ -17,4 +17,34 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
+
+    /**
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Image", cascade={"persist", "remove"})
+     */
+    protected $profilePic;
+
+    /**
+     * Set profilePic
+     *
+     * @param string $profilePic
+     *
+     * @return User
+     */
+    public function setProfilePic($profilePic)
+    {
+        $this->profilePic = $profilePic;
+
+        return $this;
+    }
+
+    /**
+     * Get profilePic
+     *
+     * @return string
+     */
+    public function getProfilePic()
+    {
+        return $this->profilePic;
+    }
 }

@@ -44,7 +44,8 @@ class TrickType extends AbstractType
                 'choice_label' => 'name',
                 'multiple'     => true,
             ))
-            ->add('save',      SubmitType::class);
+            ->add('save',      SubmitType::class)
+            ;
     }
     
     /**

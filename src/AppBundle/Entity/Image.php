@@ -244,4 +244,5 @@ class Image
         return $this->getUploadDir().'/'.$this->getId().'.'.$this->getExtension();
     }
 
+
 }

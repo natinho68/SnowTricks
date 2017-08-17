@@ -84,3 +84,7 @@ fos_user:
     from_email:
             address:        noreply@example.com
             sender_name:    Demo App
+
+    profile:
+        form:
+            type: UserBundle\Form\UserType
