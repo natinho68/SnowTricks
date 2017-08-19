@@ -27,23 +27,4 @@ class SecurityController extends Controller
             'error'         => $authenticationUtils->getLastAuthenticationError(),
         ));
     }
-
-    /**
-     * @Route("/resetting", name="resetting")
-     */
-    public function updateAction($id, Request $request)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $user =  $em->getRepository('UserBundle:User')->find($id);
-
-            var_dump($user);
-            die();
-
-        $this->get('fos_user.user_manager')->updateUser($user, false);
-
-        // make more modifications to the database
-
-        $this->getDoctrine()->getManager()->flush();
-        return $this->render("coucou");
-    }
 }
