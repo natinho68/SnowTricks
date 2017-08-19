@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "f30cf98d34b3354c178b2e907622d2da",
+    "content-hash": "057d76403a3c6555e37d9e63d71e65d5",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -804,16 +804,16 @@
         },
         {
             "name": "doctrine/orm",
-            "version": "v2.5.9",
+            "version": "v2.5.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/doctrine2.git",
-                "reference": "4f96fc62cef60093573acea955ed5e07643401d8"
+                "reference": "c78afd51721804f4f76ff30d9b6f6159eb046161"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/4f96fc62cef60093573acea955ed5e07643401d8",
-                "reference": "4f96fc62cef60093573acea955ed5e07643401d8",
+                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/c78afd51721804f4f76ff30d9b6f6159eb046161",
+                "reference": "c78afd51721804f4f76ff30d9b6f6159eb046161",
                 "shasum": ""
             },
             "require": {
@@ -876,7 +876,7 @@
                 "database",
                 "orm"
             ],
-            "time": "2017-08-16T13:30:32+00:00"
+            "time": "2017-08-18T19:17:35+00:00"
         },
         {
             "name": "fig/link-util",

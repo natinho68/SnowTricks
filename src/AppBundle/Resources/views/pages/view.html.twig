@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block body %}
-
+{{ dump(listComments) }}
         <div class="container">
             {% if is_granted('ROLE_USER') %}
             <div class="col-md-6"><a href="{{ path('edit', {'id': trick.id}) }}"><span class="glyphicon glyphicon-pencil"></span></a>
@@ -25,7 +25,6 @@
 
  <h3>Image</h3>
             {% for trickImage in trick.images %}
-                {{ dump(trickImage.extension) }}
                 {% if trickImage.extension is not null %}
             <img src="{{ asset(trickImage.webPath) }}" width="300" height="300" alt="{{ trickImage.alt }}">
                 {% endif %}
@@ -38,9 +37,32 @@
             {% endfor %}
 </div>
 <div class="container">
-    {{ dump(users) }}
 <h3>Comments</h3>
-    <p>
+
+    {% for comments in listComments %}
+
+        {% if comments.author.profilePic is not null %}
+            <img src=" {{ asset(comments.author.profilePic.webPath) }}" width="25" height="25">
+        {% endif %}
+        By {{ comments.author }} {{ comments.date|date("m-d-y \\a\\t g:ia") }}</p>
+        <p>{{ comments.content }}</p>
+    {% endfor %}
+    <ul class="pagination">
+
+        {# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}
+        {% for p in range(1, nbPages) %}
+            <li{% if p == page %} class="active"{% endif %}>
+                <a href="{{ path('view',{ slug : slug }) }}/{{ p }}">{{ p }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+    {% if is_granted('ROLE_USER') %}
+        <h3>Add a comment</h3>
+        {{ form(form) }}
+        <p>Comment as <b>{{ app.user.username }}</b></p>
+        </div>
+    {% endif %}
+  {#  <p>
 {% for comments in trick.comments %}
 
             {% if comments.author.profilePic is not null %}
@@ -55,5 +77,9 @@
         <p>Comment as <b>{{ app.user.username }}</b></p>
 {{   form(form)  }}
 </div>
-    {% endif %}
+    {% endif %}#}
+
+    {# {{  render ('AppBundle:pages:comment.html.twig')}} #}
+
+
 {% endblock %}

@@ -56,9 +56,9 @@ class AppController extends Controller
     }
 
     /**
-     * @Route("/tricks/{slug}", name="view")
+     * @Route("/tricks/{slug}/{page}", name="view", requirements={"page": "\d+"})
      */
-    public function viewAction($slug, Request $request)
+    public function viewAction($slug, Request $request, $page = 1)
     {
 
         $em = $this->getDoctrine()->getManager();
@@ -71,12 +71,35 @@ class AppController extends Controller
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
 
+        if ($page < 1) {
+            throw $this->createNotFoundException("La page ".$page." n'existe pas.");
+        }
+
+        // Ici je fixe le nombre d'annonces par page à 10
+        // Mais bien sûr il faudrait utiliser un paramètre, et y accéder via $this->container->getParameter('nb_per_page')
+        $nbPerPage = 10;
+
+        // On récupère notre objet Paginator
+        $listComments = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('AppBundle:Comment')
+            ->getComments($page, $nbPerPage, $trick->getId())
+        ;
+
+        // On calcule le nombre total de pages grâce au count($listComment) qui retourne le nombre total d'annonces
+        $nbPages = ceil(count($listComments) / $nbPerPage);
+
+        // Si la page n'existe pas, on retourne une 404
+        if ($page > $nbPages) {
+            throw $this->createNotFoundException("La page ".$page." n'existe pas.");
+        }
+
+
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
             // On récupère le service
             $security = $this->container->get('security.token_storage');
             $token = $security->getToken();
             $user = $token->getUser();
-            $username = $user->getUsername();
             $em = $this->getDoctrine()->getManager();
             $comment->setAuthor($user);
             $comment->setTrick($trick);
@@ -85,19 +108,48 @@ class AppController extends Controller
 
         }
 
-            // On récupère la liste des commentaire de ce trick
-            $listComments = $em
-                ->getRepository('AppBundle:Comment')
-                ->findAll();
-
         $userManager = $this->container->get('fos_user.user_manager');
         $users = $userManager->findUsers();
             return $this->render('AppBundle:pages:view.html.twig', array(
                 'trick' => $trick,
                 'form' => $form->createView(),
-                'users' => $users
+                'listComments' => $listComments,
+                'nbPages'     => $nbPages,
+                'page'        => $page,
+                'slug'        => $slug
             ));
         }
+
+
+
+
+    /**
+     * @Route("/comments", name="comments")
+     */
+
+    /**
+    public function CommentsAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $dql   = "SELECT c FROM AppBundle:Comment c";
+        $query = $em->createQuery($dql);
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query, /* query NOT result */
+            //$request->query->getInt('page', 1)/*page number*/,
+           // 3/*limit per page*/
+
+    /**
+        );
+
+        // parameters to template
+        return $this->render('AppBundle:pages:comment.html.twig', array(
+            'pagination' => $pagination
+        ));
+    } /**
+
+
+
 
 
         /**

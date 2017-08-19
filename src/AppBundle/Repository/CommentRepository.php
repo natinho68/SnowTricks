@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 /**
  * CommentRepository
  *
@@ -10,16 +12,27 @@ namespace AppBundle\Repository;
  */
 class CommentRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function getCommentsTrick($trickId)
-    {
-        $qb = $this->createQueryBuilder('c')
-            ->select('c')
-            ->where('c.trick = :trick_id')
-            ->addOrderBy('c.created')
-            ->setParameter('trick_id', $trickId);
 
-        return $qb->getQuery()
-            ->getResult();
+    public function getComments($page, $nbPerPage, $id)
+    {
+        $query = $this->createQueryBuilder('c')
+            ->addSelect('c')
+            ->where('c.trick = :id')
+            ->setParameter('id', $id)
+            ->orderBy('c.date', 'DESC')
+            ->getQuery()
+        ;
+
+        $query
+            // On définit l'annonce à partir de laquelle commencer la liste
+            ->setFirstResult(($page-1) * $nbPerPage)
+            // Ainsi que le nombre d'annonce à afficher sur une page
+            ->setMaxResults($nbPerPage)
+        ;
+
+        // Enfin, on retourne l'objet Paginator correspondant à la requête construite
+        // (n'oubliez pas le use correspondant en début de fichier)
+        return new Paginator($query, true);
     }
 
 }
