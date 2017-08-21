@@ -55,72 +55,6 @@ class AppController extends Controller
         ));
     }
 
-    /**
-     * @Route("/tricks/{slug}/{page}", name="view", requirements={"page": "\d+"})
-     */
-    public function viewAction($slug, Request $request, $page = 1)
-    {
-
-        $em = $this->getDoctrine()->getManager();
-        $trick = $em->getRepository('AppBundle:Trick')->findOneBy(array('slug' => $slug));
-
-        if (empty($trick)) {
-            throw new NotFoundHttpException("This trick ". $slug ." doesn't exist ! Want to add it ?");
-        }
-
-        $comment = new Comment();
-        $form = $this->createForm(CommentType::class, $comment);
-
-        if ($page < 1) {
-            throw $this->createNotFoundException("La page ".$page." n'existe pas.");
-        }
-
-        // Ici je fixe le nombre d'annonces par page à 10
-        // Mais bien sûr il faudrait utiliser un paramètre, et y accéder via $this->container->getParameter('nb_per_page')
-        $nbPerPage = 10;
-
-        // On récupère notre objet Paginator
-        $listComments = $this->getDoctrine()
-            ->getManager()
-            ->getRepository('AppBundle:Comment')
-            ->getComments($page, $nbPerPage, $trick->getId())
-        ;
-
-        // On calcule le nombre total de pages grâce au count($listComment) qui retourne le nombre total d'annonces
-        $nbPages = ceil(count($listComments) / $nbPerPage);
-
-        // Si la page n'existe pas, on retourne une 404
-        if ($page > $nbPages) {
-            throw $this->createNotFoundException("La page ".$page." n'existe pas.");
-        }
-
-
-        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-            // On récupère le service
-            $security = $this->container->get('security.token_storage');
-            $token = $security->getToken();
-            $user = $token->getUser();
-            $em = $this->getDoctrine()->getManager();
-            $comment->setAuthor($user);
-            $comment->setTrick($trick);
-            $em->persist($comment);
-            $em->flush();
-
-        }
-
-        $userManager = $this->container->get('fos_user.user_manager');
-        $users = $userManager->findUsers();
-            return $this->render('AppBundle:pages:view.html.twig', array(
-                'trick' => $trick,
-                'form' => $form->createView(),
-                'listComments' => $listComments,
-                'nbPages'     => $nbPages,
-                'page'        => $page,
-                'slug'        => $slug
-            ));
-        }
-
-
 
 
     /**
@@ -209,5 +143,78 @@ class AppController extends Controller
             'form'   => $form->createView(),
         ));
     }
+
+    /**
+     * @Route("/tricks/{slug}/{page}", name="view", requirements={"page": "\d+"})
+     */
+    public function viewAction($slug, Request $request, $page = 1)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $trick = $em->getRepository('AppBundle:Trick')->findOneBy(array('slug' => $slug));
+
+        if (empty($trick)) {
+            throw new NotFoundHttpException("This trick ". $slug ." doesn't exist ! Want to add it ?");
+        }
+
+        $comment = new Comment();
+        $form = $this->createForm(CommentType::class, $comment);
+
+        if ($page < 1) {
+            throw $this->createNotFoundException("La page ".$page." n'existe pas.");
+        }
+
+        // Ici je fixe le nombre d'annonces par page à 10
+        // Mais bien sûr il faudrait utiliser un paramètre, et y accéder via $this->container->getParameter('nb_per_page')
+        $nbPerPage = 10;
+
+        // On récupère notre objet Paginator
+        $listComments = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('AppBundle:Comment')
+            ->getComments($page, $nbPerPage, $trick->getId())
+        ;
+
+        // On calcule le nombre total de pages grâce au count($listComment) qui retourne le nombre total d'annonces
+        $nbPages = ceil(count($listComments) / $nbPerPage);
+
+        if($nbPages === 0.0){
+            $nbPages = 1;
+        }
+
+            var_dump($page);
+        var_dump($nbPages);
+
+        // Si la page n'existe pas, on retourne une 404
+        if ($page > $nbPages) {
+            throw $this->createNotFoundException("La page ".$page." n'existe pas.");
+        }
+
+
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+            // On récupère le service
+            $security = $this->container->get('security.token_storage');
+            $token = $security->getToken();
+            $user = $token->getUser();
+            $em = $this->getDoctrine()->getManager();
+            $comment->setAuthor($user);
+            $comment->setTrick($trick);
+            $em->persist($comment);
+            $em->flush();
+
+        }
+
+        $userManager = $this->container->get('fos_user.user_manager');
+        $users = $userManager->findUsers();
+        return $this->render('AppBundle:pages:view.html.twig', array(
+            'trick' => $trick,
+            'form' => $form->createView(),
+            'listComments' => $listComments,
+            'nbPages'     => $nbPages,
+            'page'        => $page,
+            'slug'        => $slug
+        ));
+    }
+
 
 }

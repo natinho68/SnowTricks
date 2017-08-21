@@ -39,7 +39,8 @@ class Image
 
 
     /**
-     *  @ORM\ManyToOne(targetEntity="AppBundle\Entity\Trick", inversedBy="images", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Trick", inversedBy="images", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(onDelete="CASCADE")
      **/
     private $trick;
 

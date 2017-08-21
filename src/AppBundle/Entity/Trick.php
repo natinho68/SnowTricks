@@ -37,6 +37,7 @@ class Trick
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="trick", cascade={"persist", "remove"}))
+     *
      */
     protected $comments;
 
