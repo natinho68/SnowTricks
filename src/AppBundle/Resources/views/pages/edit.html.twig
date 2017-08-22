@@ -18,6 +18,16 @@
             Back to the trick
         </a>
     </p>
+    <label>Image displayed</label>
+
+{% for trickImage in trick.images %}
+       {% if trickImage.extension is null %}
+           <p>No images displayed yet</p>
+           {% else %}
+    <img src="{{ asset(trickImage.webPath) }}" alt="{{ trickImage.alt}}" width="100" height="100">
+       {% endif %}
+{% endfor %}
+
 
     <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ asset('js/jquery.collection.js') }}"></script>
