@@ -24,13 +24,14 @@ class Trick
 
     private $categories;
 
-    /** * many trick has Many images.
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Video", mappedBy="trick", cascade={"persist", "remove"}))
+
+    /** * one trick has Many videos.
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Video", mappedBy="trick", cascade={"persist", "remove"}, orphanRemoval=true))
      */
     private $videos;
 
-    /** * many trick has Many images.
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Image", mappedBy="trick", cascade={"persist", "remove"}))
+    /** * one trick has Many images.
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Image", mappedBy="trick", cascade={"persist", "remove"}, orphanRemoval=true))
      * @Assert\Valid()
      */
     private $images;
@@ -250,6 +251,7 @@ class Trick
     public function removeImage(\AppBundle\Entity\Image $image)
     {
         $this->images->removeElement($image);
+        $image->setTrick(null);
     }
 
     /**
@@ -320,6 +322,7 @@ class Trick
     public function removeVideo(\AppBundle\Entity\Video $video)
     {
         $this->videos->removeElement($video);
+        $video->setTrick(null);
     }
 
     /**

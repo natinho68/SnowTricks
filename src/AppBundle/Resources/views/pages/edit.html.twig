@@ -6,9 +6,11 @@
 
 {% block body %}
 
-    <h2>Update a trick</h2>
-
-    {%  include "AppBundle:pages:form.html.twig"  %}
+    <h3>Update a trick</h3>
+    <div class="well">
+        {% form_theme form 'jquery.collection.html.twig' %}
+        {{ form(form) }}
+    </div>
 
     <p>
         <a href="{{ path('view', {'slug': trick.slug}) }}" class="btn btn-default">
@@ -17,4 +19,16 @@
         </a>
     </p>
 
+    <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.collection.js') }}"></script>
+
+    <script type="text/javascript">
+        $('.images-collection, .videos-collection').collection({
+            allow_up: false,
+            allow_down: false,
+            add: '<a href="#" class="btn btn-default"><span class="glyphicon glyphicon-plus-sign"></span></a>',
+            remove: '<a href="#" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></a>'
+        });
+    </script>
 {% endblock %}
+

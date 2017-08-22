@@ -56,36 +56,6 @@ class AppController extends Controller
     }
 
 
-
-    /**
-     * @Route("/comments", name="comments")
-     */
-
-    /**
-    public function CommentsAction(Request $request)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $dql   = "SELECT c FROM AppBundle:Comment c";
-        $query = $em->createQuery($dql);
-        $paginator  = $this->get('knp_paginator');
-        $pagination = $paginator->paginate(
-            $query, /* query NOT result */
-            //$request->query->getInt('page', 1)/*page number*/,
-           // 3/*limit per page*/
-
-    /**
-        );
-
-        // parameters to template
-        return $this->render('AppBundle:pages:comment.html.twig', array(
-            'pagination' => $pagination
-        ));
-    } /**
-
-
-
-
-
         /**
          * @Route("/tricks/edit/{id}", name="edit")
          * @Security("has_role('ROLE_USER')")
@@ -154,14 +124,14 @@ class AppController extends Controller
         $trick = $em->getRepository('AppBundle:Trick')->findOneBy(array('slug' => $slug));
 
         if (empty($trick)) {
-            throw new NotFoundHttpException("This trick ". $slug ." doesn't exist ! Want to add it ?");
+            throw new NotFoundHttpException("This trick ". $slug ." doesn't exist !");
         }
 
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
 
         if ($page < 1) {
-            throw $this->createNotFoundException("La page ".$page." n'existe pas.");
+            throw $this->createNotFoundException("This page ".$page." doesn't exist !");
         }
 
         // Ici je fixe le nombre d'annonces par page à 10
@@ -182,12 +152,9 @@ class AppController extends Controller
             $nbPages = 1;
         }
 
-            var_dump($page);
-        var_dump($nbPages);
-
         // Si la page n'existe pas, on retourne une 404
         if ($page > $nbPages) {
-            throw $this->createNotFoundException("La page ".$page." n'existe pas.");
+            throw $this->createNotFoundException("This ".$page." doesn't exist !");
         }
 
 
@@ -204,8 +171,6 @@ class AppController extends Controller
 
         }
 
-        $userManager = $this->container->get('fos_user.user_manager');
-        $users = $userManager->findUsers();
         return $this->render('AppBundle:pages:view.html.twig', array(
             'trick' => $trick,
             'form' => $form->createView(),
@@ -215,6 +180,5 @@ class AppController extends Controller
             'slug'        => $slug
         ));
     }
-
 
 }

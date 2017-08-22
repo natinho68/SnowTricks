@@ -164,7 +164,7 @@ class Image
      *
      * @return Image
      */
-    public function setTrick(Trick $trick)
+    public function setTrick(Trick $trick = null)
     {
         $this->trick = $trick;
 

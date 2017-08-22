@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "057d76403a3c6555e37d9e63d71e65d5",
+    "content-hash": "7dbb59d28d5d297c5da43f6c2f49ad04",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -1265,6 +1265,39 @@
                 "psr-3"
             ],
             "time": "2017-06-19T01:22:40+00:00"
+        },
+        {
+            "name": "ninsuo/symfony-collection",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ninsuo/symfony-collection.git",
+                "reference": "2ac1ed05b9da0691f6f20dead50bfd808529a153"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ninsuo/symfony-collection/zipball/2ac1ed05b9da0691f6f20dead50bfd808529a153",
+                "reference": "2ac1ed05b9da0691f6f20dead50bfd808529a153",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "ScriptHandler.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alain Tiemblo",
+                    "email": "ninsuo@gmail.com"
+                }
+            ],
+            "description": "A jQuery plugin that manages adding, deleting and moving elements from a Symfony collection",
+            "time": "2017-07-14 13:09:29"
         },
         {
             "name": "paragonie/random_compat",
@@ -2747,6 +2780,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "ninsuo/symfony-collection": 20,
         "friendsofsymfony/user-bundle": 20
     },
     "prefer-stable": false,

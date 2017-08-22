@@ -10,7 +10,6 @@
         <div class="container">
             {% if is_granted('ROLE_USER') %}
             <div class="col-md-6"><a href="{{ path('edit', {'id': trick.id}) }}"><span class="glyphicon glyphicon-pencil"></span></a>
-                {{ dump(path('edit', {'id': trick.id})) }}
                 <a href="{{ path('delete', {'id': trick.id}) }}"><span class="glyphicon glyphicon-trash"></span></a></div>
             {% endif %}
             <h1>{{ trick.name }} by <small>{{ trick.author }}</small></h1>
@@ -38,7 +37,9 @@
 </div>
 <div class="container">
 <h3>Comments</h3>
-
+    {% if listComments.count == 0 %}
+    <p>No comments yet for this trick</p>
+        {% else %}
     {% for comments in listComments %}
 
         {% if comments.author.profilePic is not null %}
@@ -47,6 +48,7 @@
         By {{ comments.author }} {{ comments.date|date("m-d-y \\a\\t g:ia") }}</p>
         <p>{{ comments.content }}</p>
     {% endfor %}
+            {% endif %}
     <ul class="pagination">
 
         {# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}
@@ -55,33 +57,16 @@
             <li{% if p == page %} class="active"{% endif %}>
                 <a href="{{ path('view',{ slug : slug }) }}/{{ p }}">{{ p }}</a>
             </li>
+
         {% endfor %}
             {% endif %}
     </ul>
     {% if is_granted('ROLE_USER') %}
         <h3>Add a comment</h3>
-        {{ form(form) }}
         <p>Comment as <b>{{ app.user.username }}</b></p>
+        {{ form(form) }}
         </div>
     {% endif %}
-  {#  <p>
-{% for comments in trick.comments %}
-
-            {% if comments.author.profilePic is not null %}
-                <img src=" {{ asset(comments.author.profilePic.webPath) }}" width="25" height="25">
-           {% endif %}
-    By {{ comments.author }} {{ comments.date|date("m-d-y \\a\\t g:ia") }}</p>
-    <p>{{ comments.content }}</p>
-    {% endfor %}
-
-    {% if is_granted('ROLE_USER') %}
-    <h3>Add a comment</h3>
-        <p>Comment as <b>{{ app.user.username }}</b></p>
-{{   form(form)  }}
-</div>
-    {% endif %}#}
-
-    {# {{  render ('AppBundle:pages:comment.html.twig')}} #}
 
 
 {% endblock %}

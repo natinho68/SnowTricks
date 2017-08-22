@@ -22,6 +22,7 @@
     },
     "require": {
         "php": ">=5.5.9",
+        "ninsuo/symfony-collection": "dev-master",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/orm": "^2.5",
         "friendsofsymfony/user-bundle": "dev-master",
@@ -50,11 +51,15 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
         ],
         "post-install-cmd": [
+            "Fuz\\Symfony\\Collection\\ScriptHandler::postInstall",
             "@symfony-scripts"
+
 
         ],
         "post-update-cmd": [
+            "Fuz\\Symfony\\Collection\\ScriptHandler::postUpdate",
             "@symfony-scripts"
+
 
 
         ]
