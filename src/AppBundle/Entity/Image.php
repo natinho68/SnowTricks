@@ -46,6 +46,7 @@ class Image
 
 
     /**
+     * @Assert\NotNull()
      * @Assert\Image(
      *     maxSize = "2M",
      *     maxSizeMessage = "The file is too large ({{ size }}). Allowed maximum size is {{ limit }}"

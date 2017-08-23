@@ -23,7 +23,9 @@ class TrickType extends AbstractType
     {
         $builder
             ->add('date',      DateTimeType::class)
-            ->add('name',     TextType::class)
+            ->add('name',     TextType::class, array(
+                "label" => "Name of trick"
+            ))
             ->remove('author',    TextType::class)
             ->add('description',   TextareaType::class)
             ->add('images', CollectionType::class, array(

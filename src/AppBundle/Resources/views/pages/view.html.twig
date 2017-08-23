@@ -37,6 +37,12 @@
 </div>
 <div class="container">
 <h3>Comments</h3>
+    {% if is_granted('ROLE_USER') %}
+        <h3>Add a comment</h3>
+        <p>Comment as <b>{{ app.user.username }}</b></p>
+        {{ form(form) }}
+        </div>
+    {% endif %}
     {% if listComments.count == 0 %}
     <p>No comments yet for this trick</p>
         {% else %}
@@ -61,12 +67,6 @@
         {% endfor %}
             {% endif %}
     </ul>
-    {% if is_granted('ROLE_USER') %}
-        <h3>Add a comment</h3>
-        <p>Comment as <b>{{ app.user.username }}</b></p>
-        {{ form(form) }}
-        </div>
-    {% endif %}
 
 
 {% endblock %}

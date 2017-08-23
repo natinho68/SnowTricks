@@ -22,11 +22,11 @@ class AppController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-        $tricks = $em->getRepository('AppBundle:Trick')->findAll();
+        $tricks = $this->getDoctrine()->getRepository('AppBundle:Trick')->findAll();
         // replace this example code with whatever you need
-        return $this->render('AppBundle:pages:home.html.twig',
-            array('tricks'=>$tricks));
+        return $this->render('AppBundle:pages:home.html.twig', array(
+            'tricks'=>$tricks
+        ));
     }
 
     /**
@@ -126,12 +126,27 @@ class AppController extends Controller
         if (empty($trick)) {
             throw new NotFoundHttpException("This trick ". $slug ." doesn't exist !");
         }
-
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
 
         if ($page < 1) {
             throw $this->createNotFoundException("This page ".$page." doesn't exist !");
+        }
+
+
+
+
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+            // On récupère le service
+            $security = $this->container->get('security.token_storage');
+            $token = $security->getToken();
+            $user = $token->getUser();
+            $em = $this->getDoctrine()->getManager();
+            $comment->setAuthor($user);
+            $comment->setTrick($trick);
+            $em->persist($comment);
+            $em->flush();
+
         }
 
         // Ici je fixe le nombre d'annonces par page à 10
@@ -155,20 +170,6 @@ class AppController extends Controller
         // Si la page n'existe pas, on retourne une 404
         if ($page > $nbPages) {
             throw $this->createNotFoundException("This ".$page." doesn't exist !");
-        }
-
-
-        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-            // On récupère le service
-            $security = $this->container->get('security.token_storage');
-            $token = $security->getToken();
-            $user = $token->getUser();
-            $em = $this->getDoctrine()->getManager();
-            $comment->setAuthor($user);
-            $comment->setTrick($trick);
-            $em->persist($comment);
-            $em->flush();
-
         }
 
         return $this->render('AppBundle:pages:view.html.twig', array(
