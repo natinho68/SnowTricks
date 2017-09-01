@@ -46,7 +46,7 @@ class Image
 
 
     /**
-     * @Assert\NotNull()
+     *
      * @Assert\Image(
      *     maxSize = "2M",
      *     maxSizeMessage = "The file is too large ({{ size }}). Allowed maximum size is {{ limit }}"
@@ -243,7 +243,8 @@ class Image
 
     public function getWebPath()
     {
-        return $this->getUploadDir().'/'.$this->getId().'.'.$this->getExtension();
+        $webPath = $this->getUploadDir().'/'.$this->getId().'.'.$this->getExtension();
+        return $webPath;
     }
 
 

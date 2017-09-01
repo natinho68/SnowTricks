@@ -69,6 +69,7 @@ class AppController extends Controller
 
             $form = $this->createForm(TrickType::class, $trick);
 
+
             if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
                 // Inutile de persister ici, Doctrine connait déjà notre annonce
                 $em->flush();
@@ -128,6 +129,7 @@ class AppController extends Controller
         }
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
+
 
         if ($page < 1) {
             throw $this->createNotFoundException("This page ".$page." doesn't exist !");

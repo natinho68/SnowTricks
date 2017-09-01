@@ -7,6 +7,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+
 class ImageType extends AbstractType
 {
     /**
@@ -17,10 +18,11 @@ class ImageType extends AbstractType
         $builder
             ->add('file', FileType::class, array(
                 'required'   => false,
+                'image_property' => 'webPath'
             ))
             ;
     }
-    
+
     /**
      * {@inheritdoc}
      */
