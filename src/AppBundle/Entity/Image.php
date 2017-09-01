@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Filesystem\Exception\FileNotFoundException;
 
 /**
  * Image
@@ -89,14 +90,14 @@ class Image
     {
         // Si jamais il n'y a pas de fichier (champ facultatif), on ne fait rien
         if (null === $this->file) {
-            return;
+            throw new FileNotFoundException('Can\'t update with an empty file field');
+        } else {
+            // Le nom du fichier est son id, on doit juste stocker également son extension
+            $this->extension = $this->file->guessExtension();
+
+            // Et on génère l'attribut alt de la balise <img>, à la valeur du nom du fichier sur le PC de l'internaute
+            $this->alt = $this->file->getClientOriginalName();
         }
-
-        // Le nom du fichier est son id, on doit juste stocker également son extension
-        $this->extension = $this->file->guessExtension();
-
-        // Et on génère l'attribut alt de la balise <img>, à la valeur du nom du fichier sur le PC de l'internaute
-        $this->alt = $this->file->getClientOriginalName();
     }
 
 
@@ -241,10 +242,14 @@ class Image
         }
     }
 
+    public function emptyImage()
+    {
+        return 'hello';
+    }
+
     public function getWebPath()
     {
-        $webPath = $this->getUploadDir().'/'.$this->getId().'.'.$this->getExtension();
-        return $webPath;
+        return $this->getUploadDir().'/'.$this->getId().'.'.$this->getExtension();
     }
 
 
