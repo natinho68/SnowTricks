@@ -24,7 +24,7 @@
 
  <h3>Image</h3>
             {% for trickImage in trick.images %}
-                {% if trickImage.extension is not null %}
+                {% if trickImage.alt is not null %}
             <img src="{{ asset(trickImage.webPath) }}" width="300" height="300" alt="{{ trickImage.alt }}">
                 {% endif %}
             {% endfor %}

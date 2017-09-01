@@ -90,7 +90,7 @@ class Image
     {
         // Si jamais il n'y a pas de fichier (champ facultatif), on ne fait rien
         if (null === $this->file) {
-            throw new FileNotFoundException('Can\'t update with an empty file field');
+           return;
         } else {
             // Le nom du fichier est son id, on doit juste stocker également son extension
             $this->extension = $this->file->guessExtension();
@@ -115,7 +115,6 @@ class Image
      * Set extension
      *
      * @param string $extension
-     *
      * @return Image
      */
     public function setExtension($extension)
@@ -127,7 +126,7 @@ class Image
 
     /**
      * Get extension
-     *
+     * @Assert\NotNull(message = "You have not selected an image, please add one or delete the empty field.")
      * @return string
      */
     public function getExtension()
