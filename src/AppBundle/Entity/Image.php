@@ -32,6 +32,14 @@ class Image
      */
     private $extension;
 
+
+    /**
+     * @var \DateTime
+     * @Assert\NotNull(message = "You have not selected an image, please add one or delete the empty file field.")
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     */
+    private $updatedAt;
+
     /**
      * @var string
      * @ORM\Column(name="alt", type="string", length=255, nullable=true)
@@ -70,6 +78,7 @@ class Image
     public function setFile(UploadedFile $file)
     {
         $this->file = $file;
+        $this->updatedAt = new \DateTimeImmutable();
 
         // On vérifie si on avait déjà un fichier pour cette entité
         if (null !== $this->extension) {
@@ -126,7 +135,6 @@ class Image
 
     /**
      * Get extension
-     * @Assert\NotNull(message = "You have not selected an image, please add one or delete the empty field.")
      * @return string
      */
     public function getExtension()
@@ -241,10 +249,6 @@ class Image
         }
     }
 
-    public function emptyImage()
-    {
-        return 'hello';
-    }
 
     public function getWebPath()
     {

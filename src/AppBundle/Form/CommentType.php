@@ -22,9 +22,12 @@ class CommentType extends AbstractType
     {
         $builder
             ->add('content', TextareaType::class, array(
-                'attr' => array('autocomplete' => 'off')
+                'label' => 'Message'
             ))
-            ->add('save',      SubmitType::class);
+            ->add('save',      SubmitType::class, array(
+                'label' => 'Send comment'
+            ))
+        ;
     }
     
     /**
