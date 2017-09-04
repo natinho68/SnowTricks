@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Comment
@@ -22,25 +23,30 @@ class Comment
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="author", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $author;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="content", type="string", length=255)
      */
     private $content;
 
     /**
      * @var \DateTime
-     *
+     * @Assert\DateTime()
      * @ORM\Column(name="date", type="datetime", length=255)
      */
     private $date;
+
+
+    /**
+     *  @ORM\ManyToOne(targetEntity="AppBundle\Entity\Trick", inversedBy="comments", cascade={"persist"}))
+     **/
+    private $trick;
 
     public function __construct()
     {
@@ -140,6 +146,7 @@ class Comment
     public function setTrick(\AppBundle\Entity\Trick $trick)
     {
         $this->trick = $trick;
+
 
         return $this;
     }

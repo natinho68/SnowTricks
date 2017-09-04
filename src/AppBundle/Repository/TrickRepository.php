@@ -10,18 +10,8 @@ namespace AppBundle\Repository;
  */
 class TrickRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function findBySlug($slug)
+    public function findAll()
     {
-        $qb = $this->createQueryBuilder('t');
-
-        $qb
-            ->where('t.slug = :slug')
-            ->setParameter('slug', $slug)
-        ;
-
-        return $qb
-            ->getQuery()
-            ->getResult()
-            ;
+        return $this->findBy(array(), array('date' => 'DESC'));
     }
 }

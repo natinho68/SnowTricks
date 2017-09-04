@@ -1,40 +1,72 @@
 {% extends "AppBundle::layout.html.twig" %}
 
 {% block title %}
-        {% for trick in trick %}
+
             {{ trick.name }} - {{ parent() }}
-        {% endfor %}
+
 {% endblock %}
 
 {% block body %}
-    {% for trick in trick %}
-
         <div class="container">
+            {% if is_granted('ROLE_USER') %}
             <div class="col-md-6"><a href="{{ path('edit', {'id': trick.id}) }}"><span class="glyphicon glyphicon-pencil"></span></a>
                 <a href="{{ path('delete', {'id': trick.id}) }}"><span class="glyphicon glyphicon-trash"></span></a></div>
+            {% endif %}
             <h1>{{ trick.name }} by <small>{{ trick.author }}</small></h1>
-            <p>Cat - ...</p>
-            <h3>The {{ trick.name }} description</h3>
-            <p>The {{ trick.date|date("F jS \\a\\t g:ia") }}</p>
-            {# On vérifie qu'une image soit bien associée à l'annonce #}
-  <h3>Image</h3>
-            {% for images in trick.images %}
-            <img src="{{ images.url }}" width="300" height="300" alt="{{ images.alt }}">
+            <h3>Category</h3>
+            {% for trickCategory in trick.categories %}
+            {{ trickCategory.name }}
             {% endfor %}
-<h3>Description :</h3>
-<p>{{ trick.description }}</p>
-<p>Video ...</p>
+            <h3>The {{ trick.name }} description</h3>
+            <p>{{ trick.date|date("jS F Y \\a\\t g:ia") }}</p>
 
+
+
+ <h3>Image</h3>
+            {% for trickImage in trick.images %}
+                {% if trickImage.alt is not null %}
+            <img src="{{ asset(trickImage.webPath) }}" width="300" height="300" alt="{{ trickImage.alt }}">
+                {% endif %}
+            {% endfor %}
+            <h3>Description :</h3>
+<p>{{ trick.description }}</p>
+<h3>Video</h3>
+           {% for trickVideo in trick.videos %}
+               {{ trickVideo.videoUrl|raw }}
+            {% endfor %}
 </div>
 <div class="container">
 <h3>Comments</h3>
-    {{ dump(trick.comments) }}
+    {% if is_granted('ROLE_USER') %}
+        <h3>Add a comment</h3>
+        <p>Comment as <b>{{ app.user.username }}</b></p>
+        {{ form(form) }}
+        </div>
+    {% endif %}
+    {% if listComments.count == 0 %}
+    <p>No comments yet for this trick</p>
+        {% else %}
+    {% for comments in listComments %}
+
+        {% if comments.author.profilePic is not null %}
+            <img src=" {{ asset(comments.author.profilePic.webPath) }}" width="25" height="25">
+        {% endif %}
+        By {{ comments.author }} {{ comments.date|date("m-d-y \\a\\t g:ia") }}</p>
+        <p>{{ comments.content }}</p>
+    {% endfor %}
+            {% endif %}
+    <ul class="pagination">
+
+        {# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}
+        {% if nbPages > 1 %}
+        {% for p in range(1, nbPages) %}
+            <li{% if p == page %} class="active"{% endif %}>
+                <a href="{{ path('view',{ slug : slug }) }}/{{ p }}">{{ p }}</a>
+            </li>
+
+        {% endfor %}
+            {% endif %}
+    </ul>
 
 
-
-</div>
-<h3>Add a comment</h3>
-{{   form(form)  }}
-</div>
-{% endfor %}
 {% endblock %}

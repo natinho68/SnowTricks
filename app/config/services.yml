@@ -4,6 +4,10 @@ parameters:
     #parameter_name: value
 
 services:
+    app.form.profile:
+        class: UserBundle\Form\UserType
+        tags:
+            - { name: form.type, alias: app_user_profile }
     # default configuration for services in *this* file
     _defaults:
         # automatically injects dependencies in your services
@@ -22,12 +26,18 @@ services:
         # but if a service is unused, it's removed anyway
         exclude: '../../src/AppBundle/{Entity,Repository,Tests}'
 
+    AppBundle\Form\Extension\ImageTypeExtension:
+            public: true
+            tags:
+                - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FileType }
+
     # controllers are imported separately to make sure they're public
     # and have a tag that allows actions to type-hint services
     AppBundle\Controller\:
         resource: '../../src/AppBundle/Controller'
         public: true
         tags: ['controller.service_arguments']
+
 
     # add more services, or override services that need manual wiring
     # AppBundle\Service\ExampleService:

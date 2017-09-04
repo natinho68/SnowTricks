@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class AppController extends Controller
 {
@@ -21,24 +22,28 @@ class AppController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-        $tricks = $em->getRepository('AppBundle:Trick')->findAll();
+        $tricks = $this->getDoctrine()->getRepository('AppBundle:Trick')->findAll();
         // replace this example code with whatever you need
-        return $this->render('AppBundle:pages:home.html.twig',
-            array('tricks'=>$tricks));
+        return $this->render('AppBundle:pages:home.html.twig', array(
+            'tricks'=>$tricks
+        ));
     }
 
     /**
      * @Route("/tricks/add", name="add")
+     * @Security("has_role('ROLE_USER')")
      */
     public function addAction(Request $request){
-
-       $trick = new Trick();
+            $trick = new Trick();
         $form = $this->createForm(TrickType::class, $trick);
 
 
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+            $security = $this->container->get('security.token_storage');
+            $token = $security->getToken();
+            $user = $token->getUser();
             $em = $this->getDoctrine()->getManager();
+            $trick->setAuthor($user);
             $em->persist($trick);
             $em->flush();
 
@@ -50,42 +55,10 @@ class AppController extends Controller
         ));
     }
 
-    /**
-     * @Route("/tricks/{slug}", name="view")
-     */
-    public function viewAction($slug, Request $request)
-    {
-
-        $em = $this->getDoctrine()->getManager();
-        $trick = $em->getRepository('AppBundle:Trick')->findBySlug($slug);
-        if (empty($trick)) {
-            throw new NotFoundHttpException("This trick ". $slug ." doesn't exist ! Want to add it ?");
-        }
-
-        $comment = new Comment();
-        $form = $this->createForm(CommentType::class, $comment);
-
-        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($comment);
-            $em->flush();
-        }
-
-            // On récupère la liste des candidatures de cette annonce
-            $listComments = $em
-                ->getRepository('AppBundle:Comment')
-                ->findAll();
-            return $this->render('AppBundle:pages:view.html.twig', array(
-                'trick' => $trick,
-                'listComments' => $listComments,
-                'form' => $form->createView()
-            ));
-        }
-
-
 
         /**
          * @Route("/tricks/edit/{id}", name="edit")
+         * @Security("has_role('ROLE_USER')")
          */
         public function editAction($id, Request $request){
             $em = $this->getDoctrine()->getManager();
@@ -96,10 +69,10 @@ class AppController extends Controller
 
             $form = $this->createForm(TrickType::class, $trick);
 
+
             if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
                 // Inutile de persister ici, Doctrine connait déjà notre annonce
                 $em->flush();
-
                 $request->getSession()->getFlashBag()->add('info', 'Trick has been updated');
                 return $this->redirectToRoute('view', array('slug' => $trick->getSlug()));
             }
@@ -111,6 +84,7 @@ class AppController extends Controller
 
     /**
      * @Route("/tricks/delete/{id}", name="delete")
+     * @Security("has_role('ROLE_USER')")
      */
     public function deleteAction(Request $request, $id)
     {
@@ -138,6 +112,75 @@ class AppController extends Controller
         return $this->render('AppBundle:pages:delete.html.twig', array(
             'trick' => $trick,
             'form'   => $form->createView(),
+        ));
+    }
+
+    /**
+     * @Route("/tricks/{slug}/{page}", name="view", requirements={"page": "\d+"})
+     */
+    public function viewAction($slug, Request $request, $page = 1)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $trick = $em->getRepository('AppBundle:Trick')->findOneBy(array('slug' => $slug));
+
+        if (empty($trick)) {
+            throw new NotFoundHttpException("This trick ". $slug ." doesn't exist !");
+        }
+        $comment = new Comment();
+        $form = $this->createForm(CommentType::class, $comment);
+
+
+        if ($page < 1) {
+            throw $this->createNotFoundException("This page ".$page." doesn't exist !");
+        }
+
+
+
+
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+            // On récupère le service
+            $security = $this->container->get('security.token_storage');
+            $token = $security->getToken();
+            $user = $token->getUser();
+            $em = $this->getDoctrine()->getManager();
+            $comment->setAuthor($user);
+            $comment->setTrick($trick);
+            $em->persist($comment);
+            $em->flush();
+
+        }
+
+        // Ici je fixe le nombre d'annonces par page à 10
+        // Mais bien sûr il faudrait utiliser un paramètre, et y accéder via $this->container->getParameter('nb_per_page')
+        $nbPerPage = 10;
+
+        // On récupère notre objet Paginator
+        $listComments = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('AppBundle:Comment')
+            ->getComments($page, $nbPerPage, $trick->getId())
+        ;
+
+        // On calcule le nombre total de pages grâce au count($listComment) qui retourne le nombre total d'annonces
+        $nbPages = ceil(count($listComments) / $nbPerPage);
+
+        if($nbPages === 0.0){
+            $nbPages = 1;
+        }
+
+        // Si la page n'existe pas, on retourne une 404
+        if ($page > $nbPages) {
+            throw $this->createNotFoundException("This ".$page." doesn't exist !");
+        }
+
+        return $this->render('AppBundle:pages:view.html.twig', array(
+            'trick' => $trick,
+            'form' => $form->createView(),
+            'listComments' => $listComments,
+            'nbPages'     => $nbPages,
+            'page'        => $page,
+            'slug'        => $slug
         ));
     }
 

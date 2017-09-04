@@ -17,13 +17,28 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Trick
 {
 
-    /** * many trick has Many images.
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Image", cascade={"persist"}))
+    /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Category", cascade={"persist"})
+     * @ORM\JoinTable(name="trick_category")
+     */
+
+    private $categories;
+
+
+    /** * one trick has Many videos.
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Video", mappedBy="trick", cascade={"persist", "remove"}, orphanRemoval=true))
+     */
+    private $videos;
+
+    /** * one trick has Many images.
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Image", mappedBy="trick", cascade={"persist", "remove"}, orphanRemoval=true))
+     * @Assert\Valid()
      */
     private $images;
 
     /**
-     * @ORM\OneToMany(targetEntity="Comment", mappedBy="trick")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="trick", cascade={"persist", "remove"}))
+     *
      */
     protected $comments;
 
@@ -68,18 +83,16 @@ class Trick
     private $description;
 
     /**
-     * @var string
      *
-     * @ORM\Column(name="author", type="string", length=255)
-     * @Assert\Length(min=2)
-     * @Assert\NotBlank()
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $author;
 
 
     public function __construct()
     {
-        $this->images = new ArrayCollection();
+        $this->categories   = new ArrayCollection();
         $this->date = new \Datetime();
     }
 
@@ -238,6 +251,7 @@ class Trick
     public function removeImage(\AppBundle\Entity\Image $image)
     {
         $this->images->removeElement($image);
+        $image->setTrick(null);
     }
 
     /**
@@ -260,6 +274,7 @@ class Trick
     public function addComment(\AppBundle\Entity\Comment $comment)
     {
         $this->comments[] = $comment;
+        $comment->setTrick($this);
 
         return $this;
     }
@@ -282,5 +297,75 @@ class Trick
     public function getComments()
     {
         return $this->comments;
+    }
+
+    /**
+     * Add video
+     *
+     * @param \AppBundle\Entity\Video $video
+     *
+     * @return Trick
+     */
+    public function addVideo(\AppBundle\Entity\Video $video)
+    {
+        $this->videos[] = $video;
+        $video->setTrick($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove video
+     *
+     * @param \AppBundle\Entity\Video $video
+     */
+    public function removeVideo(\AppBundle\Entity\Video $video)
+    {
+        $this->videos->removeElement($video);
+        $video->setTrick(null);
+    }
+
+    /**
+     * Get videos
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getVideos()
+    {
+        return $this->videos;
+    }
+
+    /**
+     * Add category
+     *
+     * @param \AppBundle\Entity\Category $category
+     *
+     * @return Trick
+     */
+    public function addCategory(\AppBundle\Entity\Category $category)
+    {
+        $this->categories[] = $category;
+
+        return $this;
+    }
+
+    /**
+     * Remove category
+     *
+     * @param \AppBundle\Entity\Category $category
+     */
+    public function removeCategory(\AppBundle\Entity\Category $category)
+    {
+        $this->categories->removeElement($category);
+    }
+
+    /**
+     * Get categories
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCategories()
+    {
+        return $this->categories;
     }
 }
