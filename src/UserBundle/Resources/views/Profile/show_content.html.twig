@@ -4,9 +4,9 @@
     <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
     <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
     {% if user.profilePic is  null %}
-        <p>{{ 'profile.show.profilePic'|trans }}: No profile picture added</p>
+        <p>{{ 'Profile picture'|trans }}: No profile picture added</p>
         {% else %}
-            <p>{{ 'profile.show.profilePic'|trans }}: <img src="{{ asset(user.profilePic.webPath) }}" width="25" height="25"></p>
+            <p>{{ 'Profile picture'|trans }}: <img src="{{ asset(user.profilePic.webPath) }}" width="25" height="25"></p>
     {% endif %}
     <p><a href="{{ path('fos_user_profile_edit') }}">Edit my profile</a></p>
 </div>
