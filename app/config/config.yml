@@ -40,8 +40,15 @@ twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     form_themes:
-    - 'bootstrap_3_layout.html.twig'
     - 'fields.html.twig'
+    - 'form_div_layout.html.twig'
+    - 'materializeLayout.html.twig'
+
+services:
+  twig.extension.text:
+       class: Twig_Extensions_Extension_Text
+       tags:
+           - { name: twig.extension }
 
 # Doctrine Configuration
 doctrine:
@@ -91,3 +98,12 @@ fos_user:
     profile:
         form:
             type: UserBundle\Form\UserType
+
+assetic:
+  debug:          '%kernel.debug%'
+  use_controller: '%kernel.debug%'
+  filters:
+      cssrewrite: ~
+      jsqueeze:   ~
+      scssphp:
+          formatter: 'Leafo\ScssPhp\Formatter\Compressed'

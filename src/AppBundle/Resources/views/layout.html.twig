@@ -3,68 +3,124 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>{% block title %}SnowTricks - The snowboard tricks platform{% endblock %}</title>
 
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
 
-    {% block stylesheets %}
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    {% endblock %}
+        {% block stylesheets %}
+            <!-- Compiled and minified CSS -->
+            {% stylesheets 'bundles/app/materialize/css/materialize.min.css' filter='?cssrewrite, ?scssphp'
+                            'bundles/app/materialize/css/style.css' filter='?cssrewrite, ?scssphp' %}
+            <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+            {% endstylesheets %}
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        {% endblock %}
 </head>
-<body>
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{{ path('homepage') }}">SnowTricks - <small>The snowboard tricks platform</small></a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="{{ path('homepage') }}">Home</a></li>
-                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                <li><a href="{{ path('add') }}">Add a trick</a></li>
+<div class="navbar-fixed">
+    <nav class="nav-extended">
+        <div class="nav-wrapper white">
+            <a href="{{ path('homepage') }}" class="brand-logo black-text">SnowTricks</a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse btnCol black-text"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="black-text right hide-on-med-and-down valign-wrapper">
+                <li><a class="black-text menu" href="{{ path('homepage') }}">Home</a></li>
+                {% if is_granted("ROLE_USER") %}
+                    <li><a class="black-text menu" href="{{ path('add') }}">Add a trick</a></li>
+                    <li><a href="#" data-activates="slide-out"  class="button-collapse waves-effect white menu btn profilebtn btnCol show-on-large black-text">Hi {{ app.user.username }} !
+                            {% if app.user.profilePic is null %}
+                            <img class="circle" src="{{ asset('uploads/img/avatar.png') }}" alt="user-image" style="width:50px; vertical-align:middle;">
+                            {% else %}
+                            <img class="circle" src="{{ asset(app.user.profilePic.webPath) }}" style="width:50px; vertical-align:middle;">
+                            {% endif %}
+                        </a></li>
+                    {% endif %}
+                {% if is_granted("ROLE_USER") == false %}
+                    <li><a href="{{ path('fos_user_security_login') }}" class="black-text menu">Login</a></li>
+                {% endif %}
+                    </ul>
+            <ul class="side-nav" id="mobile-demo">
+                <li><a href="{{ path('homepage') }}" class="menu">Home</a></li>
+                {% if is_granted("ROLE_USER") %}
+                    <li><a href="{{ path('add') }}" class="menu">Add a trick</a></li>
+                    <li class="left-align"><a href="#" data-activates="slide-out"  class="button-collapse btnCol menu show-on-large">
+                            {% if app.user.profilePic is not null %}
+                            <img class="circle" src="{{ asset(app.user.profilePic.webPath) }}" style="width:25px; vertical-align:middle;">
+                            {% else %}
+                                <img class="circle" src="{{ asset('uploads/img/avatar.png') }}" style="width:25px; vertical-align:middle;">
+                            {% endif %}
+                            {{ app.user.username }}</a></li>
+
+
+                {% else %}
+                    <li><a href="{{ path('fos_user_security_login') }}" class="menu">Login</a></li>
                 {% endif %}
             </ul>
-        </div><!--/.nav-collapse -->
-    </div>
-</nav>
-{% for message in app.session.flashbag.get('info') %}
-    <div style="margin-top:50px" class="alert alert-info">{{ message }}</div>
-{% endfor %}
-<div id="content" class="col-md-9" style="padding-top:50px">
-    {% block body %}
-    {% endblock %}
-
-    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-        <div class="container">
-        Sign in as <a href="{{ path('fos_user_profile_show') }}">{{ app.user.username }}</a>
-        -
-        <a href="{{ path('fos_user_security_logout') }}">Logout</a>
-
-    {% else %}
-        <a href="{{ path('fos_user_security_login') }}">Sign in</a>
-        </div>
-    {% endif %}
+                </div>
+    </nav>
 </div>
 
+    {% if is_granted("ROLE_USER") %}
+    <ul id="slide-out" class="side-nav">
+        <li><div class="user-view">
+                {% if app.user.profilePic is not null %}
+                <img class="circle" src="{{ asset(app.user.profilePic.webPath) }}" style="width:50px;">
+                    {% else %}
+                        <img class="circle" src="{{ asset('uploads/img/avatar.png') }}" style="width:50px;">
+                {% endif %}
+                <span class="white-text name menu">{{ app.user.username }}</span>
+                <span class="white-text email menu">{{ app.user.email }}</span>
+            </div></li>
+        <li><a href="{{ path('fos_user_profile_edit') }}" class="menu"><i class="material-icons">account_circle</i>Edit my profile</a></li>
+        <li><div class="divider"></div></li>
+        <li><a href="{{ path('fos_user_security_logout') }}" class="menu"><i class="material-icons">exit_to_app</i>Logout</a></li>
+    </ul>
+    {% endif %}
+
+
+{% for message in app.session.flashbag.get('info') %}
+    <div class="row" style="padding-top:15px;">
+        <div class="col s12 m10 l10 offset-m1 offset-l1">
+            <div class="chip black alert">
+                <i class=" close material-icons right white-text">close</i>
+                <i class="material-icons white-text left" style="padding-top: 2px;">check_circle</i>
+                <h6 class="white-text">{{ message }}</h6>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+    <div class="container" id="content">
+    {% block body %}
+
+    {% endblock %}
+    </div>
+
+    <footer class="page-footer black">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">SnowTrick</h5>
+                    <p class="white-text text-lighten-1">The community platform of the best snowboard tricks</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container white-text text-darken-1">
+                © 2017 SnowTricks
+                <a class="white-text text-darken-1 right" href="mailto:nathan.meyer-pro@live.fr">created by Nathan MEYER</a>
+            </div>
+        </div>
+    </footer>
 
 {% block javascripts %}
-    {# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    {% javascripts  'bundles/app/materialize/js/jquery-3.2.1.min.js'  filter='?jsqueeze'
+                    'bundles/app/materialize/js/materialize.min.js' filter='?jsqueeze'
+                    'bundles/app/materialize/js/materializeLoad.js' filter='?jsqueeze'%}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
 {% endblock %}
-</body>
+
  </html>

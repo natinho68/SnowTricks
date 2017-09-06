@@ -1,17 +1,25 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>An Error Occurred: {{ status_text }}</title>
-</head>
-<body>
-<h1>Oops! An Error Occurred</h1>
-<h2>The server returned a "{{ status_code }} {{ status_text }}".</h2>
+{% extends "AppBundle::layout.html.twig" %}
 
-<div>
-    Something is broken. Please e-mail us at [email] and let us know
-    what you were doing when this error occurred. We will fix it as soon
-    as possible. Sorry for any inconvenience caused.
-</div>
-</body>
-</html>
+{% block title %}
+    404 Not Found ! - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <div class="slider home">
+        <ul class="slides home">
+            <li>
+                <img class="responsive-img" src="{{ asset('uploads/img/lost.jpg') }}">
+                <div class="caption center-align">
+                    <h2>Are you lost in the mountain ?</h2>
+                    <h3>The server returned a "{{ status_code }} {{ status_text }}".</h3>
+                    <h5 class="light grey-text text-lighten-3"> Something is broken. Please e-mail us at <a href="mailto:nathan.meyer-pro@live.fr">nathan.meyer-pro@live.fr</a> and let us know what you were doing when this error occurred. We will fix it as soon as possible. Sorry for any inconvenience caused.</h5>
+                    <div><br><a href="{{ path('homepage') }}" class="waves-effect black btn"><i class="material-icons left">home</i>
+                            Back to the home page
+                        </a></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+
+{% endblock %}

@@ -5,8 +5,7 @@
 {% endblock %}
 
 {% block body %}
-
-    <h2>Delete a trick</h2>
+    <h3>Delete a trick</h3>
 
     <p>
         Are you sure you want to delete the trick :  "{{ trick.name }}" ?
@@ -14,14 +13,12 @@
 
 
     <form action="{{ path('delete', {'id': trick.id}) }}" method="post">
-        <a href="{{ path('view', {'slug': trick.slug}) }}" class="btn btn-default">
-            <i class="glyphicon glyphicon-chevron-left"></i>
-            Back to the trick
-        </a>
+            <a href="{{ path('view', {'slug': trick.slug}) }}" class="waves-effect black btn"><i class="material-icons left">arrow_back</i>
+                Back to the trick
+            </a>
         {# Ici j'ai écrit le bouton de soumission à la main #}
-        <input type="submit" value="Delete" class="btn btn-danger" />
+        <input type="submit" value="Delete" class="waves-effect black btn" />
         {# Ceci va générer le champ CSRF #}
         {{ form_rest(form) }}
     </form>
-
 {% endblock %}

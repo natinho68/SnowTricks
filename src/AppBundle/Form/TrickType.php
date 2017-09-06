@@ -22,7 +22,8 @@ class TrickType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('date',      DateTimeType::class)
+
+            ->remove('date')
             ->add('name',     TextType::class, array(
                 "label" => "Name of trick"
             ))
@@ -59,7 +60,12 @@ class TrickType extends AbstractType
                 'choice_label' => 'name',
                 'multiple'     => true,
             ))
-            ->add('save',      SubmitType::class)
+            ->add('save',      SubmitType::class, array(
+                'label' => 'Submit',
+                'attr' => array(
+                    'class' => 'waves-effect black btn'
+                )
+            ))
             ;
     }
     

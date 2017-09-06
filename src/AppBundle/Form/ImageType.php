@@ -18,7 +18,8 @@ class ImageType extends AbstractType
     {
         $builder
             ->add('file', FileType::class, array(
-                'required'   => false,
+                'label' => false,
+                'required' => false,
                 'image_property' => 'webPath'
             ))
             ;

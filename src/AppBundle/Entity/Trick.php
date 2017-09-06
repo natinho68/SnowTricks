@@ -33,6 +33,7 @@ class Trick
     /** * one trick has Many images.
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Image", mappedBy="trick", cascade={"persist", "remove"}, orphanRemoval=true))
      * @Assert\Valid()
+     * @Assert\NotNull()
      */
     private $images;
 

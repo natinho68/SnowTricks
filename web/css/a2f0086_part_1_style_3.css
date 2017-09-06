@@ -1,0 +1,12 @@
+.alert{
+    padding: 10px 10px 10px 10px;
+    width: 100% !important;
+    height: 50px !important;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
