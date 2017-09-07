@@ -69,7 +69,7 @@
         {% for trickVideo in trick.videos %}
             <h4>Learn more with vids :</h4>
             <div class="video-container">
-                {{ trickVideo.videoUrl|raw }}
+                {{ trickVideo.videoUrl|html  }}
             </div>
         {% endfor %}
         <br><hr class="style12">
