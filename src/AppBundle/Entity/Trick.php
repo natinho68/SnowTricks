@@ -336,6 +336,18 @@ class Trick
         return $this->videos;
     }
 
+    public function setCategories($categories)
+    {
+
+        if(!is_array($categories))
+        {
+            $categories = array($categories);
+        }
+        $this->categories = $categories;
+
+        return $this;
+    }
+
     /**
      * Add category
      *

@@ -58,7 +58,7 @@ class TrickType extends AbstractType
             ->add('categories', EntityType::class, array(
                 'class'        => 'AppBundle:Category',
                 'choice_label' => 'name',
-                'multiple'     => true,
+                'multiple'     => false,
             ))
             ->add('save',      SubmitType::class, array(
                 'label' => 'Submit',
