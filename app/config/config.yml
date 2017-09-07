@@ -53,7 +53,7 @@ services:
 # Doctrine Configuration
 doctrine:
     dbal:
-        driver: pdo_mysqldbal:
+        driver: pdo_mysql
         server_version: 5.6
         host: '%database_host%'
         port: '%database_port%'
