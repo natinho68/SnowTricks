@@ -1,0 +1,4 @@
+services:
+    app_bundle.manager:
+        class: AppBundle\Manager\Manager
+        arguments: [ "@doctrine.orm.entity_manager" ]

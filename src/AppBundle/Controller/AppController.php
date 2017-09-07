@@ -40,11 +40,11 @@ class AppController extends Controller
 
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
             $security = $this->container->get('security.token_storage');
+            $manager = $this->container->get('app_bundle.manager');
             $user = $security->getToken()->getUser();
-            $em = $this->getDoctrine()->getManager();
             $trick->setAuthor($user);
-            $em->persist($trick);
-            $em->flush();
+            $manager->persist($trick);
+            $manager->flush();
 
             $request->getSession()->getFlashBag()->add('info', 'Trick has been successfully added');
             return $this->redirectToRoute('view', array('slug' => $trick->getSlug()));

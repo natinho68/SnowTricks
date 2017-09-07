@@ -1,5 +1,6 @@
 {
     "name": "nathan/snowtricks",
+    "description": "A community website for snowboard tricks",
     "license": "proprietary",
     "type": "project",
     "autoload": {
