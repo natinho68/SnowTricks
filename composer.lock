@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "866cd6dd5b279ae0df1c5c231c04798f",
+    "content-hash": "49e1b82f48e36f76da424064f25ae5fc",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -934,16 +934,16 @@
         },
         {
             "name": "friendsofsymfony/user-bundle",
-            "version": "dev-master",
+            "version": "v2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "315f837576d66f40e5e002d0caacfe1cfb5a58ba"
+                "reference": "4f92bfbb8742ac8cc195d0b34bf8ecd83b62404a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/315f837576d66f40e5e002d0caacfe1cfb5a58ba",
-                "reference": "315f837576d66f40e5e002d0caacfe1cfb5a58ba",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/4f92bfbb8742ac8cc195d0b34bf8ecd83b62404a",
+                "reference": "4f92bfbb8742ac8cc195d0b34bf8ecd83b62404a",
                 "shasum": ""
             },
             "require": {
@@ -1007,7 +1007,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2017-08-11 10:26:53"
+            "time": "2017-05-31T11:50:14+00:00"
         },
         {
             "name": "gedmo/doctrine-extensions",
@@ -1398,16 +1398,16 @@
         },
         {
             "name": "ninsuo/symfony-collection",
-            "version": "dev-master",
+            "version": "2.1.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ninsuo/symfony-collection.git",
-                "reference": "94b30e69e501f85791bb786163e5bcf1241fe5e3"
+                "reference": "b654b66cf21eecc0054af4a727e4c8cb16eb7694"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ninsuo/symfony-collection/zipball/94b30e69e501f85791bb786163e5bcf1241fe5e3",
-                "reference": "94b30e69e501f85791bb786163e5bcf1241fe5e3",
+                "url": "https://api.github.com/repos/ninsuo/symfony-collection/zipball/b654b66cf21eecc0054af4a727e4c8cb16eb7694",
+                "reference": "b654b66cf21eecc0054af4a727e4c8cb16eb7694",
                 "shasum": ""
             },
             "type": "library",
@@ -1427,7 +1427,7 @@
                 }
             ],
             "description": "A jQuery plugin that manages adding, deleting and moving elements from a Symfony collection",
-            "time": "2017-08-23 04:51:35"
+            "time": "2017-07-14T13:08:22+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -3077,10 +3077,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "friendsofsymfony/user-bundle": 20,
-        "ninsuo/symfony-collection": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
