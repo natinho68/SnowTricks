@@ -1,15 +1,16 @@
-# .gitignore
 /app/config/parameters.yml
 /build/
-/composer.phar
+/phpunit.xml
+/var/
+!/var/cache
+/var/cache/
+!var/cache/.gitkeep
+!/var/logs
+/var/logs/
+!var/logs/.gitkeep
+!/var/sessions
+/var/sessions/
+!var/sessions/.gitkeep
+!var/SymfonyRequirements.php
 /vendor/
 /web/bundles/
-/var/bootstrap.php.cache
-/var/SymfonyRequirements.php
-/var/cache/*
-!/var/cache/.gitkeep
-/var/logs/*
-!/var/logs/.gitkeep
-/var/sessions/*
-!/var/sessions/.gitkeep
-/phpunit.xml
