@@ -5,21 +5,18 @@
 {% endblock %}
 
 {% block body %}
-
     <h3>Update a trick</h3>
-    <div class="well">
+
         {% form_theme form 'jquery.collection.html.twig' %}
         {{ form(form) }}
 
-    </div>
+
 
     <p>
-        <a href="{{ path('view', {'slug': trick.slug}) }}" class="btn btn-default">
-            <i class="glyphicon glyphicon-chevron-left"></i>
+        <a href="{{ path('view', {'slug': trick.slug}) }}" class="waves-effect black btn"><i class="material-icons left">arrow_back</i>
             Back to the trick
         </a>
     </p>
-
 
     <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ asset('js/jquery.collection.js') }}"></script>
@@ -28,8 +25,8 @@
         $('.images-collection, .videos-collection').collection({
             allow_up: false,
             allow_down: false,
-            add: '<a href="#" class="btn btn-default"><span class="glyphicon glyphicon-plus-sign"></span></a>',
-            remove: '<a href="#" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></a>'
+            add: '<a href="#" class="waves-effect black add-field btn"><i class="material-icons">add</i></span></a>',
+            remove: '<a href="#" class="waves-effect black add-field btn"><i class="material-icons">delete</i><span class="glyphicon glyphicon-trash"></span></a>'
         });
     </script>
 {% endblock %}

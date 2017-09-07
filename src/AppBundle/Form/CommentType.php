@@ -25,7 +25,10 @@ class CommentType extends AbstractType
                 'label' => 'Message'
             ))
             ->add('save',      SubmitType::class, array(
-                'label' => 'Send comment'
+                'label' => 'Send comment',
+                'attr' => array(
+                    'class' => 'waves-effect black btn'
+    )
             ))
         ;
     }

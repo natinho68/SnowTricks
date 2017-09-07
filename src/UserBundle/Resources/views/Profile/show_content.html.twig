@@ -1,12 +1,15 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<div class="fos_user_user_show">
-    <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
-    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
-    {% if user.profilePic is  null %}
-        <p>{{ 'Profile picture'|trans }}: No profile picture added</p>
-        {% else %}
-            <p>{{ 'Profile picture'|trans }}: <img src="{{ asset(user.profilePic.webPath) }}" width="25" height="25"></p>
-    {% endif %}
-    <p><a href="{{ path('fos_user_profile_edit') }}">Edit my profile</a></p>
+    <h3>My profile</h3>
+    <div class="fos_user_user_show">
+        <p><b>{{ 'profile.show.username'|trans }}</b>: {{ user.username }}</p>
+        <p><b>{{ 'profile.show.email'|trans }}</b>: {{ user.email }}</p>
+        {% if user.profilePic is  null %}
+            <p><b>{{ 'Profile picture'|trans }}</b>: No personal profile picture added</p>
+            {% else %}
+                <p><b>{{ 'Profile picture'|trans }}</b>: <img class="img-responsive" src="{{ asset(user.profilePic.webPath) }}" width="50" height="50"></p>
+        {% endif %}
+
+        <a href="{{ path('homepage') }}" class="waves-effect black white-text btn">Back to home</a>
+
 </div>

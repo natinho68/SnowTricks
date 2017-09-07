@@ -3,10 +3,10 @@
 {% block body %}
 <h3>Add a trick</h3>
 
-<div class="well">
+
     {% form_theme form 'jquery.collection.html.twig' %}
     {{ form(form) }}
-</div>
+
     <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ asset('js/jquery.collection.js') }}"></script>
 
@@ -14,8 +14,8 @@
         $('.images-collection, .videos-collection').collection({
             allow_up: false,
             allow_down: false,
-            add: '<a href="#" class="btn btn-default"><span class="glyphicon glyphicon-plus-sign"></span></a>',
-            remove: '<a href="#" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></a>'
+            add: '<a class="waves-effect black btn add-field"><i class="material-icons">add</i>',
+            remove: '<a class="waves-effect black btn add-field"><i class="material-icons">delete</i>',
         });
     </script>
 {% endblock %}
