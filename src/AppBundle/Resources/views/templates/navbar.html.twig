@@ -1,0 +1,41 @@
+<div class="navbar-fixed">
+    <nav class="nav-extended">
+        <div class="nav-wrapper white">
+            <a href="{{ path('homepage') }}" class="brand-logo black-text">SnowTricks</a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse btnCol black-text"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="black-text right hide-on-med-and-down valign-wrapper">
+                <li><a class="black-text menu" href="{{ path('homepage') }}">Home</a></li>
+                {% if is_granted("ROLE_USER") %}
+                    <li><a class="black-text menu" href="{{ path('add') }}">Add a trick</a></li>
+                    <li><a href="#" data-activates="slide-out"  class="button-collapse waves-effect white menu btn profilebtn btnCol show-on-large black-text">Hi {{ app.user.username }} !
+                            {% if app.user.profilePic is null %}
+                                <img class="circle" src="{{ asset('uploads/img/avatar.png') }}" alt="user-image" style="width:50px; vertical-align:middle;">
+                            {% else %}
+                                <img class="circle" src="{{ asset(app.user.profilePic.webPath) }}" style="width:50px; vertical-align:middle;">
+                            {% endif %}
+                        </a></li>
+                {% endif %}
+                {% if is_granted("ROLE_USER") == false %}
+                    <li><a href="{{ path('fos_user_security_login') }}" class="black-text menu">Login</a></li>
+                {% endif %}
+            </ul>
+            <ul class="side-nav" id="mobile-demo">
+                <li><a href="{{ path('homepage') }}" class="menu">Home</a></li>
+                {% if is_granted("ROLE_USER") %}
+                    <li><a href="{{ path('add') }}" class="menu">Add a trick</a></li>
+                    <li class="left-align"><a href="#" data-activates="slide-out"  class="button-collapse btnCol menu show-on-large">
+                            {% if app.user.profilePic is not null %}
+                                <img class="circle" src="{{ asset(app.user.profilePic.webPath) }}" style="width:25px; vertical-align:middle;">
+                            {% else %}
+                                <img class="circle" src="{{ asset('uploads/img/avatar.png') }}" style="width:25px; vertical-align:middle;">
+                            {% endif %}
+                            {{ app.user.username }}</a></li>
+
+
+                {% else %}
+                    <li><a href="{{ path('fos_user_security_login') }}" class="menu">Login</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+</div>
