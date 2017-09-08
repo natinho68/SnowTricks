@@ -9,23 +9,9 @@
             </a>
         </p>
     {% endif %}
-    {% if is_granted('ROLE_USER') %}
-    <div class="col s6">
-        <div class="chip grey lighten-3 light grey-text">
-            {% if app.user.profilePic is null %}
-                <img src="{{ asset('uploads/img/avatar.png') }}" alt="user-image">
-            {% else %}
-                <img src="{{ asset(app.user.profilePic.webPath) }}"
-                     alt="{{ app.user.username }} profile picture">
-            {% endif %}
-            you're about to comment as <b>{{ app.user.username }}</b>
-        </div>
-
-        {% form_theme form 'materializeLayout.html.twig' %}
-        {{ form(form) }}
-    </div>
-</div>
-{% endif %}
+    {% block comments_user_allowed %}
+        {% include 'AppBundle:templates:comments_user_allowed.html.twig' %}
+    {% endblock comments_user_allowed %}
 
         {% if listComments.count == 0 %}
             <p class="center-align">// No comments yet for this trick \\</p>

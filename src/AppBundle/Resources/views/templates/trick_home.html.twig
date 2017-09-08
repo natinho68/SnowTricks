@@ -1,0 +1,38 @@
+<div class="row trick-line">
+    <div class="col s12">
+        {% for trickImage in trick.images %}
+            {% if loop.first %}
+                <div class="col s8">
+                    <a href="{{ path('view', {'slug': trick.slug}) }}">
+                        <img src="{{ asset(trickImage.webPath) }}" class="responsive-img" alt="{{ trickImage.alt }}">
+                    </a>
+                </div>
+            {% endif %}
+        {% endfor %}
+
+
+        <div class="col s4">
+
+            <a href="{{ path('view', {'slug': trick.slug}) }}"><h4 class="left-align black-text">{{ trick.name }}</h4></a>
+            {% for trickCategory in trick.categories %}
+            <div class="chip black white-text">
+                {{ trickCategory.name }}
+            </div>
+            <div class="chip black white-text">
+                {% if trick.author.profilePic is not null %}
+                    <img src="{{ asset(trick.author.profilePic.webPath) }}"
+                         alt="{{ trick.author.username }} profile picture">
+                {% else %}
+                    <img class="circle" src="{{ asset('uploads/img/avatar.png') }}">
+                {% endif %}
+                By {{ trick.author.username }}
+            </div>
+            <p class="left-align">{{ trick.description|truncate(200, true)}}</p>
+            <a href="{{ path('view', {'slug': trick.slug}) }}" class="waves-effect black btn">
+                Read more
+            </a>
+        </div>
+    </div>
+</div>
+<hr class="style12">
+{% endfor %}
