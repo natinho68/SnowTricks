@@ -122,16 +122,9 @@ class AppController extends Controller
             $comment->setAuthor($user)->setTrick($trick);
             $this->container->get('app_bundle.manager')->save($comment);
         }
-        // Ici je fixe le nombre d'annonces par page à 10
-        // Mais bien sûr il faudrait utiliser un paramètre, et y accéder via $this->container->getParameter('nb_per_page')
-        $nbPerPage = 10;
-        // On récupère notre objet Paginator
+        $nbPerPage = $this->container->getParameter('nb_per_page');
         $listComments = $this->getDoctrine()->getManager()->getRepository('AppBundle:Comment')->getComments($page, $nbPerPage, $trick->getId());
-        // On calcule le nombre total de pages grâce au count($listComment) qui retourne le nombre total d'annonces
-        $nbPages = ceil(count($listComments) / $nbPerPage);
-        $nbPages === 0.0 ? $nbPages = 1 :$nbPages;
-
-        // Si la page n'existe pas, on retourne une 404
+        $nbPages = $this->container->get('app_bundle.page_number')->numberOfPages($listComments);
         if ($page > $nbPages) {
             throw $this->createNotFoundException("This ".$page." doesn't exist !");
         }

@@ -375,6 +375,7 @@
     <parameter key="sensio_framework_extra.converter.doctrine.class">Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\DoctrineParamConverter</parameter>
     <parameter key="sensio_framework_extra.converter.datetime.class">Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\DateTimeParamConverter</parameter>
     <parameter key="sensio_framework_extra.view.listener.class">Sensio\Bundle\FrameworkExtraBundle\EventListener\TemplateListener</parameter>
+    <parameter key="nb_per_page">10</parameter>
     <parameter key="assetic.asset_factory.class">Symfony\Bundle\AsseticBundle\Factory\AssetFactory</parameter>
     <parameter key="assetic.asset_manager.class">Assetic\Factory\LazyAssetManager</parameter>
     <parameter key="assetic.asset_manager_cache_warmer.class">Symfony\Bundle\AsseticBundle\CacheWarmer\AssetManagerCacheWarmer</parameter>
@@ -621,6 +622,7 @@
     <service id="AppBundle\Manager\Manager" class="AppBundle\Manager\Manager" public="false" autowire="true" autoconfigure="true">
       <argument type="service" id="doctrine.orm.default_entity_manager"/>
     </service>
+    <service id="AppBundle\PageNumber\PageNumber" class="AppBundle\PageNumber\PageNumber" public="false" autowire="true" autoconfigure="true"/>
     <service id="AppBundle\Twig\HtmlExtension" class="AppBundle\Twig\HtmlExtension" public="false" autowire="true" autoconfigure="true">
       <tag name="twig.extension"/>
     </service>
@@ -813,7 +815,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>lS7SNUY5FZklYKXdMThS9O</argument>
+      <argument>YTprcVBfFCx+JS-8D8Wd0v</argument>
       <argument>/Applications/MAMP/htdocs/SnowTricks/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -823,7 +825,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>lS7SNUY5FZklYKXdMThS9O</argument>
+      <argument>YTprcVBfFCx+JS-8D8Wd0v</argument>
       <call method="setLogger">
         <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       </call>
@@ -3239,12 +3241,12 @@
     </service>
     <service id="security.authentication.listener.anonymous.main" class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
       <argument type="service" id="security.token_storage"/>
-      <argument>59b2ac5b5cf8d1.19278111</argument>
+      <argument>59b2bc54a23b81.35749620</argument>
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
       <argument type="service" id="security.authentication.manager"/>
     </service>
     <service id="security.authentication.provider.anonymous.main" class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-      <argument>59b2ac5b5cf8d1.19278111</argument>
+      <argument>59b2bc54a23b81.35749620</argument>
     </service>
     <service id="security.exception_listener.main" class="Symfony\Component\Security\Http\Firewall\ExceptionListener" public="false">
       <argument type="service" id="security.token_storage"/>
@@ -4134,6 +4136,9 @@
     <service id="sensio_framework_extra.security.expression_language.default" class="Sensio\Bundle\FrameworkExtraBundle\Security\ExpressionLanguage" public="false"/>
     <service id="app_bundle.manager" class="AppBundle\Manager\Manager">
       <argument type="service" id="doctrine.orm.default_entity_manager"/>
+    </service>
+    <service id="app_bundle.page_number" class="AppBundle\PageNumber\PageNumber">
+      <argument>10</argument>
     </service>
     <service id="assetic.filter_manager" class="Symfony\Bundle\AsseticBundle\FilterManager">
       <argument type="service" id="service_container"/>
@@ -5471,7 +5476,7 @@
     <service id="cache.system.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>dp0Nx5LN13</argument>
       <argument>0</argument>
-      <argument>lS7SNUY5FZklYKXdMThS9O</argument>
+      <argument>YTprcVBfFCx+JS-8D8Wd0v</argument>
       <argument>/Applications/MAMP/htdocs/SnowTricks/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -5479,7 +5484,7 @@
     <service id="cache.validator.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>CkjvIFwZeo</argument>
       <argument>0</argument>
-      <argument>lS7SNUY5FZklYKXdMThS9O</argument>
+      <argument>YTprcVBfFCx+JS-8D8Wd0v</argument>
       <argument>/Applications/MAMP/htdocs/SnowTricks/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -5487,7 +5492,7 @@
     <service id="cache.serializer.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>ozvyOBDjpg</argument>
       <argument>0</argument>
-      <argument>lS7SNUY5FZklYKXdMThS9O</argument>
+      <argument>YTprcVBfFCx+JS-8D8Wd0v</argument>
       <argument>/Applications/MAMP/htdocs/SnowTricks/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -5495,7 +5500,7 @@
     <service id="cache.annotations.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>GaxKjvsOGq</argument>
       <argument>0</argument>
-      <argument>lS7SNUY5FZklYKXdMThS9O</argument>
+      <argument>YTprcVBfFCx+JS-8D8Wd0v</argument>
       <argument>/Applications/MAMP/htdocs/SnowTricks/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>

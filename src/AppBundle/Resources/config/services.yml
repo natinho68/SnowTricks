@@ -2,3 +2,11 @@ services:
     app_bundle.manager:
         class: AppBundle\Manager\Manager
         arguments: [ "@doctrine.orm.entity_manager" ]
+
+
+    app_bundle.page_number:
+        class: AppBundle\PageNumber\PageNumber
+        arguments : [%nb_per_page%]
+
+parameters :
+    nb_per_page : 10
