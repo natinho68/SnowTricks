@@ -18,14 +18,11 @@ class Manager
         $this->em = $entityManager;
     }
 
-    public function persist($entity)
+    public function save($entity)
     {
         $this->em->persist($entity);
-    }
-
-    public function flush()
-    {
         $this->em->flush();
+
     }
 
 }

@@ -43,8 +43,7 @@ class AppController extends Controller
             $manager = $this->container->get('app_bundle.manager');
             $user = $security->getToken()->getUser();
             $trick->setAuthor($user);
-            $manager->persist($trick);
-            $manager->flush();
+            $manager->save($trick);
             $request->getSession()->getFlashBag()->add('info', 'Trick has been successfully added');
             return $this->redirectToRoute('view', array('slug' => $trick->getSlug()));
         }
@@ -108,8 +107,7 @@ class AppController extends Controller
      */
     public function viewAction($slug, Request $request, $page = 1)
     {
-        $em = $this->getDoctrine()->getManager();
-        $trick = $em->getRepository('AppBundle:Trick')->findOneBy(array('slug' => $slug));
+        $trick = $this->getDoctrine()->getManager()->getRepository('AppBundle:Trick')->findOneBy(array('slug' => $slug));
         if (empty($trick)) {
             throw new NotFoundHttpException("This trick ". $slug ." doesn't exist !");
         }
@@ -120,18 +118,15 @@ class AppController extends Controller
         }
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
             // On récupère le service
-            $security = $this->container->get('security.token_storage');
-            $user = $security->getToken()->getUser();
-            $comment->setAuthor($user);
-            $comment->setTrick($trick);
-            $em->persist($comment);
-            $em->flush();
+            $user = $this->container->get('security.token_storage')->getToken()->getUser();
+            $comment->setAuthor($user)->setTrick($trick);
+            $this->container->get('app_bundle.manager')->save($comment);
         }
         // Ici je fixe le nombre d'annonces par page à 10
         // Mais bien sûr il faudrait utiliser un paramètre, et y accéder via $this->container->getParameter('nb_per_page')
         $nbPerPage = 10;
         // On récupère notre objet Paginator
-        $listComments = $em->getRepository('AppBundle:Comment')->getComments($page, $nbPerPage, $trick->getId());
+        $listComments = $this->getDoctrine()->getManager()->getRepository('AppBundle:Comment')->getComments($page, $nbPerPage, $trick->getId());
         // On calcule le nombre total de pages grâce au count($listComment) qui retourne le nombre total d'annonces
         $nbPages = ceil(count($listComments) / $nbPerPage);
         if($nbPages === 0.0){
