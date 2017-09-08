@@ -129,9 +129,11 @@ class AppController extends Controller
         $listComments = $this->getDoctrine()->getManager()->getRepository('AppBundle:Comment')->getComments($page, $nbPerPage, $trick->getId());
         // On calcule le nombre total de pages grâce au count($listComment) qui retourne le nombre total d'annonces
         $nbPages = ceil(count($listComments) / $nbPerPage);
-        if($nbPages === 0.0){
+
+        $nbPages === 0.0 ? $nbPages = 1 :$nbPages;
+       /*if($nbPages === 0.0){
             $nbPages = 1;
-        }
+        }*/
         // Si la page n'existe pas, on retourne une 404
         if ($page > $nbPages) {
             throw $this->createNotFoundException("This ".$page." doesn't exist !");
