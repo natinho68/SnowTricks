@@ -24,7 +24,7 @@ class AppController extends Controller
     {
         $tricks = $this->getDoctrine()->getRepository('AppBundle:Trick')->findAll();
         // replace this example code with whatever you need
-        return $this->render('AppBundle:pages:home.html.twig', array(
+        return $this->render('AppBundle:templates:home.html.twig', array(
             'tricks'=>$tricks
         ));
     }
@@ -47,7 +47,7 @@ class AppController extends Controller
             $request->getSession()->getFlashBag()->add('info', 'Trick has been successfully added');
             return $this->redirectToRoute('view', array('slug' => $trick->getSlug()));
         }
-        return $this->render('AppBundle:pages:add.html.twig', array(
+        return $this->render('AppBundle:templates:add.html.twig', array(
             'form' => $form->createView()
         ));
     }
@@ -70,7 +70,7 @@ class AppController extends Controller
                 $request->getSession()->getFlashBag()->add('info', 'Trick has been updated');
                 return $this->redirectToRoute('view', array('slug' => $trick->getSlug()));
             }
-            return $this->render('AppBundle:pages:edit.html.twig', array(
+            return $this->render('AppBundle:templates:edit.html.twig', array(
                 'trick' => $trick,
                 'form'   => $form->createView(),
             ));
@@ -96,7 +96,7 @@ class AppController extends Controller
             $request->getSession()->getFlashBag()->add('info', "This trick has been successfully deleted");
             return $this->redirectToRoute('homepage');
         }
-        return $this->render('AppBundle:pages:delete.html.twig', array(
+        return $this->render('AppBundle:templates:delete.html.twig', array(
             'trick' => $trick,
             'form'   => $form->createView(),
         ));
@@ -138,7 +138,7 @@ class AppController extends Controller
         if ($page > $nbPages) {
             throw $this->createNotFoundException("This ".$page." doesn't exist !");
         }
-        return $this->render('AppBundle:pages:view.html.twig', array(
+        return $this->render('AppBundle:templates:view.html.twig', array(
             'trick' => $trick,
             'form' => $form->createView(),
             'listComments' => $listComments,
