@@ -119,6 +119,7 @@ class AppController extends Controller
             throw $this->createNotFoundException("This page ".$page." doesn't exist !");
         }
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+            // On récupère le service
             $security = $this->container->get('security.token_storage');
             $user = $security->getToken()->getUser();
             $comment->setAuthor($user);
@@ -126,12 +127,17 @@ class AppController extends Controller
             $em->persist($comment);
             $em->flush();
         }
+        // Ici je fixe le nombre d'annonces par page à 10
+        // Mais bien sûr il faudrait utiliser un paramètre, et y accéder via $this->container->getParameter('nb_per_page')
         $nbPerPage = 10;
+        // On récupère notre objet Paginator
         $listComments = $em->getRepository('AppBundle:Comment')->getComments($page, $nbPerPage, $trick->getId());
+        // On calcule le nombre total de pages grâce au count($listComment) qui retourne le nombre total d'annonces
         $nbPages = ceil(count($listComments) / $nbPerPage);
         if($nbPages === 0.0){
             $nbPages = 1;
         }
+        // Si la page n'existe pas, on retourne une 404
         if ($page > $nbPages) {
             throw $this->createNotFoundException("This ".$page." doesn't exist !");
         }
