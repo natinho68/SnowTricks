@@ -1,0 +1,13 @@
+{%- if errors|length > 0 -%}
+    {%- for error in errors -%}
+        <div class="row" style="padding-top:15px;">
+            <div class="col s12 m10 l10 offset-m1 offset-l1">
+                <div class="chip red alert">
+                    <i class=" close material-icons right white-text">close</i>
+                    <i class="material-icons white-text left" style="padding-top: 2px;">check_circle</i>
+                    <h6 class="white-text">{{ error.message }}</h6>
+                </div>
+            </div>
+        </div>
+    {%- endfor -%}
+{%- endif -%}
