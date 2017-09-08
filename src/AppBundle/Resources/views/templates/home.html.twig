@@ -43,7 +43,7 @@
                 {% endfor %}
                 <div class="col s4">
                     {% if is_granted('ROLE_USER') %}
-                        {% include 'AppBundle:templates:menu-edit-user.html.twig' %}
+                        {% include 'AppBundle:templates:menu_edit_user_home.html.twig' %}
                     {% endif %}
         <a href="{{ path('view', {'slug': trick.slug}) }}"><h4 class="left-align black-text">{{ trick.name }}</h4></a>
                     {% for trickCategory in trick.categories %}

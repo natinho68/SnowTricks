@@ -1,0 +1,15 @@
+<div class="slider hide-on-small-only">
+    <ul class="slides">
+
+        {% for trickImage in trick.images %}
+        {% if trickImage.alt is not null %}
+        <li>
+            <img src="{{ asset(trickImage.webPath) }}" width="300" height="300"
+                 alt="{{ trickImage.alt }}"> <!-- random image -->
+
+            {% endif %}
+            {% endfor %}
+
+        </li>
+    </ul>
+</div>
