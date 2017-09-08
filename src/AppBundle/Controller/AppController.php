@@ -113,9 +113,7 @@ class AppController extends Controller
         }
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
-        if ($page < 1) {
-            throw $this->createNotFoundException("This page ".$page." doesn't exist !");
-        }
+        
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
             // On récupère le service
             $user = $this->container->get('security.token_storage')->getToken()->getUser();
@@ -125,6 +123,7 @@ class AppController extends Controller
         $nbPerPage = $this->container->getParameter('nb_per_page');
         $listComments = $this->getDoctrine()->getManager()->getRepository('AppBundle:Comment')->getComments($page, $nbPerPage, $trick->getId());
         $nbPages = $this->container->get('app_bundle.page_number')->numberOfPages($listComments);
+
         if ($page > $nbPages) {
             throw $this->createNotFoundException("This ".$page." doesn't exist !");
         }
