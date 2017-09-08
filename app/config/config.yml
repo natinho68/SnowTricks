@@ -100,7 +100,7 @@ fos_user:
 
     profile:
         form:
-            type: UserBundle\Form\UserType
+            type: UserBundle\Form\Type\UserType
 
 assetic:
   debug:          '%kernel.debug%'

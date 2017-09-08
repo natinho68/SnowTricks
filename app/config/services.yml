@@ -5,7 +5,7 @@ parameters:
 
 services:
     app.form.profile:
-        class: UserBundle\Form\UserType
+        class: UserBundle\Form\Type\UserType
         tags:
             - { name: form.type, alias: app_user_profile }
     # default configuration for services in *this* file

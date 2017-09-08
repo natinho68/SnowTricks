@@ -143,6 +143,7 @@
     <parameter key="debug.file_link_format">null</parameter>
     <parameter key="session.metadata.storage_key">_sf2_meta</parameter>
     <parameter key="session.storage.options" type="collection">
+      <parameter key="name">snwSess</parameter>
       <parameter key="cookie_httponly">true</parameter>
       <parameter key="gc_probability">1</parameter>
     </parameter>
@@ -449,7 +450,7 @@
     <parameter key="fos_user.firewall_name">main</parameter>
     <parameter key="fos_user.model_manager_name">null</parameter>
     <parameter key="fos_user.model.user.class">UserBundle\Entity\User</parameter>
-    <parameter key="fos_user.profile.form.type">UserBundle\Form\UserType</parameter>
+    <parameter key="fos_user.profile.form.type">UserBundle\Form\Type\UserType</parameter>
     <parameter key="fos_user.profile.form.name">fos_user_profile_form</parameter>
     <parameter key="fos_user.profile.form.validation_groups" type="collection">
       <parameter>Profile</parameter>
@@ -588,7 +589,7 @@
   </parameters>
   <services>
     <service id="service_container" class="Symfony\Component\DependencyInjection\ContainerInterface" synthetic="true"/>
-    <service id="app.form.profile" class="UserBundle\Form\UserType" public="false" autowire="true" autoconfigure="true">
+    <service id="app.form.profile" class="UserBundle\Form\Type\UserType" public="false" autowire="true" autoconfigure="true">
       <tag name="form.type" alias="app_user_profile"/>
       <tag name="form.type"/>
     </service>
@@ -599,22 +600,22 @@
     <service id="AppBundle\DataFixtures\ORM\LoadCategories" class="AppBundle\DataFixtures\ORM\LoadCategories" public="false" autowire="true" autoconfigure="true"/>
     <service id="AppBundle\DataFixtures\ORM\LoadTricks" class="AppBundle\DataFixtures\ORM\LoadTricks" public="false" autowire="true" autoconfigure="true"/>
     <service id="AppBundle\DependencyInjection\AppExtension" class="AppBundle\DependencyInjection\AppExtension" public="false" autowire="true" autoconfigure="true"/>
-    <service id="AppBundle\Form\CategoryType" class="AppBundle\Form\CategoryType" public="false" autowire="true" autoconfigure="true">
-      <tag name="form.type"/>
-    </service>
-    <service id="AppBundle\Form\CommentType" class="AppBundle\Form\CommentType" public="false" autowire="true" autoconfigure="true">
-      <tag name="form.type"/>
-    </service>
     <service id="AppBundle\Form\Extension\ImageTypeExtension" class="AppBundle\Form\Extension\ImageTypeExtension" autowire="true" autoconfigure="true">
       <tag name="form.type_extension" extended_type="Symfony\Component\Form\Extension\Core\Type\FileType"/>
     </service>
-    <service id="AppBundle\Form\ImageType" class="AppBundle\Form\ImageType" public="false" autowire="true" autoconfigure="true">
+    <service id="AppBundle\Form\Type\CategoryType" class="AppBundle\Form\Type\CategoryType" public="false" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
-    <service id="AppBundle\Form\TrickType" class="AppBundle\Form\TrickType" public="false" autowire="true" autoconfigure="true">
+    <service id="AppBundle\Form\Type\CommentType" class="AppBundle\Form\Type\CommentType" public="false" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
-    <service id="AppBundle\Form\VideoType" class="AppBundle\Form\VideoType" public="false" autowire="true" autoconfigure="true">
+    <service id="AppBundle\Form\Type\ImageType" class="AppBundle\Form\Type\ImageType" public="false" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="AppBundle\Form\Type\TrickType" class="AppBundle\Form\Type\TrickType" public="false" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="AppBundle\Form\Type\VideoType" class="AppBundle\Form\Type\VideoType" public="false" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
     <service id="AppBundle\Manager\Manager" class="AppBundle\Manager\Manager" public="false" autowire="true" autoconfigure="true">
@@ -813,7 +814,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>D3YBAADZtbJWof-lHxrMHV</argument>
+      <argument>v3pIdKOYyq8b6ReOKYvcVN</argument>
       <argument>/Applications/MAMP/htdocs/SnowTricks/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -823,7 +824,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>D3YBAADZtbJWof-lHxrMHV</argument>
+      <argument>v3pIdKOYyq8b6ReOKYvcVN</argument>
       <call method="setLogger">
         <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       </call>
@@ -896,6 +897,7 @@
     </service>
     <service id="session.storage.native" class="Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage">
       <argument type="collection">
+        <argument key="name">snwSess</argument>
         <argument key="cookie_httponly">true</argument>
         <argument key="gc_probability">1</argument>
       </argument>
@@ -939,7 +941,7 @@
       <argument type="service" id="form.resolved_type_factory"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension" public="false">
-      <argument type="service" id="service_locator.74f47a42d20c9de92d5bbc96be9d29d2"/>
+      <argument type="service" id="service_locator.f811b0434fc4e59414cf4e91540d9455"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FileType" type="iterator">
           <argument type="service" id="AppBundle\Form\Extension\ImageTypeExtension"/>
@@ -3246,12 +3248,12 @@
     </service>
     <service id="security.authentication.listener.anonymous.main" class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
       <argument type="service" id="security.token_storage"/>
-      <argument>59b190183c8fd0.64216352</argument>
+      <argument>59b267779f1ce3.26855057</argument>
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
       <argument type="service" id="security.authentication.manager"/>
     </service>
     <service id="security.authentication.provider.anonymous.main" class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-      <argument>59b190183c8fd0.64216352</argument>
+      <argument>59b267779f1ce3.26855057</argument>
     </service>
     <service id="security.exception_listener.main" class="Symfony\Component\Security\Http\Firewall\ExceptionListener" public="false">
       <argument type="service" id="security.token_storage"/>
@@ -4459,7 +4461,7 @@
     <service id="fos_user.profile.form.factory" class="FOS\UserBundle\Form\Factory\FormFactory">
       <argument type="service" id="form.factory"/>
       <argument>fos_user_profile_form</argument>
-      <argument>UserBundle\Form\UserType</argument>
+      <argument>UserBundle\Form\Type\UserType</argument>
       <argument type="collection">
         <argument>Profile</argument>
         <argument>Default</argument>
@@ -4780,20 +4782,20 @@
     <service id="web_server.command.server_status" class="Symfony\Bundle\WebServerBundle\Command\ServerStatusCommand" public="false">
       <tag name="console.command"/>
     </service>
-    <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.app.form.profile" class="UserBundle\Form\UserType" public="false" autowire="true" abstract="true"/>
-    <service id="abstract.instanceof.app.form.profile" class="UserBundle\Form\UserType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.app.form.profile" class="UserBundle\Form\Type\UserType" public="false" autowire="true" abstract="true"/>
+    <service id="abstract.instanceof.app.form.profile" class="UserBundle\Form\Type\UserType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.AppBundle\Controller\AppController" class="AppBundle\Controller\AppController" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.AppBundle\Controller\AppController" class="AppBundle\Controller\AppController" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.AppBundle\Form\CategoryType" class="AppBundle\Form\CategoryType" public="false" autowire="true" abstract="true"/>
-    <service id="abstract.instanceof.AppBundle\Form\CategoryType" class="AppBundle\Form\CategoryType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.AppBundle\Form\CommentType" class="AppBundle\Form\CommentType" public="false" autowire="true" abstract="true"/>
-    <service id="abstract.instanceof.AppBundle\Form\CommentType" class="AppBundle\Form\CommentType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.AppBundle\Form\ImageType" class="AppBundle\Form\ImageType" public="false" autowire="true" abstract="true"/>
-    <service id="abstract.instanceof.AppBundle\Form\ImageType" class="AppBundle\Form\ImageType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.AppBundle\Form\TrickType" class="AppBundle\Form\TrickType" public="false" autowire="true" abstract="true"/>
-    <service id="abstract.instanceof.AppBundle\Form\TrickType" class="AppBundle\Form\TrickType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.AppBundle\Form\VideoType" class="AppBundle\Form\VideoType" public="false" autowire="true" abstract="true"/>
-    <service id="abstract.instanceof.AppBundle\Form\VideoType" class="AppBundle\Form\VideoType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.AppBundle\Form\Type\CategoryType" class="AppBundle\Form\Type\CategoryType" public="false" autowire="true" abstract="true"/>
+    <service id="abstract.instanceof.AppBundle\Form\Type\CategoryType" class="AppBundle\Form\Type\CategoryType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.AppBundle\Form\Type\CommentType" class="AppBundle\Form\Type\CommentType" public="false" autowire="true" abstract="true"/>
+    <service id="abstract.instanceof.AppBundle\Form\Type\CommentType" class="AppBundle\Form\Type\CommentType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.AppBundle\Form\Type\ImageType" class="AppBundle\Form\Type\ImageType" public="false" autowire="true" abstract="true"/>
+    <service id="abstract.instanceof.AppBundle\Form\Type\ImageType" class="AppBundle\Form\Type\ImageType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.AppBundle\Form\Type\TrickType" class="AppBundle\Form\Type\TrickType" public="false" autowire="true" abstract="true"/>
+    <service id="abstract.instanceof.AppBundle\Form\Type\TrickType" class="AppBundle\Form\Type\TrickType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.AppBundle\Form\Type\VideoType" class="AppBundle\Form\Type\VideoType" public="false" autowire="true" abstract="true"/>
+    <service id="abstract.instanceof.AppBundle\Form\Type\VideoType" class="AppBundle\Form\Type\VideoType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Twig_ExtensionInterface.0.AppBundle\Twig\HtmlExtension" class="AppBundle\Twig\HtmlExtension" public="false" autowire="true" abstract="true"/>
     <service id="instanceof.Twig\Extension\ExtensionInterface.0.AppBundle\Twig\HtmlExtension" class="AppBundle\Twig\HtmlExtension" public="false" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.AppBundle\Twig\HtmlExtension" class="AppBundle\Twig\HtmlExtension" public="false" autowire="true" autoconfigure="true" abstract="true"/>
@@ -4821,14 +4823,14 @@
         <argument key="translation.loader.yml" type="service" id="translation.loader.yml"/>
       </argument>
     </service>
-    <service id="service_locator.74f47a42d20c9de92d5bbc96be9d29d2" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id="service_locator.f811b0434fc4e59414cf4e91540d9455" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="AppBundle\Form\CategoryType" type="service" id="AppBundle\Form\CategoryType"/>
-        <argument key="AppBundle\Form\CommentType" type="service" id="AppBundle\Form\CommentType"/>
-        <argument key="AppBundle\Form\ImageType" type="service" id="AppBundle\Form\ImageType"/>
-        <argument key="AppBundle\Form\TrickType" type="service" id="AppBundle\Form\TrickType"/>
-        <argument key="AppBundle\Form\VideoType" type="service" id="AppBundle\Form\VideoType"/>
+        <argument key="AppBundle\Form\Type\CategoryType" type="service" id="AppBundle\Form\Type\CategoryType"/>
+        <argument key="AppBundle\Form\Type\CommentType" type="service" id="AppBundle\Form\Type\CommentType"/>
+        <argument key="AppBundle\Form\Type\ImageType" type="service" id="AppBundle\Form\Type\ImageType"/>
+        <argument key="AppBundle\Form\Type\TrickType" type="service" id="AppBundle\Form\Type\TrickType"/>
+        <argument key="AppBundle\Form\Type\VideoType" type="service" id="AppBundle\Form\Type\VideoType"/>
         <argument key="FOS\UserBundle\Form\Type\ChangePasswordFormType" type="service" id="fos_user.change_password.form.type"/>
         <argument key="FOS\UserBundle\Form\Type\ProfileFormType" type="service" id="fos_user.profile.form.type"/>
         <argument key="FOS\UserBundle\Form\Type\RegistrationFormType" type="service" id="fos_user.registration.form.type"/>
@@ -4837,7 +4839,7 @@
         <argument key="Symfony\Bridge\Doctrine\Form\Type\EntityType" type="service" id="form.type.entity"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\ChoiceType" type="service" id="form.type.choice"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="service" id="form.type.form"/>
-        <argument key="UserBundle\Form\UserType" type="service" id="app.form.profile"/>
+        <argument key="UserBundle\Form\Type\UserType" type="service" id="app.form.profile"/>
       </argument>
     </service>
     <service id="monolog.logger.request" class="Symfony\Bridge\Monolog\Logger">
@@ -5478,7 +5480,7 @@
     <service id="cache.system.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>dp0Nx5LN13</argument>
       <argument>0</argument>
-      <argument>D3YBAADZtbJWof-lHxrMHV</argument>
+      <argument>v3pIdKOYyq8b6ReOKYvcVN</argument>
       <argument>/Applications/MAMP/htdocs/SnowTricks/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -5486,7 +5488,7 @@
     <service id="cache.validator.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>CkjvIFwZeo</argument>
       <argument>0</argument>
-      <argument>D3YBAADZtbJWof-lHxrMHV</argument>
+      <argument>v3pIdKOYyq8b6ReOKYvcVN</argument>
       <argument>/Applications/MAMP/htdocs/SnowTricks/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -5494,7 +5496,7 @@
     <service id="cache.serializer.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>ozvyOBDjpg</argument>
       <argument>0</argument>
-      <argument>D3YBAADZtbJWof-lHxrMHV</argument>
+      <argument>v3pIdKOYyq8b6ReOKYvcVN</argument>
       <argument>/Applications/MAMP/htdocs/SnowTricks/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -5502,7 +5504,7 @@
     <service id="cache.annotations.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>GaxKjvsOGq</argument>
       <argument>0</argument>
-      <argument>D3YBAADZtbJWof-lHxrMHV</argument>
+      <argument>v3pIdKOYyq8b6ReOKYvcVN</argument>
       <argument>/Applications/MAMP/htdocs/SnowTricks/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
