@@ -74,6 +74,12 @@ class Image
         return $this->file;
     }
 
+    public function getFixturesPath()
+    {
+        return 'web/uploads/img/';
+    }
+
+
 // On modifie le setter de File, pour prendre en compte l'upload d'un fichier lorsqu'il en existe déjà un autre
     public function setFile(UploadedFile $file)
     {
