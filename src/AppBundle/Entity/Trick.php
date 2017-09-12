@@ -381,4 +381,12 @@ class Trick
     {
         return $this->categories;
     }
+
+
+    public function setImages($images)
+    {
+        $this->images = $images;
+
+        return $this;
+    }
 }

@@ -120,7 +120,7 @@ class AppController extends Controller
             $comment->setAuthor($user)->setTrick($trick);
             $this->container->get('app_bundle.manager')->save($comment);
         }
-        $nbPerPage = $this->container->getParameter('nb_per_page');
+        $nbPerPage = $this->container->getParameter('nb_per_pages');
         $listComments = $this->getDoctrine()->getManager()->getRepository('AppBundle:Comment')->getComments($page, $nbPerPage, $trick->getId());
         $nbPages = $this->container->get('app_bundle.page_number')->numberOfPages($listComments);
 

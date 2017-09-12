@@ -12,7 +12,9 @@ class __TwigTemplate_63a0713fa620bb8018aa7efa30b39f054b49af2b305649c787284fe9d06
         $this->blocks = array(
             'title' => array($this, 'block_title'),
             'stylesheets' => array($this, 'block_stylesheets'),
+            'nav' => array($this, 'block_nav'),
             'body' => array($this, 'block_body'),
+            'footer' => array($this, 'block_footer'),
             'javascripts' => array($this, 'block_javascripts'),
         );
     }
@@ -39,206 +41,107 @@ class __TwigTemplate_63a0713fa620bb8018aa7efa30b39f054b49af2b305649c787284fe9d06
         // line 19
         echo "</head>
 
-<div class=\"navbar-fixed\">
-    <nav class=\"nav-extended\">
-        <div class=\"nav-wrapper white\">
-            <a href=\"";
+    ";
+        // line 21
+        $this->displayBlock('nav', $context, $blocks);
         // line 24
-        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("homepage");
-        echo "\" class=\"brand-logo black-text\">SnowTricks</a>
-            <a href=\"#\" data-activates=\"mobile-demo\" class=\"button-collapse btnCol black-text\"><i class=\"material-icons\">menu</i></a>
-            <ul id=\"nav-mobile\" class=\"black-text right hide-on-med-and-down valign-wrapper\">
-                <li><a class=\"black-text menu\" href=\"";
-        // line 27
-        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("homepage");
-        echo "\">Home</a></li>
-                ";
-        // line 28
-        if ($this->env->getExtension('Symfony\Bridge\Twig\Extension\SecurityExtension')->isGranted("ROLE_USER")) {
-            // line 29
-            echo "                    <li><a class=\"black-text menu\" href=\"";
-            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("add");
-            echo "\">Add a trick</a></li>
-                    <li><a href=\"#\" data-activates=\"slide-out\"  class=\"button-collapse waves-effect white menu btn profilebtn btnCol show-on-large black-text\">Hi ";
-            // line 30
-            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute(($context["app"] ?? null), "user", array()), "username", array()), "html", null, true);
-            echo " !
-                            ";
-            // line 31
-            if ((null === $this->getAttribute($this->getAttribute(($context["app"] ?? null), "user", array()), "profilePic", array()))) {
-                // line 32
-                echo "                            <img class=\"circle\" src=\"";
-                echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("uploads/img/avatar.png"), "html", null, true);
-                echo "\" alt=\"user-image\" style=\"width:50px; vertical-align:middle;\">
-                            ";
-            } else {
-                // line 34
-                echo "                            <img class=\"circle\" src=\"";
-                echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl($this->getAttribute($this->getAttribute($this->getAttribute(($context["app"] ?? null), "user", array()), "profilePic", array()), "webPath", array())), "html", null, true);
-                echo "\" style=\"width:50px; vertical-align:middle;\">
-                            ";
-            }
-            // line 36
-            echo "                        </a></li>
-                    ";
-        }
-        // line 38
-        echo "                ";
-        if (($this->env->getExtension('Symfony\Bridge\Twig\Extension\SecurityExtension')->isGranted("ROLE_USER") == false)) {
-            // line 39
-            echo "                    <li><a href=\"";
-            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("fos_user_security_login");
-            echo "\" class=\"black-text menu\">Login</a></li>
-                ";
-        }
-        // line 41
-        echo "                    </ul>
-            <ul class=\"side-nav\" id=\"mobile-demo\">
-                <li><a href=\"";
-        // line 43
-        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("homepage");
-        echo "\" class=\"menu\">Home</a></li>
-                ";
-        // line 44
-        if ($this->env->getExtension('Symfony\Bridge\Twig\Extension\SecurityExtension')->isGranted("ROLE_USER")) {
-            // line 45
-            echo "                    <li><a href=\"";
-            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("add");
-            echo "\" class=\"menu\">Add a trick</a></li>
-                    <li class=\"left-align\"><a href=\"#\" data-activates=\"slide-out\"  class=\"button-collapse btnCol menu show-on-large\">
-                            ";
-            // line 47
-            if ( !(null === $this->getAttribute($this->getAttribute(($context["app"] ?? null), "user", array()), "profilePic", array()))) {
-                // line 48
-                echo "                            <img class=\"circle\" src=\"";
-                echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl($this->getAttribute($this->getAttribute($this->getAttribute(($context["app"] ?? null), "user", array()), "profilePic", array()), "webPath", array())), "html", null, true);
-                echo "\" style=\"width:25px; vertical-align:middle;\">
-                            ";
-            } else {
-                // line 50
-                echo "                                <img class=\"circle\" src=\"";
-                echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("uploads/img/avatar.png"), "html", null, true);
-                echo "\" style=\"width:25px; vertical-align:middle;\">
-                            ";
-            }
-            // line 52
-            echo "                            ";
-            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute(($context["app"] ?? null), "user", array()), "username", array()), "html", null, true);
-            echo "</a></li>
-
-
-                ";
-        } else {
-            // line 56
-            echo "                    <li><a href=\"";
-            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("fos_user_security_login");
-            echo "\" class=\"menu\">Login</a></li>
-                ";
-        }
-        // line 58
-        echo "            </ul>
-                </div>
-    </nav>
-</div>
+        echo "
 
     ";
-        // line 63
+        // line 26
         if ($this->env->getExtension('Symfony\Bridge\Twig\Extension\SecurityExtension')->isGranted("ROLE_USER")) {
-            // line 64
+            // line 27
             echo "    <ul id=\"slide-out\" class=\"side-nav\">
         <li><div class=\"user-view\">
                 ";
-            // line 66
+            // line 29
             if ( !(null === $this->getAttribute($this->getAttribute(($context["app"] ?? null), "user", array()), "profilePic", array()))) {
-                // line 67
+                // line 30
                 echo "                <img class=\"circle\" src=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl($this->getAttribute($this->getAttribute($this->getAttribute(($context["app"] ?? null), "user", array()), "profilePic", array()), "webPath", array())), "html", null, true);
                 echo "\" style=\"width:50px;\">
                     ";
             } else {
-                // line 69
+                // line 32
                 echo "                        <img class=\"circle\" src=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("uploads/img/avatar.png"), "html", null, true);
                 echo "\" style=\"width:50px;\">
                 ";
             }
-            // line 71
+            // line 34
             echo "                <span class=\"white-text name menu\">";
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute(($context["app"] ?? null), "user", array()), "username", array()), "html", null, true);
             echo "</span>
                 <span class=\"white-text email menu\">";
-            // line 72
+            // line 35
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute(($context["app"] ?? null), "user", array()), "email", array()), "html", null, true);
             echo "</span>
             </div></li>
         <li><a href=\"";
-            // line 74
+            // line 37
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("fos_user_profile_edit");
             echo "\" class=\"menu\"><i class=\"material-icons\">account_circle</i>Edit my profile</a></li>
         <li><div class=\"divider\"></div></li>
         <li><a href=\"";
-            // line 76
+            // line 39
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("fos_user_security_logout");
             echo "\" class=\"menu\"><i class=\"material-icons\">exit_to_app</i>Logout</a></li>
     </ul>
     ";
         }
-        // line 79
+        // line 42
         echo "
 
 ";
-        // line 81
+        // line 44
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable($this->getAttribute($this->getAttribute($this->getAttribute(($context["app"] ?? null), "session", array()), "flashbag", array()), "get", array(0 => "info"), "method"));
+        $context['loop'] = array(
+          'parent' => $context['_parent'],
+          'index0' => 0,
+          'index'  => 1,
+          'first'  => true,
+        );
+        if (is_array($context['_seq']) || (is_object($context['_seq']) && $context['_seq'] instanceof Countable)) {
+            $length = count($context['_seq']);
+            $context['loop']['revindex0'] = $length - 1;
+            $context['loop']['revindex'] = $length;
+            $context['loop']['length'] = $length;
+            $context['loop']['last'] = 1 === $length;
+        }
         foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
-            // line 82
-            echo "    <div class=\"row\" style=\"padding-top:15px;\">
-        <div class=\"col s12 m10 l10 offset-m1 offset-l1\">
-            <div class=\"chip black alert\">
-                <i class=\" close material-icons right white-text\">close</i>
-                <i class=\"material-icons white-text left\" style=\"padding-top: 2px;\">check_circle</i>
-                <h6 class=\"white-text\">";
-            // line 87
-            echo twig_escape_filter($this->env, $context["message"], "html", null, true);
-            echo "</h6>
-            </div>
-        </div>
-    </div>
-";
+            // line 45
+            $this->loadTemplate("AppBundle:templates:session-flashbag.html.twig", "AppBundle::layout.html.twig", 45)->display($context);
+            ++$context['loop']['index0'];
+            ++$context['loop']['index'];
+            $context['loop']['first'] = false;
+            if (isset($context['loop']['length'])) {
+                --$context['loop']['revindex0'];
+                --$context['loop']['revindex'];
+                $context['loop']['last'] = 0 === $context['loop']['revindex0'];
+            }
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['message'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 92
+        // line 47
         echo "
     <div class=\"container\" id=\"content\">
     ";
-        // line 94
+        // line 49
         $this->displayBlock('body', $context, $blocks);
-        // line 97
+        // line 52
         echo "    </div>
 
-    <footer class=\"page-footer black\">
-        <div class=\"container\">
-            <div class=\"row\">
-                <div class=\"col l6 s12\">
-                    <h5 class=\"white-text\">SnowTrick</h5>
-                    <p class=\"white-text text-lighten-1\">The community platform of the best snowboard tricks</p>
-                </div>
-            </div>
-        </div>
-        <div class=\"footer-copyright\">
-            <div class=\"container white-text text-darken-1\">
-                © 2017 SnowTricks
-                <a class=\"white-text text-darken-1 right\" href=\"mailto:nathan.meyer-pro@live.fr\">created by Nathan MEYER</a>
-            </div>
-        </div>
-    </footer>
-
+    ";
+        // line 54
+        $this->displayBlock('footer', $context, $blocks);
+        // line 57
+        echo "
 ";
-        // line 116
+        // line 58
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 125
+        // line 67
         echo "
  </html>
 ";
@@ -285,25 +188,45 @@ class __TwigTemplate_63a0713fa620bb8018aa7efa30b39f054b49af2b305649c787284fe9d06
         ";
     }
 
-    // line 94
+    // line 21
+    public function block_nav($context, array $blocks = array())
+    {
+        // line 22
+        echo "        ";
+        $this->loadTemplate("AppBundle:templates:navbar.html.twig", "AppBundle::layout.html.twig", 22)->display($context);
+        // line 23
+        echo "    ";
+    }
+
+    // line 49
     public function block_body($context, array $blocks = array())
     {
-        // line 95
+        // line 50
         echo "
     ";
     }
 
-    // line 116
+    // line 54
+    public function block_footer($context, array $blocks = array())
+    {
+        // line 55
+        echo "        ";
+        $this->loadTemplate("AppBundle:templates:footer.html.twig", "AppBundle::layout.html.twig", 55)->display($context);
+        // line 56
+        echo "    ";
+    }
+
+    // line 58
     public function block_javascripts($context, array $blocks = array())
     {
-        // line 117
+        // line 59
         echo "
     ";
-        // line 118
+        // line 60
         if (isset($context['assetic']['debug']) && $context['assetic']['debug']) {
             // asset "e158e02_0"
             $context["asset_url"] = isset($context['assetic']['use_controller']) && $context['assetic']['use_controller'] ? $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("_assetic_e158e02_0") : $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/e158e02_jquery-3.2.1.min_1.js");
-            // line 121
+            // line 63
             echo "    <script type=\"text/javascript\" src=\"";
             echo twig_escape_filter($this->env, ($context["asset_url"] ?? null), "html", null, true);
             echo "\"></script>
@@ -329,7 +252,7 @@ class __TwigTemplate_63a0713fa620bb8018aa7efa30b39f054b49af2b305649c787284fe9d06
     ";
         }
         unset($context["asset_url"]);
-        // line 123
+        // line 65
         echo "
 ";
     }
@@ -346,7 +269,7 @@ class __TwigTemplate_63a0713fa620bb8018aa7efa30b39f054b49af2b305649c787284fe9d06
 
     public function getDebugInfo()
     {
-        return array (  333 => 123,  307 => 121,  303 => 118,  300 => 117,  297 => 116,  292 => 95,  289 => 94,  284 => 17,  264 => 15,  260 => 13,  257 => 12,  254 => 11,  248 => 8,  242 => 125,  240 => 116,  219 => 97,  217 => 94,  213 => 92,  202 => 87,  195 => 82,  191 => 81,  187 => 79,  181 => 76,  176 => 74,  171 => 72,  166 => 71,  160 => 69,  154 => 67,  152 => 66,  148 => 64,  146 => 63,  139 => 58,  133 => 56,  125 => 52,  119 => 50,  113 => 48,  111 => 47,  105 => 45,  103 => 44,  99 => 43,  95 => 41,  89 => 39,  86 => 38,  82 => 36,  76 => 34,  70 => 32,  68 => 31,  64 => 30,  59 => 29,  57 => 28,  53 => 27,  47 => 24,  40 => 19,  38 => 11,  32 => 8,  23 => 1,);
+        return array (  256 => 65,  230 => 63,  226 => 60,  223 => 59,  220 => 58,  216 => 56,  213 => 55,  210 => 54,  205 => 50,  202 => 49,  198 => 23,  195 => 22,  192 => 21,  187 => 17,  167 => 15,  163 => 13,  160 => 12,  157 => 11,  151 => 8,  145 => 67,  143 => 58,  140 => 57,  138 => 54,  134 => 52,  132 => 49,  128 => 47,  114 => 45,  97 => 44,  93 => 42,  87 => 39,  82 => 37,  77 => 35,  72 => 34,  66 => 32,  60 => 30,  58 => 29,  54 => 27,  52 => 26,  48 => 24,  46 => 21,  42 => 19,  40 => 11,  34 => 8,  25 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */

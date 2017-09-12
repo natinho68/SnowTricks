@@ -16,6 +16,7 @@ class PageNumber
     {
         // Ici je fixe le nombre d'annonces par page à 10
         // Mais bien sûr il faudrait utiliser un paramètre, et y accéder via $this->container->getParameter('nb_per_page')
+        $nbPerPage = 10;
         // On calcule le nombre total de pages grâce au count($listComment) qui retourne le nombre total d'annonces
         $nbPages = ceil(count($nbComments) / $this->nb_per_pages);
         $nbPages === 0.0 ? $nbPages = 1 :$nbPages;

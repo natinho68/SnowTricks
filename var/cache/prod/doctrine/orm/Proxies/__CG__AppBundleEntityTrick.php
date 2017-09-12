@@ -441,4 +441,15 @@ class Trick extends \AppBundle\Entity\Trick implements \Doctrine\ORM\Proxy\Proxy
         return parent::getCategories();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    public function setImages($images)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setImages', [$images]);
+
+        return parent::setImages($images);
+    }
+
 }
