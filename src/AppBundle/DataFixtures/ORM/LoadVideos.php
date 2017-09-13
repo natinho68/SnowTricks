@@ -16,6 +16,18 @@ class LoadVideos extends AbstractFixture implements OrderedFixtureInterface{
         $videoGrabTail->setTrick($this->getReference('grab-tail'));
         $videoGrabTail->setVideoUrl('<iframe width="560" height="315" src="https://www.youtube.com/embed/id8VKl9RVQw" frameborder="0" allowfullscreen></iframe>');
         $manager->persist($videoGrabTail);
+
+        $videoJapan = new Video();
+        $videoJapan->setTrick($this->getReference('japan'));
+        $videoJapan->setVideoUrl('<iframe width="560" height="315" src="https://www.youtube.com/embed/vxBfXyQ_MB4" frameborder="0" allowfullscreen></iframe>');
+        $manager->persist($videoJapan);
+
+        $videoNoseGrab = new Video();
+        $videoNoseGrab->setTrick($this->getReference('nose-grab'));
+        $videoNoseGrab->setVideoUrl('<iframe width="560" height="315" src="https://www.youtube.com/embed/M-W7Pmo-YMY" frameborder="0" allowfullscreen></iframe>');
+        $manager->persist($videoNoseGrab);
+
+
         $manager->flush();
     }
 

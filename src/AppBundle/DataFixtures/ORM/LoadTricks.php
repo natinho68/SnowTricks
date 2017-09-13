@@ -26,8 +26,20 @@ class LoadTricks extends AbstractFixture implements OrderedFixtureInterface{
         $noseGrab = new Trick();
         $noseGrab->setName('Nose grab');
         $noseGrab->setDate(new \DateTime('now'));
-        $noseGrab->setDescription('This is a Nose grab');
-        $noseGrab->setCategories($this->getReference('categorySpin'));
+        $noseGrab->setDescription('This awesome grab will really show off your mastery of the park but is easy to achieve. In the sixth of Ninja Academy’s snowboard skills series, Matt Barlow demonstrates how.
+
+If you have basic grabs down, such as the indy grab (where you grab the toe-side edge between the feet with your back hand) then you’re ready to work your way up the board and try a nose grab. For this trick it’s crucial to focus on bringing the nose of the board to your hand rather than trying to reach down for the board – bending your front leg and straightening your rear leg will bring the tipof the board towards you.
+
+Once you’re comfortable with this move, try reversing it for a tail grab. This time pull the board up by bending your
+back leg and straightening your front leg, then grab the tail of the board with your back hand. Be prepared Approach the jump in a relaxed position, slightly on your toe edge with knees and ankles flexed.
+Pop up Straighten your knees and ankles and pop off the lip of the jump.
+Bend & stretch When in the air, bend your front knee into your body while straightening your back leg.
+Grab it Take hold of the tip of the board with your front hand and spot your landing.
+Hold on Maintain your position in the air and prepare to land.
+Stomp it Release the nose and level the board. Absorb the landing with your knees
+and ankles.
+Ninja tip Get your board close enough by imagining that you’re trying to knee yourself in the chest.');
+        $noseGrab->setCategories($this->getReference('categoryGrabTail'));
         $noseGrab->setAuthor($this->getReference('admin-user'));
         $noseGrab->setSlug('nose-grab');
         // On le persiste
@@ -37,8 +49,16 @@ class LoadTricks extends AbstractFixture implements OrderedFixtureInterface{
         $japan = new Trick();
         $japan->setName('japan');
         $japan->setDate(new \DateTime('now'));
-        $japan->setDescription('This is a japan');
-        $japan->setCategories($this->getReference('categoryFlips'));
+        $japan->setDescription('Tricking into how to do a Japan Air Grab on a snowboard is all about getting some air. The Japan Air grab is, like most snowboard tricks,an adaptation of a skateboarding trick. The Japan Air Grab is a popular and traditional boarder’s trick for more experienced snowboarders. The Japan Air Grab is actually difficult, even though the trick itself seems simple. All tricks should be taken seriously. There is great chance for injury to yourself, others or your equipment if performed incorrectly.
+What you will need to bust this trick:
+Snowboarding gear
+Snowboard
+Jump or Half Pipe
+Learning how to do a Japan Air Grab:
+Find a jump spot or half pipe. You will need to gain plenty of air so ensure the jump is big enough or to gain enough air on the half pipe. Approach the jump with proper technique. Knees bent, riding on the edge and keep center. Right before you hit the crest, flatten to the base.
+While in the air, grab the snowboard right behind your trailing foot bindings. Pull the board back, bending your knees. Turn your torso away from your hand, so your chest is facing outward. This is the Japan Air Grab.
+Before you land let go of the snowboard. Push your knees straight and keep your body straight and upright. As your snowboard touches the powder, allow your knees to bend slightly. Keep your body straight and stick the landing. You have successfully completed the Japan Air Grab!');
+        $japan->setCategories($this->getReference('categoryStraight'));
         $japan->setAuthor($this->getReference('admin-user'));
         $japan->setSlug('japan');
         // On le persiste

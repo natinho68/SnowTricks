@@ -13,6 +13,10 @@
     font-size:18px;
 }
 
+.video-container{
+    margin-bottom:30px;
+}
+
 #fos_user_profile_form_profilePic_file{
     margin-top:30px;
 }

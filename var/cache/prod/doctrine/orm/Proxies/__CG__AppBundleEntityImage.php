@@ -187,6 +187,17 @@ class Image extends \AppBundle\Entity\Image implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
+    public function getFixturesPath()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFixturesPath', []);
+
+        return parent::getFixturesPath();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function setFile(\Symfony\Component\HttpFoundation\File\UploadedFile $file)
     {
 
