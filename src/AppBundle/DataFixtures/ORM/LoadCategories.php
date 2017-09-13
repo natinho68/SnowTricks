@@ -6,12 +6,15 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use AppBundle\Entity\Category;
 use Doctrine\Common\DataFixtures\AbstractFixture;
+use Symfony\Component\Yaml\Yaml;
 
 class LoadCategories extends AbstractFixture implements OrderedFixtureInterface
 {
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
-    {
+    {   $data = Yaml::parse(file_get_contents("coucou.yml", true));
+        var_dump($data);
+        die();
         $categoryGrab = new Category();
         $categoryGrab->setName('Grab Tail');
         $manager->persist($categoryGrab);
