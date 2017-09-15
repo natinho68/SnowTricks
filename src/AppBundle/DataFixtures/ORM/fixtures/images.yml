@@ -1,0 +1,20 @@
+Image:
+    Nose-Grab:
+        trick: Nose-Grab
+        image:
+            - nosegrab1.jpeg
+            - nosegrab2.jpeg
+            - nosegrab3.jpeg
+        alt:
+           - nosegrab1
+           - nosegrab2
+           - nosegrab3
+
+    Japan:
+        trick: Japan
+        image:
+           - japan1.jpeg
+           - japan2.jpeg
+        alt:
+           - japan1
+           - japan2

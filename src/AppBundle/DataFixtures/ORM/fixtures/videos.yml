@@ -1,0 +1,7 @@
+Video:
+    Nose-Grab:
+        trick: Nose-Grab
+        url: '<iframe width="560" height="315" src="https://www.youtube.com/embed/M-W7Pmo-YMY" frameborder="0" allowfullscreen></iframe>'
+    Japan:
+        trick: Japan
+        url: '<iframe width="560" height="315" src="https://www.youtube.com/embed/vxBfXyQ_MB4" frameborder="0" allowfullscreen></iframe>'

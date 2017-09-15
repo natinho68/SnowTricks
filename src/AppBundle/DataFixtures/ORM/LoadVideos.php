@@ -2,37 +2,41 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
-use Doctrine\Common\Persistence\ObjectManager;
-use AppBundle\Entity\Video;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\Persistence\ObjectManager;
+use AppBundle\DataFixtures\ORM\BaseLoader as BaseLoader;
+use AppBundle\Entity\Video as Video;
 
-class LoadVideos extends AbstractFixture implements OrderedFixtureInterface{
+class LoadVideos extends BaseLoader implements OrderedFixtureInterface{
 
-    // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
+
     public function load(ObjectManager $manager)
     {
-        $videoGrabTail = new Video();
-        $videoGrabTail->setTrick($this->getReference('grab-tail'));
-        $videoGrabTail->setVideoUrl('<iframe width="560" height="315" src="https://www.youtube.com/embed/id8VKl9RVQw" frameborder="0" allowfullscreen></iframe>');
-        $manager->persist($videoGrabTail);
+        $video = $this->getModelFixtures();
+        foreach ($video['Video'] as $reference => $columns)
+        {
 
-        $videoJapan = new Video();
-        $videoJapan->setTrick($this->getReference('japan'));
-        $videoJapan->setVideoUrl('<iframe width="560" height="315" src="https://www.youtube.com/embed/vxBfXyQ_MB4" frameborder="0" allowfullscreen></iframe>');
-        $manager->persist($videoJapan);
+            $video = new Video();
+            $video->setTrick($this->getReference('Trick_' . $columns['trick']));
+            $video->setVideoUrl($columns['url']);
 
-        $videoNoseGrab = new Video();
-        $videoNoseGrab->setTrick($this->getReference('nose-grab'));
-        $videoNoseGrab->setVideoUrl('<iframe width="560" height="315" src="https://www.youtube.com/embed/M-W7Pmo-YMY" frameborder="0" allowfullscreen></iframe>');
-        $manager->persist($videoNoseGrab);
+            {
+                $manager->persist($video);
+                $manager->flush();
 
+            }
 
-        $manager->flush();
+        }
+
+    }
+
+    public function getModelFile()
+    {
+        return 'videos';
     }
 
     public function getOrder()
     {
-        return 4;
+        return 5;
     }
 }

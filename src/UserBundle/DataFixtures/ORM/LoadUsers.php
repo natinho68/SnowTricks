@@ -1,13 +1,13 @@
 <?php
-namespace UserBundle\DataFixtures\ORM;
+namespace AppBundle\DataFixtures\ORM;
 
-use UserBundle\Entity\User;
-use Doctrine\Common\DataFixtures\AbstractFixture;
+use AppBundle\DataFixtures\ORM\BaseLoader as BaseLoader;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class LoadUsers extends AbstractFixture implements ContainerAwareInterface
+class LoadUsers extends BaseLoader implements OrderedFixtureInterface, ContainerAwareInterface
 {
 
     /**
@@ -21,17 +21,27 @@ class LoadUsers extends AbstractFixture implements ContainerAwareInterface
      */
     public function load(ObjectManager $manager)
     {
-        $userManager = $this->container->get('fos_user.user_manager');
+        $user = $this->getModelFixtures();
 
-        $user = $userManager->createUser();
-        $user->setEmail('admin@admin.com');
-        $user->setUsername('admin');
-        $user->setRoles(array('ROLE_USER'));
-        $user->setPlainPassword('admin');
-        $user->setEnabled(true);
-        $this->addReference('admin-user', $user);
-        $userManager->updateUser($user);
+        foreach ($user['User'] as $reference => $columns)
+        {
+            $userManager = $this->container->get('fos_user.user_manager');
+            $user = $userManager->createUser();
+            $user->setEmail($columns['email']);
+            $user->setUsername($columns['username']);
+            $user->setProfilePic($this->getReference('Avatar_'.$columns['avatar']));
+            $user->setPlainPassword($columns['password']);
+            $user->setEnabled(true);
+            $user->setRoles(array('ROLE_USER'));
+            $this->addReference('User_'. $reference, $user);
+            $userManager->updateUser($user);
+        }
 
+    }
+
+    public function getModelFile()
+    {
+        return 'users';
     }
 
     /**
@@ -43,10 +53,13 @@ class LoadUsers extends AbstractFixture implements ContainerAwareInterface
         $this->container = $container;
     }
 
-
-    public function getOrder(){
-        return 1;
+    /**
+     * Get the order of this fixture
+     * @return integer
+     */
+    public function getOrder()
+    {
+        return 2;
     }
-
 
 }

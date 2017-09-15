@@ -1,0 +1,18 @@
+User:
+    nathan:
+        username: nathan
+        password: nathan
+        email: nathan@nathan.com
+        avatar: avatarNathan
+
+    admin:
+        username: admin
+        password : admin
+        email: admin@admin.com
+        avatar: avatarAdmin
+
+    joanna:
+        username: joanna
+        password : joanna
+        email: joanna@joanna.com
+        avatar: avatarJoanna
