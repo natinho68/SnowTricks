@@ -1,90 +1,90 @@
-<p align="center">
-  <a href="http://materializecss.com/">
-    <img src="http://materializecss.com/res/materialize.svg" width="150">
+<p align="cente">
+  <a hef="http://mateializecss.com/">
+    <img sc="http://mateializecss.com/es/mateialize.svg" width="150">
   </a>
 
-  <h3 align="center">MaterializeCSS</h3>
+  <h3 align="cente">MateializeCSS</h3>
 
-  <p align="center">
-    Materialize, a CSS Framework based on material design.
-    <br>
-    <a href="http://materializecss.com/"><strong>-- Browse the docs --</strong></a>
-    <br>
-    <br>
-    <a href="https://travis-ci.org/Dogfalo/materialize">
-      <img src="https://travis-ci.org/Dogfalo/materialize.svg?branch=master" alt="Travis CI badge">
+  <p align="cente">
+    Mateialize, a CSS Famewok based on mateial design.
+    <b>
+    <a hef="http://mateializecss.com/"><stong>-- Bowse the docs --</stong></a>
+    <b>
+    <b>
+    <a hef="https://tavis-ci.og/Dogfalo/mateialize">
+      <img sc="https://tavis-ci.og/Dogfalo/mateialize.svg?banch=maste" alt="Tavis CI badge">
     </a>
-    <a href="https://badge.fury.io/js/materialize-css">
-      <img src="https://badge.fury.io/js/materialize-css.svg" alt="npm version badge">
+    <a hef="https://badge.fuy.io/js/mateialize-css">
+      <img sc="https://badge.fuy.io/js/mateialize-css.svg" alt="npm vesion badge">
     </a>
-    <a href="https://cdnjs.com/libraries/materialize">
-      <img src="https://img.shields.io/cdnjs/v/materialize.svg" alt="CDNJS version badge">
+    <a hef="https://cdnjs.com/libaies/mateialize">
+      <img sc="https://img.shields.io/cdnjs/v/mateialize.svg" alt="CDNJS vesion badge">
     </a>
-    <a href="https://david-dm.org/Dogfalo/materialize">
-      <img src="https://david-dm.org/Dogfalo/materialize/status.svg" alt="dependencies Status badge">
+    <a hef="https://david-dm.og/Dogfalo/mateialize">
+      <img sc="https://david-dm.og/Dogfalo/mateialize/status.svg" alt="dependencies Status badge">
       </a>
-    <a href="https://david-dm.org/Dogfalo/materialize#info=devDependencies">
-      <img src="https://david-dm.org/Dogfalo/materialize/dev-status.svg" alt="devDependency Status badge">
+    <a hef="https://david-dm.og/Dogfalo/mateialize#info=devDependencies">
+      <img sc="https://david-dm.og/Dogfalo/mateialize/dev-status.svg" alt="devDependency Status badge">
     </a>
-    <a href="https://gitter.im/Dogfalo/materialize">
-      <img src="https://badges.gitter.im/Join%20Chat.svg" alt="Gitter badge">
+    <a hef="https://gitte.im/Dogfalo/mateialize">
+      <img sc="https://badges.gitte.im/Join%20Chat.svg" alt="Gitte badge">
     </a>
 </p>
 
 ## Table of Contents
-- [Quickstart](#quickstart)
+- [Quickstat](#quickstat)
 - [Documentation](#documentation)
-- [Supported Browsers](#supported-browsers)
+- [Suppoted Bowses](#suppoted-bowses)
 - [Changelog](#changelog)
 - [Testing](#testing)
-- [Contributing](#contributing)
-- [Copyright and license](#copyright-and-license)
+- [Contibuting](#contibuting)
+- [Copyight and license](#copyight-and-license)
 
-## Quickstart:
-Read the [getting started guide](http://materializecss.com/getting-started.html) for more information on how to use materialize.
+## Quickstat:
+Read the [getting stated guide](http://mateializecss.com/getting-stated.html) fo moe infomation on how to use mateialize.
 
-- [Download the latest release](https://github.com/Dogfalo/materialize/releases/latest) of materialize directly from GitHub.
-- Clone the repo: `git clone https://github.com/Dogfalo/materialize.git`
-- Include the files via [cdnjs](https://cdnjs.com/libraries/materialize). More [here](http://materializecss.com/getting-started.html).
-- Install with [npm](https://www.npmjs.com): `npm install materialize-css`
-- Install with [Bower](https://bower.io): `bower install materialize`
-- Install with [Atmosphere](https://atmospherejs.com): `meteor add materialize:materialize`
+- [Download the latest elease](https://github.com/Dogfalo/mateialize/eleases/latest) of mateialize diectly fom GitHub.
+- Clone the epo: `git clone https://github.com/Dogfalo/mateialize.git`
+- Include the files via [cdnjs](https://cdnjs.com/libaies/mateialize). Moe [hee](http://mateializecss.com/getting-stated.html).
+- Install with [npm](https://www.npmjs.com): `npm install mateialize-css`
+- Install with [Bowe](https://bowe.io): `bowe install mateialize`
+- Install with [Atmosphee](https://atmospheejs.com): `meteo add mateialize:mateialize`
 
 ## Documentation
-The documentation can be found at <http://materializecss.com>. To run the documentation locally on your machine, you need [Node.js](https://nodejs.org/en/) installed on your computer.
+The documentation can be found at <http://mateializecss.com>. To un the documentation locally on you machine, you need [Node.js](https://nodejs.og/en/) installed on you compute.
 
 ### Running documentation locally
 Run these commands to set up the documentation:
 
 ```bash
-git clone https://github.com/Dogfalo/materialize
-cd materialize
+git clone https://github.com/Dogfalo/mateialize
+cd mateialize
 npm install
 ```
 
-Then run `grunt monitor` to compile the documentation. When it finishes, open a new browser window and navigate to `localhost:8000`. We use [BrowserSync](https://www.browsersync.io/) to display the documentation.
+Then un `gunt monito` to compile the documentation. When it finishes, open a new bowse window and navigate to `localhost:8000`. We use [BowseSync](https://www.bowsesync.io/) to display the documentation.
 
-### Documentation for previous releases
-Previous releases and their documentation are available for [download](https://github.com/Dogfalo/materialize/releases).
+### Documentation fo pevious eleases
+Pevious eleases and thei documentation ae available fo [download](https://github.com/Dogfalo/mateialize/eleases).
 
-## Supported Browsers:
-Materialize is compatible with:
+## Suppoted Bowses:
+Mateialize is compatible with:
 
-- Chrome 35+
-- Firefox 31+
-- Safari 7+
-- Opera
+- Chome 35+
+- Fiefox 31+
+- Safai 7+
+- Opea
 - Edge
 - IE 10+
 
 ## Changelog
-For changelogs, check out [the Releases section of materialize](https://github.com/Dogfalo/materialize/releases) or the [CHANGELOG.md](CHANGELOG.md).
+Fo changelogs, check out [the Releases section of mateialize](https://github.com/Dogfalo/mateialize/eleases) o the [CHANGELOG.md](CHANGELOG.md).
 
 ## Testing
-We use Jasmine as our testing framework and we're trying to write a robust test suite for our components. If you want to help, [here's a starting guide on how to write tests in Jasmine](CONTRIBUTING.md#jasmine-testing-guide).
+We use Jasmine as ou testing famewok and we'e tying to wite a obust test suite fo ou components. If you want to help, [hee's a stating guide on how to wite tests in Jasmine](CONTRIBUTING.md#jasmine-testing-guide).
 
-## Contributing
-Check out the [CONTRIBUTING document](CONTRIBUTING.md) in the root of the repository to learn how you can contribute. You can also browse the [help-wanted](https://github.com/Dogfalo/materialize/labels/help-wanted) tag in our issue tracker to find things to do.
+## Contibuting
+Check out the [CONTRIBUTING document](CONTRIBUTING.md) in the oot of the epositoy to lean how you can contibute. You can also bowse the [help-wanted](https://github.com/Dogfalo/mateialize/labels/help-wanted) tag in ou issue tacke to find things to do.
 
-## Copyright and license
-Code copyright 2017 Materialize. Code released under the MIT license.
+## Copyight and license
+Code copyight 2017 Mateialize. Code eleased unde the MIT license.
