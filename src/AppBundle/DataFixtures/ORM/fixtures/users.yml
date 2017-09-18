@@ -16,3 +16,51 @@ User:
         password : joanna
         email: joanna@joanna.com
         avatar: avatarJoanna
+
+    carl:
+        username: carl
+        password : carl
+        email: carl@carl.com
+        avatar: avatarCarl
+
+    rose:
+        username: rose
+        password : rose
+        email: rose@rose.com
+        avatar: avatarRose
+
+    marko:
+        username: marko
+        password : marko
+        email: marko@marko.com
+        avatar: avatarMarko
+
+    ali:
+        username: ali
+        password : ali
+        email: ali@ali.com
+        avatar: avatarAli
+
+    monica:
+        username: monica
+        password : monica
+        email: monica@monica.com
+        avatar: avatarMonica
+
+    kendric:
+        username: kendric
+        password : kendric
+        email: kendric@kendric.com
+        avatar: avatarKendric
+
+    milla:
+        username: milla
+        password : milla
+        email: milla@milla.com
+        avatar: avatarMilla
+
+    michal:
+        username: michal
+        password : michal
+        email: michal@michal.com
+        avatar: avatarMichal
