@@ -842,6 +842,8 @@ trait AbstractTrait
 {
 use LoggerAwareTrait;
 private $namespace;
+private $namespaceVersion ='';
+private $versioningIsEnabled = false;
 private $deferred = array();
 protected $maxIdLength;
 abstract protected function doFetch(array $ids);
@@ -864,9 +866,17 @@ return false;
 }
 public function clear()
 {
+if ($cleared = $this->versioningIsEnabled) {
+$this->namespaceVersion = 2;
+foreach ($this->doFetch(array('@'.$this->namespace)) as $v) {
+$this->namespaceVersion = 1 + (int) $v;
+}
+$this->namespaceVersion .=':';
+$cleared = $this->doSave(array('@'.$this->namespace => $this->namespaceVersion), 0);
+}
 $this->deferred = array();
 try {
-return $this->doClear($this->namespace);
+return $this->doClear($this->namespace) || $cleared;
 } catch (\Exception $e) {
 CacheItem::log($this->logger,'Failed to clear the cache', array('exception'=> $e));
 return false;
@@ -903,6 +913,13 @@ $ok = false;
 }
 return $ok;
 }
+public function enableVersioning($enable = true)
+{
+$wasEnabled = $this->versioningIsEnabled;
+$this->versioningIsEnabled = (bool) $enable;
+$this->namespaceVersion ='';
+return $wasEnabled;
+}
 protected static function unserialize($value)
 {
 if ('b:0;'=== $value) {
@@ -923,11 +940,17 @@ ini_set('unserialize_callback_func', $unserializeCallbackHandler);
 private function getId($key)
 {
 CacheItem::validateKey($key);
-if (null === $this->maxIdLength) {
-return $this->namespace.$key;
+if ($this->versioningIsEnabled &&''=== $this->namespaceVersion) {
+$this->namespaceVersion ='1:';
+foreach ($this->doFetch(array('@'.$this->namespace)) as $v) {
+$this->namespaceVersion = $v;
 }
-if (strlen($id = $this->namespace.$key) > $this->maxIdLength) {
-$id = $this->namespace.substr_replace(base64_encode(hash('sha256', $key, true)),':', -22);
+}
+if (null === $this->maxIdLength) {
+return $this->namespace.$this->namespaceVersion.$key;
+}
+if (strlen($id = $this->namespace.$this->namespaceVersion.$key) > $this->maxIdLength) {
+$id = $this->namespace.$this->namespaceVersion.substr_replace(base64_encode(hash('sha256', $key, true)),':', -22);
 }
 return $id;
 }
@@ -1024,7 +1047,7 @@ private $createCacheItem;
 private $mergeByLifetime;
 protected function __construct($namespace ='', $defaultLifetime = 0)
 {
-$this->namespace =''=== $namespace ?'': $this->getId($namespace).':';
+$this->namespace =''=== $namespace ?'': CacheItem::validateKey($namespace).':';
 if (null !== $this->maxIdLength && strlen($namespace) > $this->maxIdLength - 24) {
 throw new InvalidArgumentException(sprintf('Namespace must be %d chars max, %d given ("%s")', $this->maxIdLength - 24, strlen($namespace), $namespace));
 }
@@ -1497,6 +1520,7 @@ throw new InvalidArgumentException('Cache key length must be greater than zero')
 if (false !== strpbrk($key,'{}()/\@:')) {
 throw new InvalidArgumentException(sprintf('Cache key "%s" contains reserved characters {}()/\@:', $key));
 }
+return $key;
 }
 public static function log(LoggerInterface $logger = null, $message, $context = array())
 {

@@ -15,11 +15,11 @@ class __TwigTemplate_5fb08a460c6dfcfcfa4a564aefe58c70da049ed566c66a3f04d25653317
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_f6ff1000739cef977db6bee3e43f3d36d4034d9f3b604469ef5d9f1cd192172b = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
-        $__internal_f6ff1000739cef977db6bee3e43f3d36d4034d9f3b604469ef5d9f1cd192172b->enter($__internal_f6ff1000739cef977db6bee3e43f3d36d4034d9f3b604469ef5d9f1cd192172b_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "TwigBundle::exception.css.twig"));
+        $__internal_1591672a9fb7f54cd1f1e0ba3da713fe71d1b3ff211ac2cec5bb15f10adb1d4f = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
+        $__internal_1591672a9fb7f54cd1f1e0ba3da713fe71d1b3ff211ac2cec5bb15f10adb1d4f->enter($__internal_1591672a9fb7f54cd1f1e0ba3da713fe71d1b3ff211ac2cec5bb15f10adb1d4f_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "TwigBundle::exception.css.twig"));
 
-        $__internal_d81bd799b6d95f6a79519c2bd0bf41eeb409e683feaa8d3769fe7041d521d073 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_d81bd799b6d95f6a79519c2bd0bf41eeb409e683feaa8d3769fe7041d521d073->enter($__internal_d81bd799b6d95f6a79519c2bd0bf41eeb409e683feaa8d3769fe7041d521d073_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "TwigBundle::exception.css.twig"));
+        $__internal_3e4f175d939b2502e453bcb74e369c8736103f37d81be9e1fc14c3d7e797510f = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_3e4f175d939b2502e453bcb74e369c8736103f37d81be9e1fc14c3d7e797510f->enter($__internal_3e4f175d939b2502e453bcb74e369c8736103f37d81be9e1fc14c3d7e797510f_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "TwigBundle::exception.css.twig"));
 
         // line 1
         echo "html{font-family:sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block;vertical-align:baseline}audio:not([controls]){display:none;height:0}[hidden],template{display:none}a{background-color:transparent}a:active,a:hover{outline:0}abbr[title]{border-bottom:1px dotted}b,strong{font-weight:700}dfn{font-style:italic}h1{margin:.67em 0;font-size:2em}mark{color:#000;background:#ff0}small{font-size:80%}sub,sup{position:relative;font-size:75%;line-height:0;vertical-align:baseline}sup{top:-.5em}sub{bottom:-.25em}img{border:0}svg:not(:root){overflow:hidden}figure{margin:1em 40px}hr{height:0;-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box}pre{overflow:auto}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}button,input,optgroup,select,textarea{margin:0;font:inherit;color:inherit}button{overflow:visible}button,select{text-transform:none}button,html input[type=\"button\"],input[type=\"reset\"],input[type=\"submit\"]{-webkit-appearance:button;cursor:pointer}button[disabled],html input[disabled]{cursor:default}button::-moz-focus-inner,input::-moz-focus-inner{padding:0;border:0}input{line-height:normal}input[type=\"checkbox\"],input[type=\"radio\"]{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;padding:0}input[type=\"number\"]::-webkit-inner-spin-button,input[type=\"number\"]::-webkit-outer-spin-button{height:auto}input[type=\"search\"]{-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box;-webkit-appearance:textfield}input[type=\"search\"]::-webkit-search-cancel-button,input[type=\"search\"]::-webkit-search-decoration{-webkit-appearance:none}fieldset{padding:.35em .625em .75em;margin:0 2px;border:1px solid silver}legend{padding:0;border:0}textarea{overflow:auto}optgroup{font-weight:700}table{border-spacing:0;border-collapse:collapse}td,th{padding:0}
@@ -108,8 +108,8 @@ header .container { display: flex; justify-content: space-between; }
 .exception-message { flex-grow: 1; }
 .exception-message, .exception-message a { color: #FFF; font-size: 21px; font-weight: 400; margin: 0; }
 .exception-message.long { font-size: 18px; }
-.exception-message a { text-decoration: none; }
-.exception-message a:hover { text-decoration: underline; }
+.exception-message a { border-bottom: 1px solid rgba(255, 255, 255, 0.5); font-size: inherit; text-decoration: none; }
+.exception-message a:hover { border-bottom-color: #ffffff; }
 
 .exception-illustration { flex-basis: 111px; flex-shrink: 0; height: 66px; margin-left: 15px; opacity: .7; }
 
@@ -152,10 +152,10 @@ header .container { display: flex; justify-content: space-between; }
 }
 ";
         
-        $__internal_f6ff1000739cef977db6bee3e43f3d36d4034d9f3b604469ef5d9f1cd192172b->leave($__internal_f6ff1000739cef977db6bee3e43f3d36d4034d9f3b604469ef5d9f1cd192172b_prof);
+        $__internal_1591672a9fb7f54cd1f1e0ba3da713fe71d1b3ff211ac2cec5bb15f10adb1d4f->leave($__internal_1591672a9fb7f54cd1f1e0ba3da713fe71d1b3ff211ac2cec5bb15f10adb1d4f_prof);
 
         
-        $__internal_d81bd799b6d95f6a79519c2bd0bf41eeb409e683feaa8d3769fe7041d521d073->leave($__internal_d81bd799b6d95f6a79519c2bd0bf41eeb409e683feaa8d3769fe7041d521d073_prof);
+        $__internal_3e4f175d939b2502e453bcb74e369c8736103f37d81be9e1fc14c3d7e797510f->leave($__internal_3e4f175d939b2502e453bcb74e369c8736103f37d81be9e1fc14c3d7e797510f_prof);
 
     }
 
@@ -265,8 +265,8 @@ header .container { display: flex; justify-content: space-between; }
 .exception-message { flex-grow: 1; }
 .exception-message, .exception-message a { color: #FFF; font-size: 21px; font-weight: 400; margin: 0; }
 .exception-message.long { font-size: 18px; }
-.exception-message a { text-decoration: none; }
-.exception-message a:hover { text-decoration: underline; }
+.exception-message a { border-bottom: 1px solid rgba(255, 255, 255, 0.5); font-size: inherit; text-decoration: none; }
+.exception-message a:hover { border-bottom-color: #ffffff; }
 
 .exception-illustration { flex-basis: 111px; flex-shrink: 0; height: 66px; margin-left: 15px; opacity: .7; }
 

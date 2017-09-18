@@ -15,11 +15,11 @@ class __TwigTemplate_3bd2baf983c05530b574c7cf4b4c681beca9466b9fec6136cb2e4e8b152
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_65e8cfa7246d1d5716bcecacc11725387a7d7befdb271cb9f01483418b4c62c5 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
-        $__internal_65e8cfa7246d1d5716bcecacc11725387a7d7befdb271cb9f01483418b4c62c5->enter($__internal_65e8cfa7246d1d5716bcecacc11725387a7d7befdb271cb9f01483418b4c62c5_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "@Framework/Form/button_widget.html.php"));
+        $__internal_1b10855f3ef008977411576467c5ad24d80edf04dc5e56f84066f1127d2585a6 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
+        $__internal_1b10855f3ef008977411576467c5ad24d80edf04dc5e56f84066f1127d2585a6->enter($__internal_1b10855f3ef008977411576467c5ad24d80edf04dc5e56f84066f1127d2585a6_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "@Framework/Form/button_widget.html.php"));
 
-        $__internal_dbe19119000347412b88ef759ffe3d3c5f09fe2f4bd7145299331f0536a18143 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_dbe19119000347412b88ef759ffe3d3c5f09fe2f4bd7145299331f0536a18143->enter($__internal_dbe19119000347412b88ef759ffe3d3c5f09fe2f4bd7145299331f0536a18143_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "@Framework/Form/button_widget.html.php"));
+        $__internal_bc2c5900af405c710bebe5c64ad62ab7ad3d289ac7c5d3479aba0db8bf154e12 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_bc2c5900af405c710bebe5c64ad62ab7ad3d289ac7c5d3479aba0db8bf154e12->enter($__internal_bc2c5900af405c710bebe5c64ad62ab7ad3d289ac7c5d3479aba0db8bf154e12_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "@Framework/Form/button_widget.html.php"));
 
         // line 1
         echo "<?php if (!\$label) { \$label = isset(\$label_format)
@@ -28,10 +28,10 @@ class __TwigTemplate_3bd2baf983c05530b574c7cf4b4c681beca9466b9fec6136cb2e4e8b152
 <button type=\"<?php echo isset(\$type) ? \$view->escape(\$type) : 'button' ?>\" <?php echo \$view['form']->block(\$form, 'button_attributes') ?>><?php echo \$view->escape(false !== \$translation_domain ? \$view['translator']->trans(\$label, array(), \$translation_domain) : \$label) ?></button>
 ";
         
-        $__internal_65e8cfa7246d1d5716bcecacc11725387a7d7befdb271cb9f01483418b4c62c5->leave($__internal_65e8cfa7246d1d5716bcecacc11725387a7d7befdb271cb9f01483418b4c62c5_prof);
+        $__internal_1b10855f3ef008977411576467c5ad24d80edf04dc5e56f84066f1127d2585a6->leave($__internal_1b10855f3ef008977411576467c5ad24d80edf04dc5e56f84066f1127d2585a6_prof);
 
         
-        $__internal_dbe19119000347412b88ef759ffe3d3c5f09fe2f4bd7145299331f0536a18143->leave($__internal_dbe19119000347412b88ef759ffe3d3c5f09fe2f4bd7145299331f0536a18143_prof);
+        $__internal_bc2c5900af405c710bebe5c64ad62ab7ad3d289ac7c5d3479aba0db8bf154e12->leave($__internal_bc2c5900af405c710bebe5c64ad62ab7ad3d289ac7c5d3479aba0db8bf154e12_prof);
 
     }
 
