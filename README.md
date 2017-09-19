@@ -1,8 +1,8 @@
 # SnowTricks [![SensioLabsInsight](https://insight.sensiolabs.com/projects/91082ddc-cd1f-4afe-ba83-a26626e16238/mini.png)](https://insight.sensiolabs.com/projects/91082ddc-cd1f-4afe-ba83-a26626e16238)
 
-This web app works with Symfony v3.3.9 and use Twig v2.0 (Required php 7.0)
+This web app works with Symfony v3.3.9 and uses Twig v2.0 (Required php 7.0)
 
-I built this project for my php learning with [OpenClassRooms](https://openclassrooms.com/).
+I built this project as part of my php learning with [OpenClassRooms](https://openclassrooms.com/).
 
 ## Getting Started
 
@@ -24,7 +24,7 @@ I built this project for my php learning with [OpenClassRooms](https://openclass
 https://github.com/natinho68/SnowTricks.git
 ```
 
-* Create a database as you want
+* Create a database named as you need
 
 * Install all the project dependencies with ``` composer install ```
 
@@ -40,7 +40,7 @@ parameters:
 ```
 * Install the database structure with ``` php bin/console doctrine:schema:update -f```
 
-* If you want you can install the database fixtures with ``` php bin/console doctrine:fixtures:load```
+* It's possible to install the database fixtures as needed with ``` php bin/console doctrine:fixtures:load```
 
 ## Built With
 
@@ -59,4 +59,4 @@ parameters:
 
 [**Nathan MEYER**](https://github.com/natinho68)
 
-See also [ismail1432](https://github.com/ismail1432) who helps me a lot in this project.
+See also [ismail1432](https://github.com/ismail1432) on whom I can rely on a lot on this project.
