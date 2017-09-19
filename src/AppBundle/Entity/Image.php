@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use AppBundle\AppBundle as Bundle;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Filesystem\Exception\FileNotFoundException;
@@ -231,7 +232,10 @@ class Image
     protected function getUploadRootDir()
     {
         // On retourne le chemin relatif vers l'image pour notre code PHP
-        return __DIR__.'/../../../web/'.$this->getUploadDir();
+
+
+
+        return __DIR__. '/../../../web/'.$this->getUploadDir();
     }
 
     /**

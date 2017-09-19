@@ -2,7 +2,7 @@
     <div class="col s12">
         {% for trickImage in trick.images %}
             {% if loop.first %}
-                <div class="col s8">
+                <div class="col m8 s12">
                     <a href="{{ path('view', {'slug': trick.slug}) }}">
                         <img src="{{ asset(trickImage.webPath) }}" class="responsive-img" alt="{{ trickImage.alt }}">
                     </a>
@@ -11,7 +11,7 @@
         {% endfor %}
 
 
-        <div class="col s4">
+        <div class="col m4 s12">
 
             <a href="{{ path('view', {'slug': trick.slug}) }}"><h4 class="left-align black-text">{{ trick.name }}</h4></a>
             {% for trickCategory in trick.categories %}
