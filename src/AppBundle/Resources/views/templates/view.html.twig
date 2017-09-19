@@ -1,0 +1,59 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block title %}
+
+    {{ trick.name }} - {{ parent() }}
+
+{% endblock %}
+
+{% block body %}
+    <div>
+        {% block menu_edit_user_view %}
+        {% include 'AppBundle:templates:menu_edit_user_view.html.twig' %}
+        {% endblock menu_edit_user_view %}
+    </div>
+    <div class="head">
+        <h1 class="center-align">{{ trick.name }}</h1>
+        {% for trickCategory in trick.categories %}
+            <div class="row center-align">
+                <div class="chip black white-text">
+                    {{ trickCategory.name }}
+                </div>
+                <div class="chip black white-text">
+                    {% if trick.author.profilePic is null %}
+                    <img src="{{ asset('uploads/img/avatar.png') }}" alt="user-image">
+                    {% else %}
+                    <img src="{{ asset(trick.author.profilePic.webPath) }}"
+                         alt="{{ trick.author.username }} profile picture">
+                    {% endif %}
+                    By {{ trick.author.username }}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+        {% block slider %}
+            {% include 'AppBundle:templates:slider-view.html.twig' %}
+        {% endblock slider %}
+
+
+
+
+        <div class="desc">
+        <h4>Description :</h4>
+        <p>{{ trick.description }}</p>
+        </div>
+
+
+            <h4>Learn more with video</h4>
+            {% for trickVideo in trick.videos %}
+            <div class="video-container">
+                {{ trickVideo.videoUrl|html  }}
+            </div>
+        {% endfor %}
+        {% block comment %}
+            {% include 'AppBundle:templates:comments.html.twig' %}
+        {% endblock comment %}
+    {% block pagination %}
+{% include('AppBundle:templates:comments_pagination.html.twig') %}
+        {% endblock pagination %}
+{% endblock %}

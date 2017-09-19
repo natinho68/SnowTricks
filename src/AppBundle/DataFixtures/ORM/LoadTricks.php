@@ -1,43 +1,47 @@
 <?php
 
 namespace AppBundle\DataFixtures\ORM;
-
-use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use AppBundle\Entity\Trick;
+use AppBundle\DataFixtures\ORM\BaseLoader as BaseLoader;
+use AppBundle\Entity\Trick as Trick;
 
-class LoadTricks implements FixtureInterface
-{
-    // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
+class LoadTricks extends BaseLoader implements OrderedFixtureInterface{
+
+
     public function load(ObjectManager $manager)
     {
-        $trick1 = new Trick();
-        $trick1->setName('Grab Tail');
-        $trick1->setDate(new \DateTime('now'));
-        $trick1->setDescription('This is a Grab tail');
-        $trick1->setAuthor('nathan');
-        $trick1->setSlug('grab-tail');
-        // On le persiste
-        $manager->persist($trick1);
 
-        $trick2 = new Trick();
-        $trick2->setName('Nose grab');
-        $trick2->setDate(new \DateTime('now'));
-        $trick2->setDescription('This is a Nose grab');
-        $trick2->setAuthor('joanna');
-        $trick2->setSlug('nose-grab');
-        // On le persiste
-        $manager->persist($trick2);
+        $trick = $this->getModelFixtures();
+        foreach ($trick['Trick'] as $reference => $columns)
+        {
 
-        $trick3 = new Trick();
-        $trick3->setName('japan');
-        $trick3->setDate(new \DateTime('now'));
-        $trick3->setDescription('This is a japan');
-        $trick3->setAuthor('henri');
-        $trick3->setSlug('japan');
-        // On le persiste
-        $manager->persist($trick3);
-        // On déclenche l'enregistrement de tous les tricks
-        $manager->flush();
+            $trick = new Trick();
+            $trick->setName($columns['name']);
+            $trick->setDate(new \DateTime('now'));
+            $trick->setDescription($columns['description']);
+            $trick->setCategories($this->getReference('Category_' . $columns['category']));
+            $trick->setAuthor($this->getReference('User_' . $columns['author']));
+            $trick->setSlug($columns['slug']);
+
+            {
+                $manager->persist($trick);
+                $manager->flush();
+
+                $this->addReference('Trick_'. $reference, $trick);
+            }
+
+        }
+
+    }
+
+    public function getModelFile()
+    {
+        return 'tricks';
+    }
+
+    public function getOrder()
+    {
+        return 4;
     }
 }

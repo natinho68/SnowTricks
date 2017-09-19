@@ -1,0 +1,41 @@
+Video:
+    Nose-Grab:
+        trick: Nose-Grab
+        url: '<iframe width="560" height="315" src="https://www.youtube.com/embed/M-W7Pmo-YMY" frameborder="0" allowfullscreen></iframe>'
+
+    Japan:
+        trick: Japan
+        url: '<iframe width="560" height="315" src="https://www.youtube.com/embed/vxBfXyQ_MB4" frameborder="0" allowfullscreen></iframe>'
+
+    Rodeo:
+            trick: Rodeo
+            url: '<iframe width="560" height="315" src="https://www.youtube.com/embed/vf9Z05XY79A" frameborder="0" allowfullscreen></iframe>'
+
+    Cork:
+            trick: Cork
+            url: '<iframe width="560" height="315" src="https://www.youtube.com/embed/qqNV0tI3Z4k" frameborder="0" allowfullscreen></iframe>'
+
+    Blunt:
+            trick: Blunt
+            url: '<iframe width="560" height="315" src="https://www.youtube.com/embed/O5DpwZjCsgA" frameborder="0" allowfullscreen></iframe>'
+
+    Bloddy:
+            trick: Bloody
+            url: '<iframe width="560" height="315" src="https://www.youtube.com/embed/UU9iKINvlyU" frameborder="0" allowfullscreen></iframe>'
+
+    Shifty:
+            trick: Shifty
+            url: '<iframe width="560" height="315" src="https://www.youtube.com/embed/RVoP-UFewdQ" frameborder="0" allowfullscreen></iframe>'
+
+    McTwist:
+            trick: McTwist
+            url: '<iframe width="560" height="315" src="https://www.youtube.com/embed/cuaJlr1DTMk" frameborder="0" allowfullscreen></iframe>'
+
+    LipSlide:
+            trick: LipSlide
+            url: '<iframe width="560" height="315" src="https://www.youtube.com/embed/pwTTTz0G4oA" frameborder="0" allowfullscreen></iframe>'
+
+    NoseBlunt:
+            trick: NoseBlunt
+            url: '<iframe width="560" height="315" src="https://www.youtube.com/embed/e2hqg9dqv2Q" frameborder="0" allowfullscreen></iframe>'
+

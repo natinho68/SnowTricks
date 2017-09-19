@@ -1,0 +1,65 @@
+Image:
+    Nose-Grab:
+        trick: Nose-Grab
+        image:
+            - nosegrab1.jpeg
+            - nosegrab2.jpeg
+            - nosegrab3.jpeg
+
+    Japan:
+        trick: Japan
+        image:
+           - japan1.jpeg
+           - japan2.jpeg
+
+
+    Rodeo:
+        trick: Rodeo
+        image:
+           - frontside-rodeo1.jpg
+           - frontside-rodeo2.jpg
+           - frontside-rodeo3.jpg
+
+    Cork:
+        trick: Cork
+        image:
+           - cork1.jpg
+           - cork2.jpg
+           - cork3.jpg
+
+    Blunt:
+        trick: Blunt
+        image:
+           - bluntslide1.jpg
+           - bluntslide2.jpg
+
+    Bloody:
+        trick: Bloody
+        image:
+           - bloody-dracula1.jpg
+           - bloody-dracula2.jpg
+
+
+    Shifty:
+        trick: Shifty
+        image:
+           - shifty1.jpg
+           - shifty2.jpg
+
+    McTwist:
+        trick: McTwist
+        image:
+           - mctwist1.jpg
+           - mctwist2.jpg
+
+    LipSlide:
+        trick: LipSlide
+        image:
+           - lipslide1.jpg
+           - lipslide2.jpg
+
+    NoseBlunt:
+        trick: NoseBlunt
+        image:
+           - noseblunt1.jpg
+           - noseblunt2.jpg

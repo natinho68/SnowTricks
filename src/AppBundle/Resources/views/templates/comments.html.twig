@@ -1,0 +1,46 @@
+<br><hr class="style12">
+<div class="row comment">
+    <h5>React to this trick! Post a comment !</h5>
+    {% if is_granted('ROLE_USER') == false %}
+        <p>To post a comment, you must be logged in !</p>
+        <p>
+            <a href="{{ path('fos_user_security_login') }}" class="waves-effect black btn"><i class="material-icons left">subdirectory_arrow_right</i>
+                Login
+            </a>
+        </p>
+    {% endif %}
+    {% block comments_user_allowed %}
+        {% include 'AppBundle:templates:comments_user_allowed.html.twig' %}
+    {% endblock comments_user_allowed %}
+
+        {% if listComments.count == 0 %}
+            <p class="center-align">// No comments yet for this trick \\</p>
+        {% else %}
+            {% for comments in listComments %}
+                <div class="row">
+                    <div class="col m6 s12">
+                        <div class="card-panel grey lighten-5 z-depth-1 comment-card">
+                            <div class="row valign-wrapper">
+                                <div class="col s2">
+                                    {% if comments.author.profilePic is null %}
+                                        <img src="{{ asset('uploads/img/avatar.png') }}" alt="user-image" width="50px" height="50px"
+                                             style="border-radius:50%">
+                                    {% else %}
+                                        <img src="{{ asset(comments.author.profilePic.webPath) }}"
+
+                                             alt="{{ comments.author.profilePic.alt }}" width="50px" height="50px"
+                                             style="border-radius:50%">
+                                    {% endif %}
+                                </div>
+                                <div class="col s12 m10">
+              <span class="black-text">
+                  <h6><b>{{ comments.author }}</b> {{ comments.date|date("m-d-y \\a\\t g:ia") }}</h6>
+                  {{ comments.content }}
+              </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}

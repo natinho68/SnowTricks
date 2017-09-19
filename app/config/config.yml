@@ -6,6 +6,7 @@ imports:
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+
 parameters:
     locale: en
 
@@ -29,6 +30,7 @@ framework:
         # https://symfony.com/doc/current/reference/configuration/framework.html#handler-id
         handler_id: session.handler.native_file
         save_path: '%kernel.project_dir%/var/sessions/%kernel.environment%'
+        name : snwSess
     fragments: ~
     http_method_override: true
     assets: ~
@@ -54,6 +56,7 @@ services:
 doctrine:
     dbal:
         driver: pdo_mysql
+        server_version: 5.6
         host: '%database_host%'
         port: '%database_port%'
         dbname: '%database_name%'
@@ -97,7 +100,7 @@ fos_user:
 
     profile:
         form:
-            type: UserBundle\Form\UserType
+            type: UserBundle\Form\Type\UserType
 
 assetic:
   debug:          '%kernel.debug%'
@@ -107,3 +110,4 @@ assetic:
       jsqueeze:   ~
       scssphp:
           formatter: 'Leafo\ScssPhp\Formatter\Compressed'
+
