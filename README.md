@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+SnowTricks
+==========
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/91082ddc-cd1f-4afe-ba83-a26626e16238/big.png)](https://insight.sensiolabs.com/projects/91082ddc-cd1f-4afe-ba83-a26626e16238)
+>>>>>>> origin/master
 
 # SnowTricks [![SensioLabsInsight](https://insight.sensiolabs.com/projects/91082ddc-cd1f-4afe-ba83-a26626e16238/mini.png)](https://insight.sensiolabs.com/projects/91082ddc-cd1f-4afe-ba83-a26626e16238)
 
