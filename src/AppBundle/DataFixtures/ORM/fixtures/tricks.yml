@@ -1,0 +1,73 @@
+Trick:
+    Nose-Grab:
+        name: Nose Grab
+        author: nathan
+        description: "This awesome grab will really show off your mastery of the park but is easy to achieve. In the sixth of Ninja Academy’s snowboard skills series, Matt Barlow demonstrates how. If you have basic grabs down, such as the indy grab (where you grab the toe-side edge between the feet with your back hand) then you’re ready to work your way up the board and try a nose grab. For this trick it’s crucial to focus on bringing the nose of the board to your hand rather than trying to reach down for the board – bending your front leg and straightening your rear leg will bring the tip of the board towards you.Once you’re comfortable with this move, try reversing it for a tail grab. This time pull the board up by bending your back leg and straightening your front leg, then grab the tail of the board with your back hand. Be prepared Approach the jump in a relaxed position, slightly on your toe edge with knees and ankles flexed.Pop up Straighten your knees and ankles and pop off the lip of the jump. Bend & stretch When in the air, bend your front knee into your body while straightening your back leg. Grab it Take hold of the tip of the board with your front hand and spot your landing. Hold on Maintain your position in the air and prepare to land. Stomp it Release the nose and level the board. Absorb the landing with your knees and ankles. Ninja tip Get your board close enough by imagining that you’re trying to knee yourself in the chest."
+        category: Grab
+        slug: nose-grab
+
+    Japan:
+        name: Japan
+        author: joanna
+        description: "Tricking into how to do a Japan Air Grab on a snowboard is all about getting some air. The Japan Air grab is, like most snowboard tricks,an adaptation of a skateboarding trick. The Japan Air Grab is a popular and traditional boarder’s trick for more experienced snowboarders. The Japan Air Grab is actually difficult, even though the trick itself seems simple. All tricks should be taken seriously. There is great chance for injury to yourself, others or your equipment if performed incorrectly. What you will need to bust this trick: Snowboarding gear Snowboard Jump or Half Pipe Learning how to do a Japan Air Grab: Find a jump spot or half pipe. You will need to gain plenty of air so ensure the jump is big enough or to gain enough air on the half pipe. Approach the jump with proper technique. Knees bent, riding on the edge and keep center. Right before you hit the crest, flatten to the base. While in the air, grab the snowboard right behind your trailing foot bindings. Pull the board back, bending your knees. Turn your torso away from your hand, so your chest is facing outward. This is the Japan Air Grab. Before you land let go of the snowboard. Push your knees straight and keep your body straight and upright. As your snowboard touches the powder, allow your knees to bend slightly. Keep your body straight and stick the landing. You have successfully completed the Japan Air Grab!"
+        category: Straight
+        slug: japan
+
+    Rodeo:
+        name: Front Side Rodeo
+        author: carl
+        description: "The basic frontside rodeo is all together a 540. It essentially falls into a grey area between an off axis frontside 540 and a frontside 180 with a back flip blended into it. The grab choice and different line and pop factors can make it more flipy or more of an off-axis spin. Frontside rodeo can be done off the heels or toes and with a little more spin on the Z Axis can go to 720 or 900. It is possible to do it to a 1080 but, if there is too much flip in the spin, it can be hard not to over flip when going past 720 and 900. The bigger the Z Axis spin, the later the inverted part of the rotation should be. Gaining control on big spin rodeos, may lead to a double cork or a second flip rotation in the spin, if the rider has developed a comfort level with double flips on the tramp or other gymnastic environment.;Rodeo flip; frontside rodeo: A frontward-flipping frontside spin done off the toe-edge. Most commonly performed with a 540° rotation, but also performed as a 720°, 900°, etc.."
+        category: Flips
+        slug: front-side-rodeo
+
+
+    Cork:
+        name: Cork
+        author: rose
+        description: "Spins are corked or corkscrew when the axis of the spin allows for the snowboarder to be oriented sideways or upside-down in the air, typically without becoming completely inverted (though the head and shoulders should drop below the relative position of the board). A Double-Cork refers to a rotation in which a snowboarder inverts or orients himself sideways at two distinct times during an aerial rotation. David Benedek is the originator of the Double-Cork in the Half-pipe, but the Double-Cork is also a very common trick in Big-Air competitions. Shaun White is known for making this trick famous in the half-pipe. Several snowboarders have recently extended the limits of technical snowboarding by performing triple-cork variations, Torstein Horgmo being the first to land one in competition. Mark McMorris originated Backside Triple-Cork 1440's in 2011. In 2015 Billy Morgan demonstrated a quadruple cork."
+        category: Flips
+        slug: cork
+
+    Blunt:
+        name: BluntSlide
+        author: marko
+        description: "A slide performed where the rider's leading foot passes over the rail on approach, with their snowboard traveling perpendicular and trailing foot directly above the rail or other obstacle (like a tailslide). When performing a frontside bluntslide, the snowboarder is facing uphill. When performing a backside bluntslide, the snowboarder is backing downhill."
+        category: Slides
+        slug: blunt-slide
+
+    Bloody:
+        name: Bloody Dracula
+        author: ali
+        description: "A trick in which the rider grabs the tail of the board with both hands. The rear hand grabs the board as it would do it during a regular tail-grab but the front hand blindly reaches for the board behind the riders back."
+        category: Grab
+        slug: bloody-dracula
+
+    Shifty:
+        name: Shifty
+        author: monica
+        description: "An aerial trick in which a snowboarder twists his body in order to shift or rotate his board about 90° from its normal position beneath him, and then returns the board to its original position before landing. This trick can be performed frontside or backside, and also in variation with other tricks and spins."
+        category: Straight
+        slug: shifty
+
+    McTwist:
+        name: McTwist
+        author: kendric
+        description: "A forward-flipping backside 540, performed in a halfpipe, quarterpipe, or similar obstacle. The rotation may continue beyond 540° (e.g., McTwist 720). The origin of this trick comes from vert ramp skateboarding, and was first performed on a skateboard by Mike McGill.
+                      Double McTwist
+                      Previously believed to have been Shaun White as the creator of the Double McTwist 1260, Ben Stewart is the first person known to have performed it in 2009 and coined the name 'Soggy Wolf'. Shaun White was the first athlete to perform the trick in competition at the 2010 Winter Olympics giving it worldwide recognition and giving it the name 'Tomahawk'. Since then, numerous athletes have performed the Double McTwist 1260 including Iouri Podladtchikov."
+        category: Flips
+        slug: mctwist
+
+    LipSlide:
+        name: LipSlide
+        author: milla
+        description: "A slide performed where the rider's trailing foot passes over the rail on approach, with his/her snowboard traveling perpendicular along the rail or other obstacle. When performing a frontside lipslide, the snowboarder is facing downhill. When performing a backside lipslide, a snowboarder is facing uphill."
+        category: Slides
+        slug: lipslide
+
+    NoseBlunt:
+        name: NoseBlunt
+        author: michal
+        description: "A slide performed where the rider's trailing foot passes over the rail on approach, with their snowboard traveling perpendicular and leading foot directly above the rail or other obstacle (like a noseslide). When performing a frontside bluntslide, the snowboarder is facing uphill. When performing a backside bluntslide, the snowboarder is backing downhill."
+        category: Slides
+        slug: noseblunt

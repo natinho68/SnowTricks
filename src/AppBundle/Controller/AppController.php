@@ -5,8 +5,8 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Comment;
 use AppBundle\Entity\Image;
 use AppBundle\Entity\Trick;
-use AppBundle\Form\CommentType;
-use AppBundle\Form\TrickType;
+use AppBundle\Form\Type\CommentType;
+use AppBundle\Form\Type\TrickType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -24,7 +24,7 @@ class AppController extends Controller
     {
         $tricks = $this->getDoctrine()->getRepository('AppBundle:Trick')->findAll();
         // replace this example code with whatever you need
-        return $this->render('AppBundle:pages:home.html.twig', array(
+        return $this->render('AppBundle:templates:home.html.twig', array(
             'tricks'=>$tricks
         ));
     }
@@ -40,16 +40,14 @@ class AppController extends Controller
 
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
             $security = $this->container->get('security.token_storage');
+            $manager = $this->container->get('app_bundle.manager');
             $user = $security->getToken()->getUser();
-            $em = $this->getDoctrine()->getManager();
             $trick->setAuthor($user);
-            $em->persist($trick);
-            $em->flush();
-
+            $manager->save($trick);
             $request->getSession()->getFlashBag()->add('info', 'Trick has been successfully added');
             return $this->redirectToRoute('view', array('slug' => $trick->getSlug()));
         }
-        return $this->render('AppBundle:pages:add.html.twig', array(
+        return $this->render('AppBundle:templates:add.html.twig', array(
             'form' => $form->createView()
         ));
     }
@@ -65,17 +63,14 @@ class AppController extends Controller
             if (null === $trick) {
                 throw new NotFoundHttpException("This trick ". $id ." doesn't exist !");
             }
-
             $form = $this->createForm(TrickType::class, $trick);
-
-
             if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
                 // Inutile de persister ici, Doctrine connait déjà notre annonce
                 $em->flush();
                 $request->getSession()->getFlashBag()->add('info', 'Trick has been updated');
                 return $this->redirectToRoute('view', array('slug' => $trick->getSlug()));
             }
-            return $this->render('AppBundle:pages:edit.html.twig', array(
+            return $this->render('AppBundle:templates:edit.html.twig', array(
                 'trick' => $trick,
                 'form'   => $form->createView(),
             ));
@@ -88,27 +83,20 @@ class AppController extends Controller
     public function deleteAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
-
         $trick = $em->getRepository('AppBundle:Trick')->find($id);
-
         if (null === $trick) {
             throw new NotFoundHttpException("This trick ". $id ." doesn't exist !");
         }
-
         // On crée un formulaire vide, qui ne contiendra que le champ CSRF
         // Cela permet de protéger la suppression d'annonce contre cette faille
         $form = $this->get('form.factory')->create();
-
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
             $em->remove($trick);
             $em->flush();
-
             $request->getSession()->getFlashBag()->add('info', "This trick has been successfully deleted");
-
             return $this->redirectToRoute('homepage');
         }
-
-        return $this->render('AppBundle:pages:delete.html.twig', array(
+        return $this->render('AppBundle:templates:delete.html.twig', array(
             'trick' => $trick,
             'form'   => $form->createView(),
         ));
@@ -119,53 +107,27 @@ class AppController extends Controller
      */
     public function viewAction($slug, Request $request, $page = 1)
     {
-
-        $em = $this->getDoctrine()->getManager();
-        $trick = $em->getRepository('AppBundle:Trick')->findOneBy(array('slug' => $slug));
-
+        $trick = $this->getDoctrine()->getManager()->getRepository('AppBundle:Trick')->findOneBy(array('slug' => $slug));
         if (empty($trick)) {
             throw new NotFoundHttpException("This trick ". $slug ." doesn't exist !");
         }
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
-
-
-        if ($page < 1) {
-            throw $this->createNotFoundException("This page ".$page." doesn't exist !");
-        }
-
+        
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
             // On récupère le service
-            $security = $this->container->get('security.token_storage');
-            $user = $security->getToken()->getUser();
-            $comment->setAuthor($user);
-            $comment->setTrick($trick);
-            $em->persist($comment);
-            $em->flush();
-
+            $user = $this->container->get('security.token_storage')->getToken()->getUser();
+            $comment->setAuthor($user)->setTrick($trick);
+            $this->container->get('app_bundle.manager')->save($comment);
         }
+        $nbPerPage = $this->container->getParameter('nb_per_pages');
+        $listComments = $this->getDoctrine()->getManager()->getRepository('AppBundle:Comment')->getComments($page, $nbPerPage, $trick->getId());
+        $nbPages = $this->container->get('app_bundle.page_number')->numberOfPages($listComments);
 
-        // Ici je fixe le nombre d'annonces par page à 10
-        // Mais bien sûr il faudrait utiliser un paramètre, et y accéder via $this->container->getParameter('nb_per_page')
-        $nbPerPage = 10;
-
-        // On récupère notre objet Paginator
-        $listComments = $em->getRepository('AppBundle:Comment')->getComments($page, $nbPerPage, $trick->getId());
-
-        // On calcule le nombre total de pages grâce au count($listComment) qui retourne le nombre total d'annonces
-        $nbPages = ceil(count($listComments) / $nbPerPage);
-
-        if($nbPages === 0.0){
-            $nbPages = 1;
-        }
-
-
-        // Si la page n'existe pas, on retourne une 404
         if ($page > $nbPages) {
             throw $this->createNotFoundException("This ".$page." doesn't exist !");
         }
-
-        return $this->render('AppBundle:pages:view.html.twig', array(
+        return $this->render('AppBundle:templates:view.html.twig', array(
             'trick' => $trick,
             'form' => $form->createView(),
             'listComments' => $listComments,

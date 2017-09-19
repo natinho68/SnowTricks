@@ -1,0 +1,30 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block title %}
+    Home - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+    {% block slider_home %}
+        {% include 'AppBundle:templates:slider_home.html.twig' %}
+    {% endblock slider_home %}
+
+    <div class="row">
+        <div class="col s12 baseline">
+            <h1 class="center-align">Welcome on SnowTricks</h1>
+            <h5 class="center-align">- The community platform of the best snowboard tricks -</h5>
+        </div>
+    </div>
+
+    {% for trick in tricks %}
+        {% block menu_edit_user_home %}
+            {% include 'AppBundle:templates:menu_edit_user_home.html.twig' %}
+        {% endblock menu_edit_user_home %}
+
+                {% block list_trick %}
+                    {% include 'AppBundle:templates:trick_home.html.twig' %}
+                {% endblock list_trick %}
+                    {% endfor %}
+{% endblock %}
+

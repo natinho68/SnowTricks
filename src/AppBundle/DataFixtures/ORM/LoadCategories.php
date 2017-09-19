@@ -1,35 +1,43 @@
 <?php
-
 namespace AppBundle\DataFixtures\ORM;
-
-use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use AppBundle\Entity\Category;
+use AppBundle\DataFixtures\ORM\BaseLoader as BaseLoader;
+use AppBundle\Entity\Category as Category;
 
-class LoadCategories implements FixtureInterface
+class LoadCategories extends BaseLoader implements OrderedFixtureInterface
 {
-    // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
-    public function load(ObjectManager $manager)
+
+
+    function load(ObjectManager $manager)
     {
-        // Liste des noms de catégorie à ajouter
-        $names = array(
-            'Grab',
-            'Spin',
-            'Flips and Inverted Rotations',
-            'Straight airs',
-            'Slides'
-        );
+        $category = $this->getModelFixtures();
+        foreach ($category['Category'] as $reference => $columns)
+        {
 
-        foreach ($names as $name) {
-            // On crée la catégorie
             $category = new Category();
-            $category->setName($name);
+            $category->setName($columns['name']);
 
-            // On la persiste
-            $manager->persist($category);
+            {
+                $manager->persist($category);
+                $manager->flush();
+
+                $this->addReference('Category_'. $reference, $category);
+            }
+
         }
 
-        // On déclenche l'enregistrement de toutes les catégories
-        $manager->flush();
+    }
+
+
+    public function getModelFile()
+    {
+        return 'categories';
+    }
+
+
+    public function getOrder()
+    {
+        return 3;
     }
 }

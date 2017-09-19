@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Libre+Barcode+39+Text');
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,500,600,800');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
 
 .alert{
     padding: 10px 10px 10px 10px;
@@ -11,6 +12,11 @@
     font-family: 'Raleway', sans-serif;
     font-weight: 600;
     font-size:18px;
+}
+
+
+.video-container{
+    margin-bottom:30px;
 }
 
 #fos_user_profile_form_profilePic_file{
