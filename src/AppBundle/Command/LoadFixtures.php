@@ -39,8 +39,8 @@ class LoadFixtures extends Command
         );
 
         $commandInput = new ArrayInput($arguments1);
-        $returnCode = $command1->run($commandInput, $output);
+        $command1->run($commandInput, $output);
         $commandInput = new ArrayInput($arguments2);
-        $returnCode = $command2->run($commandInput, $output);
+        $command2->run($commandInput, $output);
     }
 }
