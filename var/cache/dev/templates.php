@@ -99,6 +99,7 @@
   'AppBundle:templates:slider_home.html.twig' => __DIR__.'/../../../src/AppBundle/Resources/views/templates/slider_home.html.twig',
   'AppBundle:templates:trick_home.html.twig' => __DIR__.'/../../../src/AppBundle/Resources/views/templates/trick_home.html.twig',
   'AppBundle:templates:view.html.twig' => __DIR__.'/../../../src/AppBundle/Resources/views/templates/view.html.twig',
+  'VichUploaderBundle:Form:fields.html.twig' => __DIR__.'/../../../vendor/vich/uploader-bundle/Resources/views/Form/fields.html.twig',
   'UserBundle::layout.html.twig' => __DIR__.'/../../../src/UserBundle/Resources/views/layout.html.twig',
   'UserBundle:Profile:edit.html.twig' => __DIR__.'/../../../src/UserBundle/Resources/views/Profile/edit.html.twig',
   'UserBundle:Profile:edit_content.html.twig' => __DIR__.'/../../../src/UserBundle/Resources/views/Profile/edit_content.html.twig',

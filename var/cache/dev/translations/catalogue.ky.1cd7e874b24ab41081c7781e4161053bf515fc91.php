@@ -31,8 +31,7 @@ $catalogue = new MessageCatalogue('ky', array (
 
  Регистрацияны анныктоо үчүн %confirmationUrl%
 
- шилтемеси кириңиз.
-',
+ шилтемеси кириңиз.',
     'resetting.request.username' => 'Колдонуучунун аты',
     'resetting.request.submit' => 'Сырдык сөздү өзгөртүү',
     'resetting.reset.submit' => 'Сырдык сөздү өзгөртүү',
@@ -203,6 +202,11 @@ $catalogueEn = new MessageCatalogue('en', array (
     'Credentials have expired.' => 'Credentials have expired.',
     'Account is disabled.' => 'Account is disabled.',
     'Account is locked.' => 'Account is locked.',
+  ),
+  'VichUploaderBundle' => 
+  array (
+    'download' => 'Download',
+    'form.label.delete' => 'Delete?',
   ),
   'FOSUserBundle' => 
   array (

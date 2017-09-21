@@ -125,6 +125,11 @@ $catalogue = new MessageCatalogue('en', array (
     'Account is disabled.' => 'Account is disabled.',
     'Account is locked.' => 'Account is locked.',
   ),
+  'VichUploaderBundle' => 
+  array (
+    'download' => 'Download',
+    'form.label.delete' => 'Delete?',
+  ),
   'FOSUserBundle' => 
   array (
     'group.edit.submit' => 'Update group',

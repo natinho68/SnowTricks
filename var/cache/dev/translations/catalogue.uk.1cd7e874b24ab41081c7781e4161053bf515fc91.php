@@ -97,6 +97,11 @@ $catalogue = new MessageCatalogue('uk', array (
     'fos_user.group.long' => 'Назва групи занадто довга.',
     'fos_group.name.already_used' => 'Ім\'я вже використовується.',
   ),
+  'VichUploaderBundle' => 
+  array (
+    'download' => 'Завантажити',
+    'form.label.delete' => 'Видалити?',
+  ),
   'FOSUserBundle' => 
   array (
     'group.edit.submit' => 'Оновити групу',
@@ -284,6 +289,11 @@ $catalogueEn = new MessageCatalogue('en', array (
     'Credentials have expired.' => 'Credentials have expired.',
     'Account is disabled.' => 'Account is disabled.',
     'Account is locked.' => 'Account is locked.',
+  ),
+  'VichUploaderBundle' => 
+  array (
+    'download' => 'Download',
+    'form.label.delete' => 'Delete?',
   ),
   'FOSUserBundle' => 
   array (

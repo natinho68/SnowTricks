@@ -20,7 +20,7 @@ class LoadAvatars extends BaseLoader implements OrderedFixtureInterface{
                 $avatar->setUpdatedAt(new \DateTimeImmutable());
                 copy($avatar->getFixturesPath() . $item, $avatar->getFixturesPath() . $item . '-copy.jpg');
                 $file = new UploadedFile($avatar->getFixturesPath() . $item . '-copy.jpg', $item, null, null, null, true);
-                $avatar->setFile($file);
+                $avatar->setImageFile($file);
                 $manager->persist($avatar);
                 $manager->flush();
                 $this->addReference('Avatar_' . $reference, $avatar);

@@ -125,6 +125,11 @@ $catalogue = new MessageCatalogue('sl', array (
     'Account is disabled.' => 'Račun je onemogočen.',
     'Account is locked.' => 'Račun je zaklenjen.',
   ),
+  'VichUploaderBundle' => 
+  array (
+    'download' => 'Prenesi',
+    'form.label.delete' => 'Izbris?',
+  ),
   'FOSUserBundle' => 
   array (
     'group.edit.submit' => 'Shrani',
@@ -305,6 +310,11 @@ $catalogueEn = new MessageCatalogue('en', array (
     'Credentials have expired.' => 'Credentials have expired.',
     'Account is disabled.' => 'Account is disabled.',
     'Account is locked.' => 'Account is locked.',
+  ),
+  'VichUploaderBundle' => 
+  array (
+    'download' => 'Download',
+    'form.label.delete' => 'Delete?',
   ),
   'FOSUserBundle' => 
   array (

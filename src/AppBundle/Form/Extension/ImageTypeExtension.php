@@ -28,14 +28,14 @@ class ImageTypeExtension extends AbstractTypeExtension
         // this will be whatever class/entity is bound to your form (e.g. Media)
         $parentData = $form->getParent()->getData();
 
-        $imageUrl = null;
+        $imageName = null;
         if (null !== $parentData) {
         $accessor = PropertyAccess::createPropertyAccessor();
-        $imageUrl = $accessor->getValue($parentData, $options['image_property']);
+        $imageName = $accessor->getValue($parentData, $options['image_property']);
         }
 
         // set an "image_url" variable that will be available when rendering this field
-        $view->vars['image_url'] = $imageUrl;
+        $view->vars['webPath'] = $imageName;
         }
     }
 

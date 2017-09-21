@@ -18,6 +18,7 @@
       <parameter key="SensioFrameworkExtraBundle">Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle</parameter>
       <parameter key="AppBundle">AppBundle\AppBundle</parameter>
       <parameter key="AsseticBundle">Symfony\Bundle\AsseticBundle\AsseticBundle</parameter>
+      <parameter key="VichUploaderBundle">Vich\UploaderBundle\VichUploaderBundle</parameter>
       <parameter key="UserBundle">UserBundle\UserBundle</parameter>
       <parameter key="FOSUserBundle">FOS\UserBundle\FOSUserBundle</parameter>
       <parameter key="StofDoctrineExtensionsBundle">Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle</parameter>
@@ -73,6 +74,11 @@
         <parameter key="parent">null</parameter>
         <parameter key="path">/Applications/MAMP/htdocs/SnowTricks/vendor/symfony/assetic-bundle</parameter>
         <parameter key="namespace">Symfony\Bundle\AsseticBundle</parameter>
+      </parameter>
+      <parameter key="VichUploaderBundle" type="collection">
+        <parameter key="parent">null</parameter>
+        <parameter key="path">/Applications/MAMP/htdocs/SnowTricks/vendor/vich/uploader-bundle</parameter>
+        <parameter key="namespace">Vich\UploaderBundle</parameter>
       </parameter>
       <parameter key="UserBundle" type="collection">
         <parameter key="parent">FOSUserBundle</parameter>
@@ -401,6 +407,7 @@
       <parameter>SensioFrameworkExtraBundle</parameter>
       <parameter>AppBundle</parameter>
       <parameter>AsseticBundle</parameter>
+      <parameter>VichUploaderBundle</parameter>
       <parameter>UserBundle</parameter>
       <parameter>FOSUserBundle</parameter>
       <parameter>StofDoctrineExtensionsBundle</parameter>
@@ -442,6 +449,26 @@
     <parameter key="assetic.cache.class">Assetic\Cache\FilesystemCache</parameter>
     <parameter key="assetic.use_controller_worker.class">Symfony\Bundle\AsseticBundle\Factory\Worker\UseControllerWorker</parameter>
     <parameter key="assetic.request_listener.class">Symfony\Bundle\AsseticBundle\EventListener\RequestListener</parameter>
+    <parameter key="vich_uploader.default_filename_attribute_suffix">_name</parameter>
+    <parameter key="vich_uploader.mappings" type="collection">
+      <parameter key="trick_image" type="collection">
+        <parameter key="uri_prefix">uploads/img</parameter>
+        <parameter key="upload_destination">/Applications/MAMP/htdocs/SnowTricks/app/../web/uploads/img</parameter>
+        <parameter key="namer" type="collection">
+          <parameter key="service">vich_uploader.namer_uniqid.trick_image</parameter>
+          <parameter key="options" type="collection"/>
+        </parameter>
+        <parameter key="inject_on_load">false</parameter>
+        <parameter key="delete_on_update">true</parameter>
+        <parameter key="delete_on_remove">true</parameter>
+        <parameter key="directory_namer" type="collection">
+          <parameter key="service">null</parameter>
+          <parameter key="options">null</parameter>
+        </parameter>
+        <parameter key="db_driver">orm</parameter>
+      </parameter>
+    </parameter>
+    <parameter key="vich_uploader.file_injector.class">Vich\UploaderBundle\Injector\FileInjector</parameter>
     <parameter key="fos_user.backend_type_orm">true</parameter>
     <parameter key="fos_user.security.interactive_login_listener.class">FOS\UserBundle\EventListener\LastLoginListener</parameter>
     <parameter key="fos_user.security.login_manager.class">FOS\UserBundle\Security\LoginManager</parameter>
@@ -820,7 +847,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>dloGN2DhEEYG-4kePYO9G6</argument>
+      <argument>eHAhvbdrJxjyi7Mu0aZz3N</argument>
       <argument>/Applications/MAMP/htdocs/SnowTricks/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -830,7 +857,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>dloGN2DhEEYG-4kePYO9G6</argument>
+      <argument>eHAhvbdrJxjyi7Mu0aZz3N</argument>
       <call method="setLogger">
         <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       </call>
@@ -947,7 +974,7 @@
       <argument type="service" id="form.resolved_type_factory"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension" public="false">
-      <argument type="service" id="service_locator.f811b0434fc4e59414cf4e91540d9455"/>
+      <argument type="service" id="service_locator.93a7a840579c80da179cf9c1b688eab5"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FileType" type="iterator">
           <argument type="service" id="AppBundle\Form\Extension\ImageTypeExtension"/>
@@ -1337,6 +1364,7 @@
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.ar.xlf</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.ar.xlf</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.ar.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/vich/uploader-bundle/Resources/translations/VichUploaderBundle.ar.yml</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.ar.yml</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.ar.yml</argument>
           </argument>
@@ -1380,6 +1408,7 @@
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.de.xlf</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.de.xlf</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.de.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/vich/uploader-bundle/Resources/translations/VichUploaderBundle.de.yml</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.de.yml</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.de.yml</argument>
           </argument>
@@ -1394,6 +1423,7 @@
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.en.xlf</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.en.xlf</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.en.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/vich/uploader-bundle/Resources/translations/VichUploaderBundle.en.yml</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.en.yml</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.en.yml</argument>
           </argument>
@@ -1401,6 +1431,7 @@
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.es.xlf</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.es.xlf</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.es.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/vich/uploader-bundle/Resources/translations/VichUploaderBundle.es.yml</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.es.yml</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.es.yml</argument>
           </argument>
@@ -1432,6 +1463,7 @@
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.fr.xlf</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.fr.xlf</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.fr.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/vich/uploader-bundle/Resources/translations/VichUploaderBundle.fr.yml</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.fr.yml</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.fr.yml</argument>
           </argument>
@@ -1458,6 +1490,7 @@
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.hu.xlf</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.hu.xlf</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.hu.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/vich/uploader-bundle/Resources/translations/VichUploaderBundle.hu.yml</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.hu.yml</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.hu.yml</argument>
           </argument>
@@ -1476,6 +1509,7 @@
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.it.xlf</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.it.xlf</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.it.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/vich/uploader-bundle/Resources/translations/VichUploaderBundle.it.yml</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.it.yml</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.it.yml</argument>
           </argument>
@@ -1529,12 +1563,14 @@
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.pl.xlf</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.pl.xlf</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.pl.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/vich/uploader-bundle/Resources/translations/VichUploaderBundle.pl.yml</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.pl.yml</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.pl.yml</argument>
           </argument>
           <argument key="pt" type="collection">
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.pt.xlf</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.pt.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/vich/uploader-bundle/Resources/translations/VichUploaderBundle.pt.yml</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.pt.yml</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.pt.yml</argument>
           </argument>
@@ -1556,6 +1592,7 @@
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.ru.xlf</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.ru.xlf</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.ru.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/vich/uploader-bundle/Resources/translations/VichUploaderBundle.ru.yml</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.ru.yml</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.ru.yml</argument>
           </argument>
@@ -1570,6 +1607,7 @@
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.sl.xlf</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.sl.xlf</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.sl.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/vich/uploader-bundle/Resources/translations/VichUploaderBundle.sl.yml</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.sl.yml</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.sl.yml</argument>
           </argument>
@@ -1604,12 +1642,14 @@
           <argument key="tr" type="collection">
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.tr.xlf</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.tr.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/vich/uploader-bundle/Resources/translations/VichUploaderBundle.tr.yml</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.tr.yml</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.tr.yml</argument>
           </argument>
           <argument key="uk" type="collection">
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.uk.xlf</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.uk.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/vich/uploader-bundle/Resources/translations/VichUploaderBundle.uk.yml</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.uk.yml</argument>
             <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.uk.yml</argument>
           </argument>
@@ -3254,12 +3294,12 @@
     </service>
     <service id="security.authentication.listener.anonymous.main" class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
       <argument type="service" id="security.token_storage"/>
-      <argument>59c0e8975eab71.78109696</argument>
+      <argument>59c3b1418bb565.23311443</argument>
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
       <argument type="service" id="security.authentication.manager"/>
     </service>
     <service id="security.authentication.provider.anonymous.main" class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-      <argument>59c0e8975eab71.78109696</argument>
+      <argument>59c3b1418bb565.23311443</argument>
     </service>
     <service id="security.exception_listener.main" class="Symfony\Component\Security\Http\Firewall\ExceptionListener" public="false">
       <argument type="service" id="security.token_storage"/>
@@ -3383,6 +3423,9 @@
         <argument type="service" id="assetic.twig_extension"/>
       </call>
       <call method="addExtension">
+        <argument type="service" id="vich_uploader.twig.extension.uploader"/>
+      </call>
+      <call method="addExtension">
         <argument type="service" id="twig.extension.dump"/>
       </call>
       <call method="addExtension">
@@ -3459,6 +3502,10 @@
       <call method="addPath">
         <argument>/Applications/MAMP/htdocs/SnowTricks/src/AppBundle/Resources/views</argument>
         <argument>App</argument>
+      </call>
+      <call method="addPath">
+        <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/vich/uploader-bundle/Resources/views</argument>
+        <argument>VichUploader</argument>
       </call>
       <call method="addPath">
         <argument>/Applications/MAMP/htdocs/SnowTricks/src/UserBundle/Resources/views</argument>
@@ -3623,6 +3670,10 @@
       <call method="addPath">
         <argument>/Applications/MAMP/htdocs/SnowTricks/src/AppBundle/Resources/views</argument>
         <argument>App</argument>
+      </call>
+      <call method="addPath">
+        <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/vich/uploader-bundle/Resources/views</argument>
+        <argument>VichUploader</argument>
       </call>
       <call method="addPath">
         <argument>/Applications/MAMP/htdocs/SnowTricks/src/UserBundle/Resources/views</argument>
@@ -3903,7 +3954,16 @@
     <service id="doctrine.dbal.default_connection.event_manager" class="Symfony\Bridge\Doctrine\ContainerAwareEventManager" public="false">
       <argument type="service" id="service_container"/>
       <call method="addEventSubscriber">
+        <argument type="service" id="vich_uploader.listener.clean.trick_image"/>
+      </call>
+      <call method="addEventSubscriber">
         <argument type="service" id="fos_user.user_listener"/>
+      </call>
+      <call method="addEventSubscriber">
+        <argument type="service" id="vich_uploader.listener.remove.trick_image"/>
+      </call>
+      <call method="addEventSubscriber">
+        <argument type="service" id="vich_uploader.listener.upload.trick_image"/>
       </call>
       <call method="addEventSubscriber">
         <argument type="service" id="stof_doctrine_extensions.listener.sluggable"/>
@@ -4203,6 +4263,10 @@
         <argument>twig</argument>
       </call>
       <call method="addResource">
+        <argument type="service" id="assetic.twig_directory_resource.VichUploaderBundle"/>
+        <argument>twig</argument>
+      </call>
+      <call method="addResource">
         <argument type="service" id="assetic.twig_directory_resource.UserBundle"/>
         <argument>twig</argument>
       </call>
@@ -4288,6 +4352,7 @@
         <argument>SensioFrameworkExtraBundle</argument>
         <argument>AppBundle</argument>
         <argument>AsseticBundle</argument>
+        <argument>VichUploaderBundle</argument>
         <argument>UserBundle</argument>
         <argument>FOSUserBundle</argument>
         <argument>StofDoctrineExtensionsBundle</argument>
@@ -4362,6 +4427,237 @@
     </service>
     <service id="assetic.request_listener" class="Symfony\Bundle\AsseticBundle\EventListener\RequestListener">
       <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest"/>
+    </service>
+    <service id="vich_uploader.namer_uniqid.trick_image" class="Vich\UploaderBundle\Naming\UniqidNamer"/>
+    <service id="vich_uploader.adapter.propel" class="Vich\UploaderBundle\Adapter\Propel\PropelORMAdapter" public="false"/>
+    <service id="vich_uploader.adapter.mongodb" class="Vich\UploaderBundle\Adapter\ODM\MongoDB\MongoDBAdapter" public="false"/>
+    <service id="vich_uploader.adapter.orm" class="Vich\UploaderBundle\Adapter\ORM\DoctrineORMAdapter" public="false"/>
+    <service id="vich_uploader.adapter.phpcr" class="Vich\UploaderBundle\Adapter\PHPCR\PHPCRAdapter" public="false"/>
+    <service id="vich_uploader.listener.doctrine.base" public="false" abstract="true">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.inject.orm" class="Vich\UploaderBundle\EventListener\Doctrine\InjectListener" public="false">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.upload.orm" class="Vich\UploaderBundle\EventListener\Doctrine\UploadListener" public="false">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.clean.orm" class="Vich\UploaderBundle\EventListener\Doctrine\CleanListener" public="false">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.remove.orm" class="Vich\UploaderBundle\EventListener\Doctrine\RemoveListener" public="false">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.inject.mongodb" class="Vich\UploaderBundle\EventListener\Doctrine\InjectListener" public="false">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.upload.mongodb" class="Vich\UploaderBundle\EventListener\Doctrine\UploadListener" public="false">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.clean.mongodb" class="Vich\UploaderBundle\EventListener\Doctrine\CleanListener" public="false">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.remove.mongodb" class="Vich\UploaderBundle\EventListener\Doctrine\RemoveListener" public="false">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.inject.phpcr" class="Vich\UploaderBundle\EventListener\Doctrine\InjectListener" public="false">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.upload.phpcr" class="Vich\UploaderBundle\EventListener\Doctrine\UploadListener" public="false">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.clean.phpcr" class="Vich\UploaderBundle\EventListener\Doctrine\CleanListener" public="false">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.remove.phpcr" class="Vich\UploaderBundle\EventListener\Doctrine\RemoveListener" public="false">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.propel.base" public="false" abstract="true">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.inject.propel" class="Vich\UploaderBundle\EventListener\Propel\InjectListener" public="false">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.upload.propel" class="Vich\UploaderBundle\EventListener\Propel\UploadListener" public="false">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.clean.propel" class="Vich\UploaderBundle\EventListener\Propel\CleanListener" public="false">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.remove.propel" class="Vich\UploaderBundle\EventListener\Propel\RemoveListener" public="false">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.storage.file_system" class="Vich\UploaderBundle\Storage\FileSystemStorage" public="false">
+      <argument type="service" id="vich_uploader.property_mapping_factory"/>
+    </service>
+    <service id="vich_uploader.file_injector" class="Vich\UploaderBundle\Injector\FileInjector" public="false">
+      <argument type="service" id="vich_uploader.storage.file_system"/>
+    </service>
+    <service id="vich_uploader.templating.helper.uploader_helper" class="Vich\UploaderBundle\Templating\Helper\UploaderHelper">
+      <tag name="templating.helper" alias="vich_uploader"/>
+      <argument type="service" id="vich_uploader.storage.file_system"/>
+    </service>
+    <service id="vich_uploader.metadata.file_locator" class="Vich\UploaderBundle\Metadata\Driver\FileLocator" public="false">
+      <argument type="collection"/>
+    </service>
+    <service id="vich_uploader.metadata_driver.annotation" class="Vich\UploaderBundle\Metadata\Driver\AnnotationDriver" public="false">
+      <argument type="service" id="annotations.cached_reader"/>
+    </service>
+    <service id="vich_uploader.metadata_driver.xml" class="Vich\UploaderBundle\Metadata\Driver\XmlDriver" public="false">
+      <argument type="service" id="vich_uploader.metadata.file_locator"/>
+    </service>
+    <service id="vich_uploader.metadata_driver.yaml" class="Vich\UploaderBundle\Metadata\Driver\YamlDriver" public="false">
+      <argument type="service" id="vich_uploader.metadata.file_locator"/>
+    </service>
+    <service id="vich_uploader.metadata_driver.chain" class="Vich\UploaderBundle\Metadata\Driver\ChainDriver" public="false">
+      <argument type="collection">
+        <argument type="service" id="vich_uploader.metadata_driver.annotation"/>
+        <argument type="service" id="vich_uploader.metadata_driver.yaml"/>
+        <argument type="service" id="vich_uploader.metadata_driver.xml"/>
+      </argument>
+    </service>
+    <service id="vich_uploader.metadata.cache.file_cache" class="Metadata\Cache\FileCache" public="false">
+      <argument>/Applications/MAMP/htdocs/SnowTricks/var/cache/dev/vich_uploader</argument>
+    </service>
+    <service id="vich_uploader.metadata_factory" class="Metadata\MetadataFactory" public="false">
+      <argument type="service" id="vich_uploader.metadata_driver.chain"/>
+      <argument>Metadata\ClassHierarchyMetadata</argument>
+      <argument>true</argument>
+      <call method="setCache">
+        <argument type="service" id="vich_uploader.metadata.cache.file_cache" on-invalid="ignore"/>
+      </call>
+    </service>
+    <service id="vich_uploader.metadata_reader" class="Vich\UploaderBundle\Metadata\MetadataReader" public="false">
+      <argument type="service" id="vich_uploader.metadata_factory"/>
+    </service>
+    <service id="vich_uploader.property_mapping_factory" class="Vich\UploaderBundle\Mapping\PropertyMappingFactory" public="false">
+      <argument type="service" id="service_container"/>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="collection">
+        <argument key="trick_image" type="collection">
+          <argument key="uri_prefix">uploads/img</argument>
+          <argument key="upload_destination">/Applications/MAMP/htdocs/SnowTricks/app/../web/uploads/img</argument>
+          <argument key="namer" type="collection">
+            <argument key="service">vich_uploader.namer_uniqid.trick_image</argument>
+            <argument key="options" type="collection"/>
+          </argument>
+          <argument key="inject_on_load">false</argument>
+          <argument key="delete_on_update">true</argument>
+          <argument key="delete_on_remove">true</argument>
+          <argument key="directory_namer" type="collection">
+            <argument key="service">null</argument>
+            <argument key="options">null</argument>
+          </argument>
+          <argument key="db_driver">orm</argument>
+        </argument>
+      </argument>
+      <argument>_name</argument>
+    </service>
+    <service id="vich_uploader.namer_uniqid" class="Vich\UploaderBundle\Naming\UniqidNamer"/>
+    <service id="vich_uploader.namer_property" class="Vich\UploaderBundle\Naming\PropertyNamer"/>
+    <service id="vich_uploader.namer_origname" class="Vich\UploaderBundle\Naming\OrignameNamer"/>
+    <service id="vich_uploader.namer_hash" class="Vich\UploaderBundle\Naming\HashNamer"/>
+    <service id="vich_uploader.directory_namer_subdir" class="Vich\UploaderBundle\Naming\SubdirDirectoryNamer"/>
+    <service id="vich_uploader.form.type.file" class="Vich\UploaderBundle\Form\Type\VichFileType">
+      <tag name="form.type" alias="vich_file"/>
+      <argument type="service" id="vich_uploader.storage.file_system"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+      <argument type="service" id="translator.data_collector"/>
+    </service>
+    <service id="vich_uploader.form.type.image" class="Vich\UploaderBundle\Form\Type\VichImageType">
+      <tag name="form.type" alias="vich_image"/>
+      <argument type="service" id="vich_uploader.storage.file_system"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+      <argument type="service" id="translator.data_collector"/>
+    </service>
+    <service id="vich_uploader.download_handler" class="Vich\UploaderBundle\Handler\DownloadHandler">
+      <argument type="service" id="vich_uploader.property_mapping_factory"/>
+      <argument type="service" id="vich_uploader.storage.file_system"/>
+    </service>
+    <service id="vich_uploader.upload_handler" class="Vich\UploaderBundle\Handler\UploadHandler">
+      <argument type="service" id="vich_uploader.property_mapping_factory"/>
+      <argument type="service" id="vich_uploader.storage.file_system"/>
+      <argument type="service" id="vich_uploader.file_injector"/>
+      <argument type="service" id="debug.event_dispatcher"/>
+    </service>
+    <service id="vich_uploader.twig.extension.uploader" class="Vich\UploaderBundle\Twig\Extension\UploaderExtension" public="false">
+      <tag name="twig.extension"/>
+      <argument type="service" id="vich_uploader.templating.helper.uploader_helper"/>
+    </service>
+    <service id="vich_uploader.listener.clean.trick_image" class="Vich\UploaderBundle\EventListener\Doctrine\CleanListener" public="false">
+      <tag name="doctrine.event_subscriber" priority="50"/>
+      <argument>trick_image</argument>
+      <argument type="service" id="vich_uploader.adapter.orm"/>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.remove.trick_image" class="Vich\UploaderBundle\EventListener\Doctrine\RemoveListener" public="false">
+      <tag name="doctrine.event_subscriber" priority="0"/>
+      <argument>trick_image</argument>
+      <argument type="service" id="vich_uploader.adapter.orm"/>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.upload.trick_image" class="Vich\UploaderBundle\EventListener\Doctrine\UploadListener" public="false">
+      <tag name="doctrine.event_subscriber" priority="0"/>
+      <argument>trick_image</argument>
+      <argument type="service" id="vich_uploader.adapter.orm"/>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
     </service>
     <service id="fos_user.user_manager.default" class="FOS\UserBundle\Doctrine\UserManager" public="false">
       <argument type="service" id="fos_user.util.password_updater"/>
@@ -4832,7 +5128,7 @@
         <argument key="translation.loader.yml" type="service" id="translation.loader.yml"/>
       </argument>
     </service>
-    <service id="service_locator.f811b0434fc4e59414cf4e91540d9455" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id="service_locator.93a7a840579c80da179cf9c1b688eab5" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="AppBundle\Form\Type\CategoryType" type="service" id="AppBundle\Form\Type\CategoryType"/>
@@ -4849,6 +5145,8 @@
         <argument key="Symfony\Component\Form\Extension\Core\Type\ChoiceType" type="service" id="form.type.choice"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="service" id="form.type.form"/>
         <argument key="UserBundle\Form\Type\UserType" type="service" id="app.form.profile"/>
+        <argument key="Vich\UploaderBundle\Form\Type\VichFileType" type="service" id="vich_uploader.form.type.file"/>
+        <argument key="Vich\UploaderBundle\Form\Type\VichImageType" type="service" id="vich_uploader.form.type.image"/>
       </argument>
     </service>
     <service id="monolog.logger.request" class="Symfony\Bridge\Monolog\Logger">
@@ -5218,6 +5516,28 @@
         </argument>
       </argument>
     </service>
+    <service id="assetic.twig_directory_resource.VichUploaderBundle" class="Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource" public="false">
+      <tag name="assetic.templating.twig"/>
+      <tag name="assetic.formula_resource" loader="twig"/>
+      <argument type="collection">
+        <argument type="service">
+          <service class="Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource" public="false">
+            <argument type="service" id="templating.loader"/>
+            <argument>VichUploaderBundle</argument>
+            <argument>/Applications/MAMP/htdocs/SnowTricks/app/Resources/VichUploaderBundle/views</argument>
+            <argument>/\.[^.]+\.twig$/</argument>
+          </service>
+        </argument>
+        <argument type="service">
+          <service class="Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource" public="false">
+            <argument type="service" id="templating.loader"/>
+            <argument>VichUploaderBundle</argument>
+            <argument>/Applications/MAMP/htdocs/SnowTricks/vendor/vich/uploader-bundle/Resources/views</argument>
+            <argument>/\.[^.]+\.twig$/</argument>
+          </service>
+        </argument>
+      </argument>
+    </service>
     <service id="assetic.twig_directory_resource.UserBundle" class="Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource" public="false">
       <tag name="assetic.templating.twig"/>
       <tag name="assetic.formula_resource" loader="twig"/>
@@ -5489,7 +5809,7 @@
     <service id="cache.system.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>dp0Nx5LN13</argument>
       <argument>0</argument>
-      <argument>dloGN2DhEEYG-4kePYO9G6</argument>
+      <argument>eHAhvbdrJxjyi7Mu0aZz3N</argument>
       <argument>/Applications/MAMP/htdocs/SnowTricks/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -5497,7 +5817,7 @@
     <service id="cache.validator.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>CkjvIFwZeo</argument>
       <argument>0</argument>
-      <argument>dloGN2DhEEYG-4kePYO9G6</argument>
+      <argument>eHAhvbdrJxjyi7Mu0aZz3N</argument>
       <argument>/Applications/MAMP/htdocs/SnowTricks/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -5505,7 +5825,7 @@
     <service id="cache.serializer.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>ozvyOBDjpg</argument>
       <argument>0</argument>
-      <argument>dloGN2DhEEYG-4kePYO9G6</argument>
+      <argument>eHAhvbdrJxjyi7Mu0aZz3N</argument>
       <argument>/Applications/MAMP/htdocs/SnowTricks/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -5513,7 +5833,7 @@
     <service id="cache.annotations.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>GaxKjvsOGq</argument>
       <argument>0</argument>
-      <argument>dloGN2DhEEYG-4kePYO9G6</argument>
+      <argument>eHAhvbdrJxjyi7Mu0aZz3N</argument>
       <argument>/Applications/MAMP/htdocs/SnowTricks/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -5610,6 +5930,9 @@
     <service id="doctrine.orm.default_entity_manager.event_manager" alias="doctrine.dbal.default_connection.event_manager" public="false"/>
     <service id="sensio_framework_extra.security.expression_language" alias="sensio_framework_extra.security.expression_language.default" public="false"/>
     <service id="assetic.value_supplier" alias="assetic.value_supplier.default" public="false"/>
+    <service id="vich_uploader.storage" alias="vich_uploader.storage.file_system"/>
+    <service id="vich_uploader.metadata_driver" alias="vich_uploader.metadata_driver.chain" public="false"/>
+    <service id="vich_uploader.metadata.cache" alias="vich_uploader.metadata.cache.file_cache" public="false"/>
     <service id="fos_user.doctrine_registry" alias="doctrine" public="false"/>
     <service id="fos_user.mailer" alias="fos_user.mailer.default"/>
     <service id="fos_user.util.email_canonicalizer" alias="fos_user.util.canonicalizer.default"/>

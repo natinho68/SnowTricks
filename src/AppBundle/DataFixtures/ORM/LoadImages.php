@@ -21,7 +21,7 @@ class LoadImages extends BaseLoader implements OrderedFixtureInterface{
                 $image->setUpdatedAt(new \DateTimeImmutable());
                 copy($image->getFixturesPath() . $item, $image->getFixturesPath() . $item . '-copy.jpg');
                 $file = new UploadedFile($image->getFixturesPath() . $item . '-copy.jpg', $item, null, null, null, true);
-                $image->setFile($file);
+                $image->setImageFile($file);
                 $manager->persist($image);
                 $manager->flush();
 

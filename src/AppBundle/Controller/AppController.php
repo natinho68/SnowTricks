@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\AppBundle;
 use AppBundle\Entity\Comment;
 use AppBundle\Entity\Image;
 use AppBundle\Entity\Trick;
@@ -25,7 +26,7 @@ class AppController extends Controller
         $tricks = $this->getDoctrine()->getRepository('AppBundle:Trick')->findAll();
         // replace this example code with whatever you need
         return $this->render('AppBundle:templates:home.html.twig', array(
-            'tricks'=>$tricks
+            'tricks'=>$tricks,
         ));
     }
 

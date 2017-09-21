@@ -64,10 +64,10 @@ class Image extends \AppBundle\Entity\Image implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'AppBundle\\Entity\\Image' . "\0" . 'id', '' . "\0" . 'AppBundle\\Entity\\Image' . "\0" . 'extension', '' . "\0" . 'AppBundle\\Entity\\Image' . "\0" . 'updatedAt', '' . "\0" . 'AppBundle\\Entity\\Image' . "\0" . 'alt', '' . "\0" . 'AppBundle\\Entity\\Image' . "\0" . 'trick', '' . "\0" . 'AppBundle\\Entity\\Image' . "\0" . 'file', '' . "\0" . 'AppBundle\\Entity\\Image' . "\0" . 'tempFilename'];
+            return ['__isInitialized__', '' . "\0" . 'AppBundle\\Entity\\Image' . "\0" . 'id', '' . "\0" . 'AppBundle\\Entity\\Image' . "\0" . 'alt', '' . "\0" . 'AppBundle\\Entity\\Image' . "\0" . 'trick', '' . "\0" . 'AppBundle\\Entity\\Image' . "\0" . 'imageFile', '' . "\0" . 'AppBundle\\Entity\\Image' . "\0" . 'imageName', '' . "\0" . 'AppBundle\\Entity\\Image' . "\0" . 'updatedAt'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'AppBundle\\Entity\\Image' . "\0" . 'id', '' . "\0" . 'AppBundle\\Entity\\Image' . "\0" . 'extension', '' . "\0" . 'AppBundle\\Entity\\Image' . "\0" . 'updatedAt', '' . "\0" . 'AppBundle\\Entity\\Image' . "\0" . 'alt', '' . "\0" . 'AppBundle\\Entity\\Image' . "\0" . 'trick', '' . "\0" . 'AppBundle\\Entity\\Image' . "\0" . 'file', '' . "\0" . 'AppBundle\\Entity\\Image' . "\0" . 'tempFilename'];
+        return ['__isInitialized__', '' . "\0" . 'AppBundle\\Entity\\Image' . "\0" . 'id', '' . "\0" . 'AppBundle\\Entity\\Image' . "\0" . 'alt', '' . "\0" . 'AppBundle\\Entity\\Image' . "\0" . 'trick', '' . "\0" . 'AppBundle\\Entity\\Image' . "\0" . 'imageFile', '' . "\0" . 'AppBundle\\Entity\\Image' . "\0" . 'imageName', '' . "\0" . 'AppBundle\\Entity\\Image' . "\0" . 'updatedAt'];
     }
 
     /**
@@ -176,45 +176,67 @@ class Image extends \AppBundle\Entity\Image implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function getFile()
+    public function setImageFile(\Symfony\Component\HttpFoundation\File\File $image = NULL)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFile', []);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setImageFile', [$image]);
 
-        return parent::getFile();
+        return parent::setImageFile($image);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getFixturesPath()
+    public function getTrick()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFixturesPath', []);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTrick', []);
 
-        return parent::getFixturesPath();
+        return parent::getTrick();
     }
 
     /**
      * {@inheritDoc}
      */
-    public function setFile(\Symfony\Component\HttpFoundation\File\UploadedFile $file)
+    public function setTrick(\AppBundle\Entity\Trick $trick = NULL)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setFile', [$file]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setTrick', [$trick]);
 
-        return parent::setFile($file);
+        return parent::setTrick($trick);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function preUpload()
+    public function getImageFile()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'preUpload', []);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getImageFile', []);
 
-        return parent::preUpload();
+        return parent::getImageFile();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setImageName($imageName)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setImageName', [$imageName]);
+
+        return parent::setImageName($imageName);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getImageName()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getImageName', []);
+
+        return parent::getImageName();
     }
 
     /**
@@ -235,23 +257,12 @@ class Image extends \AppBundle\Entity\Image implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function setExtension($extension)
+    public function setUpdatedAt($updatedAt)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setExtension', [$extension]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUpdatedAt', [$updatedAt]);
 
-        return parent::setExtension($extension);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getExtension()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getExtension', []);
-
-        return parent::getExtension();
+        return parent::setUpdatedAt($updatedAt);
     }
 
     /**
@@ -279,67 +290,12 @@ class Image extends \AppBundle\Entity\Image implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function setTrick(\AppBundle\Entity\Trick $trick = NULL)
+    public function getUpdatedAt()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setTrick', [$trick]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUpdatedAt', []);
 
-        return parent::setTrick($trick);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getTrick()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTrick', []);
-
-        return parent::getTrick();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function upload()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'upload', []);
-
-        return parent::upload();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getUploadDir()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUploadDir', []);
-
-        return parent::getUploadDir();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function preRemoveUpload()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'preRemoveUpload', []);
-
-        return parent::preRemoveUpload();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function removeUpload()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeUpload', []);
-
-        return parent::removeUpload();
+        return parent::getUpdatedAt();
     }
 
     /**
@@ -356,23 +312,12 @@ class Image extends \AppBundle\Entity\Image implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function setUpdatedAt($updatedAt)
+    public function getFixturesPath()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUpdatedAt', [$updatedAt]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFixturesPath', []);
 
-        return parent::setUpdatedAt($updatedAt);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getUpdatedAt()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUpdatedAt', []);
-
-        return parent::getUpdatedAt();
+        return parent::getFixturesPath();
     }
 
 }

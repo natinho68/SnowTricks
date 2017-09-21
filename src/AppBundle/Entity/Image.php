@@ -3,43 +3,24 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use AppBundle\AppBundle as Bundle;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\Filesystem\Exception\FileNotFoundException;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
- * Image
- *
+ * @ORM\Entity
  * @ORM\Table(name="image")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ImageRepository")
- * @ORM\HasLifecycleCallbacks
+ * @Vich\Uploadable
  */
 class Image
 {
-
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
+     * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
-    /**
-     * @var string
-     * @ORM\Column(name="extension", type="string", length=255, nullable=true)
-     */
-    private $extension;
-
-
-    /**
-     * @var \DateTime
-     * @Assert\NotNull(message = "You have not selected an image, please add one or delete the empty file field.")
-     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
-     */
-    private $updatedAt;
 
     /**
      * @var string
@@ -54,73 +35,118 @@ class Image
      **/
     private $trick;
 
+    // ..... other fields
 
     /**
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
      * @Assert\Image(
      *     maxSize = "2M",
-     *     maxSizeMessage = "The file is too large ({{ size }}). Allowed maximum size is {{ limit }}"
+     *     maxSizeMessage = "The file is too large ({{ size }}Mo). Allowed maximum size is {{ limit }} Mo"
      *     )
-     **/
+     * @Vich\UploadableField(mapping="trick_image", fileNameProperty="imageName")
+     * @var File
+     */
+    private $imageFile;
 
-    private $file;
+    /**
+     * @ORM\Column(name="imageName", type="string", length=255)
+     * @var string
+     */
+    private $imageName;
 
-    // On ajoute cet attribut pour y stocker le nom du fichier temporairement
-    private $tempFilename;
 
+    /**
+     * @ORM\Column(type="datetime")
+     * @Assert\NotNull(message = "You have not selected an image, please add one or delete the empty file field.")
+     * @var \DateTime
+     */
+    private $updatedAt;
 
-
-    public function getFile()
+    /**
+     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+     * of 'UploadedFile' is injected into this setter to trigger the  update. If this
+     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+     * must be able to accept an instance of 'File' as the bundle will inject one here
+     * during Doctrine hydration.
+     *
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
+     *
+     * @return Image
+     */
+    public function setImageFile(File $image = null)
     {
-        return $this->file;
-    }
+        $this->imageFile = $image;
 
-    public function getFixturesPath()
-    {
-        return 'web/uploads/img/';
-    }
-
-
-// On modifie le setter de File, pour prendre en compte l'upload d'un fichier lorsqu'il en existe déjà un autre
-    public function setFile(UploadedFile $file)
-    {
-        $this->file = $file;
-        $this->updatedAt = new \DateTimeImmutable();
-
-        // On vérifie si on avait déjà un fichier pour cette entité
-        if (null !== $this->extension) {
-            // On sauvegarde l'extension du fichier pour le supprimer plus tard
-            $this->tempFilename = $this->extension;
-
-            // On réinitialise les valeurs des attributs extension et alt
-            $this->extension = null;
-            $this->alt = null;
+        if ($image) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
         }
+
+        return $this;
     }
 
     /**
-     * @ORM\PrePersist()
-     * @ORM\PreUpdate()
+     * Get trick
+     *
+     * @return \AppBundle\Entity\Trick
      */
-    public function preUpload()
+    public function getTrick()
     {
-        // Si jamais il n'y a pas de fichier (champ facultatif), on ne fait rien
-        if (null === $this->file) {
-           return;
-        } else {
-            // Le nom du fichier est son id, on doit juste stocker également son extension
-            $this->extension = $this->file->guessExtension();
+        return $this->trick;
+    }
 
-            // Et on génère l'attribut alt de la balise <img>, à la valeur du nom du fichier sur le PC de l'internaute
-            $this->alt = $this->file->getClientOriginalName();
-        }
+
+
+    /**
+     * Set trick
+     *
+     * @param \AppBundle\Entity\Trick $trick
+     *
+     * @return Image
+     */
+    public function setTrick(Trick $trick = null)
+    {
+        $this->trick = $trick;
+
+        return $this;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * @param string $imageName
+     *
+     * @return Image
+     */
+    public function setImageName($imageName)
+    {
+        $this->imageName = $imageName;
+        $this->alt = $imageName;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getImageName()
+    {
+        return $this->imageName;
     }
 
 
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -128,34 +154,19 @@ class Image
     }
 
     /**
-     * Set extension
+     * Set updatedAt
      *
-     * @param string $extension
+     * @param \DateTime $updatedAt
+     *
      * @return Image
      */
-    public function setExtension($extension)
+    public function setUpdatedAt($updatedAt)
     {
-        $this->extension = $extension;
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
 
-    /**
-     * Get extension
-     * @return string
-     */
-    public function getExtension()
-    {
-        return $this->extension;
-    }
-
-    /**
-     * Set alt
-     *
-     * @param string $alt
-     *
-     * @return Image
-     */
     public function setAlt($alt)
     {
         $this->alt = $alt;
@@ -174,114 +185,6 @@ class Image
     }
 
     /**
-     * Set trick
-     *
-     * @param \AppBundle\Entity\Trick $trick
-     *
-     * @return Image
-     */
-    public function setTrick(Trick $trick = null)
-    {
-        $this->trick = $trick;
-
-        return $this;
-    }
-
-    /**
-     * Get trick
-     *
-     * @return \AppBundle\Entity\Trick
-     */
-    public function getTrick()
-    {
-        return $this->trick;
-    }
-
-    /**
-     * @ORM\PostPersist()
-     * @ORM\PostUpdate()
-     */
-    public function upload()
-    {
-        // Si jamais il n'y a pas de fichier (champ facultatif), on ne fait rien
-        if (null === $this->file) {
-            return;
-        }
-
-        // Si on avait un ancien fichier, on le supprime
-        if (null !== $this->tempFilename) {
-            $oldFile = $this->getUploadRootDir().'/'.$this->id.'.'.$this->tempFilename;
-            if (file_exists($oldFile)) {
-                unlink($oldFile);
-            }
-        }
-
-        // On déplace le fichier envoyé dans le répertoire de notre choix
-        $this->file->move(
-            $this->getUploadRootDir(), // Le répertoire de destination
-            $this->id.'.'.$this->extension   // Le nom du fichier à créer, ici « id.extension »
-        );
-    }
-
-    public function getUploadDir()
-    {
-        // On retourne le chemin relatif vers l'image pour un navigateur (relatif au répertoire /web donc)
-        return 'uploads/img';
-    }
-
-    protected function getUploadRootDir()
-    {
-        // On retourne le chemin relatif vers l'image pour notre code PHP
-
-
-
-        return __DIR__. '/../../../web/'.$this->getUploadDir();
-    }
-
-    /**
-     * @ORM\PreRemove()
-     */
-    public function preRemoveUpload()
-    {
-        // On sauvegarde temporairement le nom du fichier, car il dépend de l'id
-        $this->tempFilename = $this->getUploadRootDir().'/'.$this->id.'.'.$this->extension;
-    }
-
-    /**
-     * @ORM\PostRemove()
-     */
-    public function removeUpload()
-    {
-        // En PostRemove, on n'a pas accès à l'id, on utilise notre nom sauvegardé
-        if (file_exists($this->tempFilename)) {
-            // On supprime le fichier
-            unlink($this->tempFilename);
-        }
-    }
-
-
-    public function getWebPath()
-    {
-        return $this->getUploadDir().'/'.$this->getId().'.'.$this->getExtension();
-    }
-
-
-
-    /**
-     * Set updatedAt
-     *
-     * @param \DateTime $updatedAt
-     *
-     * @return Image
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
      * Get updatedAt
      *
      * @return \DateTime
@@ -289,5 +192,15 @@ class Image
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    public function getWebPath()
+    {
+        return 'uploads/img/' . $this->getImageName();
+    }
+
+    public function getFixturesPath()
+    {
+        return 'web/uploads/img/';
     }
 }

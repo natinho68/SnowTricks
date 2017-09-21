@@ -287,6 +287,11 @@ $cataloguePt = new MessageCatalogue('pt', array (
     'fos_user.group.short' => 'O nome é muito curto.',
     'fos_user.group.long' => 'O nome é muito longo.',
   ),
+  'VichUploaderBundle' => 
+  array (
+    'download' => 'Descarregar',
+    'form.label.delete' => 'Apagar?',
+  ),
   'FOSUserBundle' => 
   array (
     'group.edit.submit' => 'Atualizar Grupo',
@@ -472,6 +477,11 @@ $catalogueEn = new MessageCatalogue('en', array (
     'Credentials have expired.' => 'Credentials have expired.',
     'Account is disabled.' => 'Account is disabled.',
     'Account is locked.' => 'Account is locked.',
+  ),
+  'VichUploaderBundle' => 
+  array (
+    'download' => 'Download',
+    'form.label.delete' => 'Delete?',
   ),
   'FOSUserBundle' => 
   array (

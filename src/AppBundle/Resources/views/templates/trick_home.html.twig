@@ -1,10 +1,11 @@
 <div class="row trick-line">
     <div class="col s12">
         {% for trickImage in trick.images %}
+
             {% if loop.first %}
                 <div class="col m8 s12">
                     <a href="{{ path('view', {'slug': trick.slug}) }}">
-                        <img src="{{ asset(trickImage.webPath) }}" class="responsive-img" alt="{{ trickImage.alt }}">
+                       <img src="{{ asset(vich_uploader_asset(trickImage, 'imageFile')) }}" class="responsive-img" alt="{{ trickImage.alt }}">
                     </a>
                 </div>
             {% endif %}

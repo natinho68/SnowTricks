@@ -4,7 +4,7 @@
         {% for trickImage in trick.images %}
         {% if trickImage.alt is not null %}
         <li>
-            <img src="{{ asset(trickImage.webPath) }}" width="300" height="300"
+           <img src="{{ asset(vich_uploader_asset(trickImage, 'imageFile')) }}" width="300" height="300"
                  alt="{{ trickImage.alt }}"> <!-- random image -->
 
             {% endif %}

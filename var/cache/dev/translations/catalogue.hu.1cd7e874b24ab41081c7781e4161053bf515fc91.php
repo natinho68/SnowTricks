@@ -125,6 +125,11 @@ $catalogue = new MessageCatalogue('hu', array (
     'Account is disabled.' => 'Felfüggesztett fiók.',
     'Account is locked.' => 'Zárolt fiók.',
   ),
+  'VichUploaderBundle' => 
+  array (
+    'download' => 'Jelenlegi fájl letöltése',
+    'form.label.delete' => 'Korábban feltöltött fájl törlése?',
+  ),
   'FOSUserBundle' => 
   array (
     'group.edit.submit' => 'Csoport frissítése',
@@ -312,6 +317,11 @@ $catalogueEn = new MessageCatalogue('en', array (
     'Credentials have expired.' => 'Credentials have expired.',
     'Account is disabled.' => 'Account is disabled.',
     'Account is locked.' => 'Account is locked.',
+  ),
+  'VichUploaderBundle' => 
+  array (
+    'download' => 'Download',
+    'form.label.delete' => 'Delete?',
   ),
   'FOSUserBundle' => 
   array (
