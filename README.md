@@ -54,6 +54,7 @@ parameters:
 * [ScssPhp](https://github.com/leafo/scssphp) - Used as SCSS compiler
 * [Symfony-Collection](https://github.com/ninsuo/symfony-collection) - Used for adding, deleting elements from a form collection
 * [FosUserBundle](https://github.com/FriendsOfSymfony/FOSUserBundle) - Used for user management
+* [VichUploaderBundle](https://github.com/dustin10/VichUploaderBundle) - Used for  file uploads
 
 ## Authors
 

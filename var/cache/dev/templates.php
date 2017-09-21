@@ -168,6 +168,7 @@
   'WebProfilerBundle:Profiler:toolbar_redirect.html.twig' => __DIR__.'/../../../vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/views/Profiler/toolbar_redirect.html.twig',
   'WebProfilerBundle:Router:panel.html.twig' => __DIR__.'/../../../vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/views/Router/panel.html.twig',
   '::base.html.twig' => __DIR__.'/../../../app/Resources/views/base.html.twig',
+  ':collection:prototype-defined.html.twig' => __DIR__.'/../../../app/Resources/views/collection/prototype-defined.html.twig',
   ':default:index.html.twig' => __DIR__.'/../../../app/Resources/views/default/index.html.twig',
   '::fields.html.twig' => __DIR__.'/../../../app/Resources/views/fields.html.twig',
   '::jquery.collection.html.twig' => __DIR__.'/../../../app/Resources/views/jquery.collection.html.twig',

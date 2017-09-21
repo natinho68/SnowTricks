@@ -3,11 +3,14 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity
+ * @ORM\Table(name="image")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ImageRepository")
  * @Vich\Uploadable
  */
 class Image
@@ -25,6 +28,7 @@ class Image
      */
     private $alt;
 
+
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Trick", inversedBy="images", cascade={"persist", "remove"})
      * @ORM\JoinColumn(onDelete="CASCADE")
@@ -36,29 +40,25 @@ class Image
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
-     * @Vich\UploadableField(mapping="images", fileNameProperty="imageName", size="imageSize")
-     *
+     * @Assert\Image(
+     *     maxSize = "2M",
+     *     maxSizeMessage = "The file is too large ({{ size }}Mo). Allowed maximum size is {{ limit }} Mo"
+     *     )
+     * @Vich\UploadableField(mapping="trick_image", fileNameProperty="imageName")
      * @var File
      */
     private $imageFile;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     *
+     * @ORM\Column(name="imageName", type="string", length=255)
      * @var string
      */
     private $imageName;
 
-    /**
-     * @ORM\Column(type="integer")
-     *
-     * @var integer
-     */
-    private $imageSize;
 
     /**
      * @ORM\Column(type="datetime")
-     *
+     * @Assert\NotNull(message = "You have not selected an image, please add one or delete the empty file field.")
      * @var \DateTime
      */
     private $updatedAt;
@@ -97,6 +97,8 @@ class Image
         return $this->trick;
     }
 
+
+
     /**
      * Set trick
      *
@@ -107,30 +109,6 @@ class Image
     public function setTrick(Trick $trick = null)
     {
         $this->trick = $trick;
-
-        return $this;
-    }
-
-    /**
-     * Get alt
-     *
-     * @return string
-     */
-    public function getAlt()
-    {
-        return $this->alt;
-    }
-
-    /**
-     * Set alt
-     *
-     * @param string $alt
-     *
-     * @return Image
-     */
-    public function setAlt($alt)
-    {
-        $this->alt = $alt;
 
         return $this;
     }
@@ -151,6 +129,7 @@ class Image
     public function setImageName($imageName)
     {
         $this->imageName = $imageName;
+        $this->alt = $imageName;
 
         return $this;
     }
@@ -163,24 +142,65 @@ class Image
         return $this->imageName;
     }
 
+
     /**
-     * @param integer $imageSize
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
      *
      * @return Image
      */
-    public function setImageSize($imageSize)
+    public function setUpdatedAt($updatedAt)
     {
-        $this->imageSize = $imageSize;
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function setAlt($alt)
+    {
+        $this->alt = $alt;
 
         return $this;
     }
 
     /**
-     * @return integer|null
+     * Get alt
+     *
+     * @return string
      */
-    public function getImageSize()
+    public function getAlt()
     {
-        return $this->imageSize;
+        return $this->alt;
     }
 
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    public function getWebPath()
+    {
+        return 'uploads/img/' . $this->getImageName();
+    }
+
+    public function getFixturesPath()
+    {
+        return 'web/uploads/img/';
+    }
 }
