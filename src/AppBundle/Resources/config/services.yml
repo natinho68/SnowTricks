@@ -1,5 +1,4 @@
 services:
-
     app_bundle.manager:
         class: AppBundle\Manager\Manager
         arguments: [ "@doctrine.orm.entity_manager" ]
@@ -9,6 +8,9 @@ services:
         class: AppBundle\PageNumber\PageNumber
         arguments : [%nb_per_pages%]
 
+    app_bundle.command:
+        class: AppBundle\DataFixtures\ORM\LoadingTricks
+        arguments: [ "@doctrine.orm.entity_manager", "@fos_user.user_manager"]
 
 parameters :
     nb_per_pages : 10

@@ -635,6 +635,7 @@
     <service id="AppBundle\DataFixtures\ORM\LoadImages" class="AppBundle\DataFixtures\ORM\LoadImages" public="false" autowire="true" autoconfigure="true"/>
     <service id="AppBundle\DataFixtures\ORM\LoadTricks" class="AppBundle\DataFixtures\ORM\LoadTricks" public="false" autowire="true" autoconfigure="true"/>
     <service id="AppBundle\DataFixtures\ORM\LoadVideos" class="AppBundle\DataFixtures\ORM\LoadVideos" public="false" autowire="true" autoconfigure="true"/>
+    <service id="AppBundle\DataFixtures\ORM\LoadingTricks" class="AppBundle\DataFixtures\ORM\LoadingTricks" public="false" autowire="true" autoconfigure="true"/>
     <service id="AppBundle\DependencyInjection\AppExtension" class="AppBundle\DependencyInjection\AppExtension" public="false" autowire="true" autoconfigure="true"/>
     <service id="AppBundle\Form\Extension\ImageTypeExtension" class="AppBundle\Form\Extension\ImageTypeExtension" autowire="true" autoconfigure="true">
       <tag name="form.type_extension" extended_type="Symfony\Component\Form\Extension\Core\Type\FileType"/>
@@ -851,7 +852,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>QMeu-1NDg9OwhD8lwfUVIk</argument>
+      <argument>y6Mlv7QmGuGzaS2okhJGpL</argument>
       <argument>/Applications/MAMP/htdocs/SnowTricks/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -861,7 +862,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>QMeu-1NDg9OwhD8lwfUVIk</argument>
+      <argument>y6Mlv7QmGuGzaS2okhJGpL</argument>
       <call method="setLogger">
         <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       </call>
@@ -3298,12 +3299,12 @@
     </service>
     <service id="security.authentication.listener.anonymous.main" class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
       <argument type="service" id="security.token_storage"/>
-      <argument>59c3dc1de89bd3.78688803</argument>
+      <argument>59c5305e9f6c54.33882011</argument>
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
       <argument type="service" id="security.authentication.manager"/>
     </service>
     <service id="security.authentication.provider.anonymous.main" class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-      <argument>59c3dc1de89bd3.78688803</argument>
+      <argument>59c5305e9f6c54.33882011</argument>
     </service>
     <service id="security.exception_listener.main" class="Symfony\Component\Security\Http\Firewall\ExceptionListener" public="false">
       <argument type="service" id="security.token_storage"/>
@@ -4216,6 +4217,10 @@
     </service>
     <service id="app_bundle.page_number" class="AppBundle\PageNumber\PageNumber">
       <argument>10</argument>
+    </service>
+    <service id="app_bundle.command" class="AppBundle\DataFixtures\ORM\LoadingTricks">
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
+      <argument type="service" id="fos_user.user_manager.default"/>
     </service>
     <service id="assetic.filter_manager" class="Symfony\Bundle\AsseticBundle\FilterManager">
       <argument type="service" id="service_container"/>
@@ -5815,7 +5820,7 @@
     <service id="cache.system.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>dp0Nx5LN13</argument>
       <argument>0</argument>
-      <argument>QMeu-1NDg9OwhD8lwfUVIk</argument>
+      <argument>y6Mlv7QmGuGzaS2okhJGpL</argument>
       <argument>/Applications/MAMP/htdocs/SnowTricks/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -5823,7 +5828,7 @@
     <service id="cache.validator.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>CkjvIFwZeo</argument>
       <argument>0</argument>
-      <argument>QMeu-1NDg9OwhD8lwfUVIk</argument>
+      <argument>y6Mlv7QmGuGzaS2okhJGpL</argument>
       <argument>/Applications/MAMP/htdocs/SnowTricks/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -5831,7 +5836,7 @@
     <service id="cache.serializer.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>ozvyOBDjpg</argument>
       <argument>0</argument>
-      <argument>QMeu-1NDg9OwhD8lwfUVIk</argument>
+      <argument>y6Mlv7QmGuGzaS2okhJGpL</argument>
       <argument>/Applications/MAMP/htdocs/SnowTricks/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -5839,7 +5844,7 @@
     <service id="cache.annotations.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>GaxKjvsOGq</argument>
       <argument>0</argument>
-      <argument>QMeu-1NDg9OwhD8lwfUVIk</argument>
+      <argument>y6Mlv7QmGuGzaS2okhJGpL</argument>
       <argument>/Applications/MAMP/htdocs/SnowTricks/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>

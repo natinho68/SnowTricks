@@ -85,7 +85,7 @@ class Trick
 
     /**
      *
-     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $author;

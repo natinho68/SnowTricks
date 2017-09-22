@@ -1,11 +1,9 @@
 <?php
-
 namespace AppBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Yaml\Yaml;
-
 abstract class BaseLoader extends AbstractFixture implements ContainerAwareInterface
 {
     /**
@@ -19,8 +17,6 @@ abstract class BaseLoader extends AbstractFixture implements ContainerAwareInter
     {
         $this->container = $container;
     }
-
-
     public function getModelFixtures()
     {
         $fixturesPath = __DIR__ . '/fixtures/';

@@ -2,12 +2,14 @@
 
 namespace AppBundle\Command;
 
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Doctrine\Common\Persistence\ObjectManager;
+use AppBundle\DataFixtures\ORM\BaseLoader;
 use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 
-class LoadFixtures extends Command
+class LoadFixtures extends ContainerAwareCommand
 {
     protected function configure()
     {
@@ -27,20 +29,8 @@ class LoadFixtures extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
 
-        $command1 = $this->getApplication()->find('doctrine:schema:update');
-        $arguments1 = array(
-            'command' => 'doctrine:schema:update',
-            '-f' => true
-        );
-
-        $command2 = $this->getApplication()->find('doctrine:fixtures:load');
-        $arguments2 = array(
-            'command' => 'doctrine:load:fixtures'
-        );
-
-        $commandInput = new ArrayInput($arguments1);
-        $command1->run($commandInput, $output);
-        $commandInput = new ArrayInput($arguments2);
-        $command2->run($commandInput, $output);
+        $command2 = $this->getContainer()->get('app_bundle.command');
+        $command2->getDatas();
+        $command2->load();
     }
 }
