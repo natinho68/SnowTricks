@@ -38,9 +38,9 @@ parameters:
     database_user: your_database_username
     database_password: your_database_password
 ```
-* Install the database structure with ``` php bin/console doctrine:schema:update -f```
+* Install the database structure and datas with ``` php bin/console app:load-datas ```
 
-* It's possible to install the database fixtures as needed with ``` php bin/console doctrine:fixtures:load```
+* Enjoy
 
 ## Built With
 

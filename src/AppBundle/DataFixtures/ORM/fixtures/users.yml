@@ -3,64 +3,64 @@ User:
         username: nathan
         password: nathan
         email: nathan@nathan.com
-        avatar: avatarNathan
+        avatar: 1
 
     admin:
         username: admin
         password : admin
         email: admin@admin.com
-        avatar: avatarAdmin
+        avatar: 3
 
     joanna:
         username: joanna
         password : joanna
         email: joanna@joanna.com
-        avatar: avatarJoanna
+        avatar: 2
 
     carl:
         username: carl
         password : carl
         email: carl@carl.com
-        avatar: avatarCarl
+        avatar: 4
 
     rose:
         username: rose
         password : rose
         email: rose@rose.com
-        avatar: avatarRose
+        avatar: 5
 
     marko:
         username: marko
         password : marko
         email: marko@marko.com
-        avatar: avatarMarko
+        avatar: 6
 
     ali:
         username: ali
         password : ali
         email: ali@ali.com
-        avatar: avatarAli
+        avatar: 7
 
     monica:
         username: monica
         password : monica
         email: monica@monica.com
-        avatar: avatarMonica
+        avatar: 8
 
     kendric:
         username: kendric
         password : kendric
         email: kendric@kendric.com
-        avatar: avatarKendric
+        avatar: 9
 
     milla:
         username: milla
         password : milla
         email: milla@milla.com
-        avatar: avatarMilla
+        avatar: 10
 
     michal:
         username: michal
         password : michal
         email: michal@michal.com
-        avatar: avatarMichal
+        avatar: 11

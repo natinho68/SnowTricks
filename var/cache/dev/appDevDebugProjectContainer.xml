@@ -607,7 +607,7 @@
       </parameter>
     </parameter>
     <parameter key="console.command.ids" type="collection">
-      <parameter key="console.command.appbundle_command_loadfixtures">console.command.appbundle_command_loadfixtures</parameter>
+      <parameter key="console.command.appbundle_command_loaddatas">console.command.appbundle_command_loaddatas</parameter>
       <parameter key="console.command.symfony_bundle_securitybundle_command_userpasswordencodercommand">console.command.symfony_bundle_securitybundle_command_userpasswordencodercommand</parameter>
       <parameter key="console.command.sensiolabs_security_command_securitycheckercommand">sensio_distribution.security_checker.command</parameter>
       <parameter key="console.command.symfony_bundle_webserverbundle_command_serverruncommand">console.command.symfony_bundle_webserverbundle_command_serverruncommand</parameter>
@@ -623,19 +623,13 @@
       <tag name="form.type"/>
     </service>
     <service id="AppBundle\AppBundle" class="AppBundle\AppBundle" public="false" autowire="true" autoconfigure="true"/>
-    <service id="AppBundle\Command\LoadFixtures" class="AppBundle\Command\LoadFixtures" public="false" autowire="true" autoconfigure="true">
+    <service id="AppBundle\Command\LoadDatas" class="AppBundle\Command\LoadDatas" public="false" autowire="true" autoconfigure="true">
       <tag name="console.command"/>
     </service>
     <service id="AppBundle\Controller\AppController" class="AppBundle\Controller\AppController" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
     </service>
-    <service id="AppBundle\DataFixtures\ORM\LoadAvatars" class="AppBundle\DataFixtures\ORM\LoadAvatars" public="false" autowire="true" autoconfigure="true"/>
-    <service id="AppBundle\DataFixtures\ORM\LoadCategories" class="AppBundle\DataFixtures\ORM\LoadCategories" public="false" autowire="true" autoconfigure="true"/>
-    <service id="AppBundle\DataFixtures\ORM\LoadComments" class="AppBundle\DataFixtures\ORM\LoadComments" public="false" autowire="true" autoconfigure="true"/>
-    <service id="AppBundle\DataFixtures\ORM\LoadImages" class="AppBundle\DataFixtures\ORM\LoadImages" public="false" autowire="true" autoconfigure="true"/>
-    <service id="AppBundle\DataFixtures\ORM\LoadTricks" class="AppBundle\DataFixtures\ORM\LoadTricks" public="false" autowire="true" autoconfigure="true"/>
-    <service id="AppBundle\DataFixtures\ORM\LoadVideos" class="AppBundle\DataFixtures\ORM\LoadVideos" public="false" autowire="true" autoconfigure="true"/>
-    <service id="AppBundle\DataFixtures\ORM\LoadingTricks" class="AppBundle\DataFixtures\ORM\LoadingTricks" public="false" autowire="true" autoconfigure="true"/>
+    <service id="AppBundle\DataFixtures\ORM\LoadingDatas" class="AppBundle\DataFixtures\ORM\LoadingDatas" public="false" autowire="true" autoconfigure="true"/>
     <service id="AppBundle\DependencyInjection\AppExtension" class="AppBundle\DependencyInjection\AppExtension" public="false" autowire="true" autoconfigure="true"/>
     <service id="AppBundle\Form\Extension\ImageTypeExtension" class="AppBundle\Form\Extension\ImageTypeExtension" autowire="true" autoconfigure="true">
       <tag name="form.type_extension" extended_type="Symfony\Component\Form\Extension\Core\Type\FileType"/>
@@ -852,7 +846,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>y6Mlv7QmGuGzaS2okhJGpL</argument>
+      <argument>mgSqk9SFyl+s2FPq9SfNHy</argument>
       <argument>/Applications/MAMP/htdocs/SnowTricks/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -862,7 +856,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>y6Mlv7QmGuGzaS2okhJGpL</argument>
+      <argument>mgSqk9SFyl+s2FPq9SfNHy</argument>
       <call method="setLogger">
         <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       </call>
@@ -3299,12 +3293,12 @@
     </service>
     <service id="security.authentication.listener.anonymous.main" class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
       <argument type="service" id="security.token_storage"/>
-      <argument>59c5305e9f6c54.33882011</argument>
+      <argument>59c691e33d4ff1.17409218</argument>
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
       <argument type="service" id="security.authentication.manager"/>
     </service>
     <service id="security.authentication.provider.anonymous.main" class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-      <argument>59c5305e9f6c54.33882011</argument>
+      <argument>59c691e33d4ff1.17409218</argument>
     </service>
     <service id="security.exception_listener.main" class="Symfony\Component\Security\Http\Firewall\ExceptionListener" public="false">
       <argument type="service" id="security.token_storage"/>
@@ -4218,7 +4212,7 @@
     <service id="app_bundle.page_number" class="AppBundle\PageNumber\PageNumber">
       <argument>10</argument>
     </service>
-    <service id="app_bundle.command" class="AppBundle\DataFixtures\ORM\LoadingTricks">
+    <service id="app_bundle.command" class="AppBundle\DataFixtures\ORM\LoadingDatas">
       <argument type="service" id="doctrine.orm.default_entity_manager"/>
       <argument type="service" id="fos_user.user_manager.default"/>
     </service>
@@ -5098,8 +5092,8 @@
     </service>
     <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.app.form.profile" class="UserBundle\Form\Type\UserType" public="false" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.app.form.profile" class="UserBundle\Form\Type\UserType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id="instanceof.Symfony\Component\Console\Command\Command.0.AppBundle\Command\LoadFixtures" class="AppBundle\Command\LoadFixtures" public="false" autowire="true" abstract="true"/>
-    <service id="abstract.instanceof.AppBundle\Command\LoadFixtures" class="AppBundle\Command\LoadFixtures" public="false" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id="instanceof.Symfony\Component\Console\Command\Command.0.AppBundle\Command\LoadDatas" class="AppBundle\Command\LoadDatas" public="false" autowire="true" abstract="true"/>
+    <service id="abstract.instanceof.AppBundle\Command\LoadDatas" class="AppBundle\Command\LoadDatas" public="false" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.AppBundle\Controller\AppController" class="AppBundle\Controller\AppController" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.AppBundle\Controller\AppController" class="AppBundle\Controller\AppController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.AppBundle\Form\Type\CategoryType" class="AppBundle\Form\Type\CategoryType" public="false" autowire="true" abstract="true"/>
@@ -5820,7 +5814,7 @@
     <service id="cache.system.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>dp0Nx5LN13</argument>
       <argument>0</argument>
-      <argument>y6Mlv7QmGuGzaS2okhJGpL</argument>
+      <argument>mgSqk9SFyl+s2FPq9SfNHy</argument>
       <argument>/Applications/MAMP/htdocs/SnowTricks/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -5828,7 +5822,7 @@
     <service id="cache.validator.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>CkjvIFwZeo</argument>
       <argument>0</argument>
-      <argument>y6Mlv7QmGuGzaS2okhJGpL</argument>
+      <argument>mgSqk9SFyl+s2FPq9SfNHy</argument>
       <argument>/Applications/MAMP/htdocs/SnowTricks/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -5836,7 +5830,7 @@
     <service id="cache.serializer.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>ozvyOBDjpg</argument>
       <argument>0</argument>
-      <argument>y6Mlv7QmGuGzaS2okhJGpL</argument>
+      <argument>mgSqk9SFyl+s2FPq9SfNHy</argument>
       <argument>/Applications/MAMP/htdocs/SnowTricks/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -5844,7 +5838,7 @@
     <service id="cache.annotations.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>GaxKjvsOGq</argument>
       <argument>0</argument>
-      <argument>y6Mlv7QmGuGzaS2okhJGpL</argument>
+      <argument>mgSqk9SFyl+s2FPq9SfNHy</argument>
       <argument>/Applications/MAMP/htdocs/SnowTricks/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -5952,7 +5946,7 @@
     <service id="fos_user.user_manager" alias="fos_user.user_manager.default"/>
     <service id="Symfony\Component\Templating\EngineInterface" alias="templating.engine.twig" public="false"/>
     <service id="Symfony\Bundle\FrameworkBundle\Templating\EngineInterface" alias="templating.engine.twig" public="false"/>
-    <service id="console.command.appbundle_command_loadfixtures" alias="AppBundle\Command\LoadFixtures"/>
+    <service id="console.command.appbundle_command_loaddatas" alias="AppBundle\Command\LoadDatas"/>
     <service id="console.command.symfony_bundle_securitybundle_command_userpasswordencodercommand" alias="security.console.user_password_encoder_command"/>
     <service id="console.command.symfony_bundle_webserverbundle_command_serverruncommand" alias="web_server.command.server_run"/>
     <service id="console.command.symfony_bundle_webserverbundle_command_serverstartcommand" alias="web_server.command.server_start"/>

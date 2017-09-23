@@ -9,7 +9,7 @@ services:
         arguments : [%nb_per_pages%]
 
     app_bundle.command:
-        class: AppBundle\DataFixtures\ORM\LoadingTricks
+        class: AppBundle\DataFixtures\ORM\LoadingDatas
         arguments: [ "@doctrine.orm.entity_manager", "@fos_user.user_manager"]
 
 parameters :
