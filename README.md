@@ -28,7 +28,7 @@ https://github.com/natinho68/SnowTricks.git
 
 * Install all the project dependencies with ``` composer install ```
 
-* Modify the database parameters in **app/config/parameters.yml**
+* Modify the database parameters if you need to in **app/config/parameters.yml**
 
 ```php
 parameters:
