@@ -1300,3 +1300,5 @@
 [2017-09-23 18:49:42] assetic.ERROR: The template "DoctrineBundle:Collector:db.html.twig" contains an error: Unknown "profiler_dump" function in "DoctrineBundle:Collector:db.html.twig" at line 241. [] []
 [2017-09-23 18:55:14] assetic.ERROR: The template "SecurityBundle:Collector:security.html.twig" contains an error: Unknown "profiler_dump" function in "SecurityBundle:Collector:security.html.twig" at line 100. [] []
 [2017-09-23 18:55:14] assetic.ERROR: The template "DoctrineBundle:Collector:db.html.twig" contains an error: Unknown "profiler_dump" function in "DoctrineBundle:Collector:db.html.twig" at line 241. [] []
+[2017-09-28 14:09:36] assetic.ERROR: The template "SecurityBundle:Collector:security.html.twig" contains an error: Unknown "profiler_dump" function in "SecurityBundle:Collector:security.html.twig" at line 100. [] []
+[2017-09-28 14:09:37] assetic.ERROR: The template "DoctrineBundle:Collector:db.html.twig" contains an error: Unknown "profiler_dump" function in "DoctrineBundle:Collector:db.html.twig" at line 241. [] []
